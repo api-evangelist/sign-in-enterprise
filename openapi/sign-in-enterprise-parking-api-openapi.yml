@@ -1,0 +1,271 @@
+openapi: 3.0.2
+info:
+  title: Sign In Solutions VMS AuditLogs Parking API
+  version: 0.21.0
+  x-logo:
+    url: https://signinenterprise.com/wp-content/uploads/tg-logo-light@2.png
+    backgroundColor: '#FFFFFF'
+    altText: Sign In Solutions
+    href: https://signinsolutions.com/signinenterprise
+  description: 'The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.
+
+
+    # Getting Started
+
+    If you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).
+
+
+    We will also add you to our Slack channel where you can ask questions and get further help.
+
+
+    # Terms and Conditions
+
+    Please visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)
+
+
+    # Versioning
+
+    This API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.
+
+
+    * The `Major` number increments when potentially incompatible changes are made.
+
+    * The `Minor` number increments when backwards-compatible additions are made.
+
+    * The `Patch` number increments when backwards-compatible bug-fixes are made.
+
+    '
+  contact:
+    name: API Support
+    url: https://signinsolutions.com/signinenterprise
+    email: support@tractionguest.com
+servers:
+- url: '{domain}'
+  variables:
+    domain:
+      enum:
+      - https://us.tractionguest.com/api/v3
+      - http://localhost:3000/api/v3
+      default: https://us.tractionguest.com/api/v3
+security:
+- TractionGuestAuth:
+  - all
+  - openid
+  - admin:webhooks
+  - watchlists:*
+  - watchlists:read
+  - watchlists:write
+  - users:*
+  - users:read
+  - users:write
+  - visitors:*
+  - visitors:read
+  - visitors:write
+  - parking:*
+  - parking:read
+  - parking:write
+  - locations:*
+  - locations:read
+  - locations:write
+  - hosts:*
+  - hosts:read
+  - hosts:write
+  - email_templates:*
+  - email_templates:read
+  - email_templates:write
+tags:
+- name: Parking
+  description: All endpoint related to the parking feature, including the ParkingLot and ParkingStallRange models
+paths:
+  /parking_lots:
+    get:
+      summary: Get parking lots
+      tags:
+      - Parking
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedParkingLotsList.v1.yaml
+              examples:
+                example:
+                  value:
+                    parking_lots:
+                    - id: 1
+                      name: West Lot
+                      user_id: 1
+                      locations:
+                      - id: 1
+                        name: Default
+                    - id: 2
+                      name: East Lot
+                      user_id: 1
+                      locations:
+                      - id: 2
+                        name: Vancouver
+                    pagination:
+                      total_records: 5
+                      current_offset: 0
+                      next_offset: null
+                      last_id: null
+                      limit: 20
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: ''
+      operationId: getParkingLots
+      description: Gets a list of [ParkingLot] entities.
+      parameters:
+      - schema:
+          type: integer
+          minimum: 1
+          default: 50
+        in: query
+        name: limit
+        description: Limits the results to a specified number, defaults to 50
+      - schema:
+          type: integer
+          minimum: 0
+          default: 0
+        in: query
+        name: offset
+        description: Offsets the results to a specified number, defaults to 0
+  /parking_lots/{parking_lot_id}/parking_stalls:
+    parameters:
+    - schema:
+        type: string
+      name: parking_lot_id
+      in: path
+      required: true
+    get:
+      summary: Get stalls of parking lot
+      tags:
+      - Parking
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedParkingStallsList.v1.yaml
+              examples:
+                example:
+                  value:
+                    parking_stalls:
+                    - id: 1
+                      parking_lot_id: 1
+                      stall_type: Handicap
+                      range: '0'
+                      stall_count: 5
+                      range_prefix: H
+                      range_postfix: ''
+                    - id: 2
+                      parking_lot_id: 1
+                      stall_type: General
+                      range: '5'
+                      stall_count: 95
+                      range_prefix: P
+                      range_postfix: ''
+                    pagination:
+                      total_records: 5
+                      current_offset: 0
+                      next_offset: null
+                      last_id: null
+                      limit: 20
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: ''
+      operationId: getParkingStalls
+      description: Gets a list of [ParkingStall] entities.
+      parameters:
+      - schema:
+          type: integer
+          minimum: 1
+          default: 50
+        in: query
+        name: limit
+        description: Limits the results to a specified number, defaults to 50
+      - schema:
+          type: integer
+          minimum: 0
+          default: 0
+        in: query
+        name: offset
+        description: Offsets the results to a specified number, defaults to 0
+  /parking_lots/{parking_lot_id}/available_stalls:
+    parameters:
+    - schema:
+        type: string
+      name: parking_lot_id
+      in: path
+      required: true
+    - schema:
+        type: string
+      name: stall_type
+      in: query
+      required: true
+      description: The type of stall to filter by. E.g., 'Compact', 'Standard', 'Electric', 'Handicapped'
+    - schema:
+        type: string
+        format: date-time
+      name: start_date
+      in: query
+      required: true
+      description: The start date to filter by. E.g., '2024-06-13T15:30:00'
+    - schema:
+        type: string
+        format: date-time
+      name: end_date
+      in: query
+      required: true
+      description: The end date to filter by. E.g., '2024-06-13T15:30:00'
+    - schema:
+        type: string
+      name: timezone
+      in: query
+      required: false
+      description: The IANA timezone to be used if not provided in both start_date and end_date. E.g., 'America/Vancouver'
+    get:
+      summary: Get available stalls for stall type
+      tags:
+      - Parking
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ParkingLotAvailableStallsList.v1.yaml
+              example:
+              - parking_stall_id: 23
+                range: null
+                stall_count: 5
+                open_stalls:
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: ''
+      operationId: getParkingLotAvailableStalls
+      description: Gets a list of [ParkingLotAvailableStalls] entities.
+components:
+  securitySchemes:
+    TractionGuestAuth:
+      openIdConnectUrl: https://us.tractionguest.com/.well-known/openid-configuration
+      type: openIdConnect

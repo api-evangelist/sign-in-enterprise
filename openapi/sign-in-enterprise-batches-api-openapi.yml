@@ -1,0 +1,136 @@
+openapi: 3.0.2
+info:
+  title: Sign In Solutions VMS AuditLogs Batches API
+  version: 0.21.0
+  x-logo:
+    url: https://signinenterprise.com/wp-content/uploads/tg-logo-light@2.png
+    backgroundColor: '#FFFFFF'
+    altText: Sign In Solutions
+    href: https://signinsolutions.com/signinenterprise
+  description: 'The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.
+
+
+    # Getting Started
+
+    If you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).
+
+
+    We will also add you to our Slack channel where you can ask questions and get further help.
+
+
+    # Terms and Conditions
+
+    Please visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)
+
+
+    # Versioning
+
+    This API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.
+
+
+    * The `Major` number increments when potentially incompatible changes are made.
+
+    * The `Minor` number increments when backwards-compatible additions are made.
+
+    * The `Patch` number increments when backwards-compatible bug-fixes are made.
+
+    '
+  contact:
+    name: API Support
+    url: https://signinsolutions.com/signinenterprise
+    email: support@tractionguest.com
+servers:
+- url: '{domain}'
+  variables:
+    domain:
+      enum:
+      - https://us.tractionguest.com/api/v3
+      - http://localhost:3000/api/v3
+      default: https://us.tractionguest.com/api/v3
+security:
+- TractionGuestAuth:
+  - all
+  - openid
+  - admin:webhooks
+  - watchlists:*
+  - watchlists:read
+  - watchlists:write
+  - users:*
+  - users:read
+  - users:write
+  - visitors:*
+  - visitors:read
+  - visitors:write
+  - parking:*
+  - parking:read
+  - parking:write
+  - locations:*
+  - locations:read
+  - locations:write
+  - hosts:*
+  - hosts:read
+  - hosts:write
+  - email_templates:*
+  - email_templates:read
+  - email_templates:write
+tags:
+- name: Batches
+  description: All endpoints related to Batch-type actions.
+paths:
+  /batches/{batch_id}:
+    parameters:
+    - schema:
+        type: string
+      name: batch_id
+      in: path
+      required: true
+    get:
+      summary: Get a BatchJob
+      tags:
+      - Batches
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/BatchJob.v1.yaml
+        4XX:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+      operationId: getBatch
+      description: Retrieve a given `BatchJob` entity.
+  /invites/batch_delete:
+    post:
+      summary: Delete Multiple Invites
+      tags:
+      - Batches
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: ./models/BatchJob.v1.yaml
+        4XX:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+      operationId: batchDeleteInvites
+      description: Queues up a "delete" background task for one or more `Invite` entities.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/IdentifierList.v1.yaml
+        description: ''
+components:
+  securitySchemes:
+    TractionGuestAuth:
+      openIdConnectUrl: https://us.tractionguest.com/.well-known/openid-configuration
+      type: openIdConnect

@@ -1,0 +1,1127 @@
+openapi: 3.0.2
+info:
+  title: Sign In Solutions VMS AuditLogs Signins API
+  version: 0.21.0
+  x-logo:
+    url: https://signinenterprise.com/wp-content/uploads/tg-logo-light@2.png
+    backgroundColor: '#FFFFFF'
+    altText: Sign In Solutions
+    href: https://signinsolutions.com/signinenterprise
+  description: 'The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.
+
+
+    # Getting Started
+
+    If you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).
+
+
+    We will also add you to our Slack channel where you can ask questions and get further help.
+
+
+    # Terms and Conditions
+
+    Please visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)
+
+
+    # Versioning
+
+    This API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.
+
+
+    * The `Major` number increments when potentially incompatible changes are made.
+
+    * The `Minor` number increments when backwards-compatible additions are made.
+
+    * The `Patch` number increments when backwards-compatible bug-fixes are made.
+
+    '
+  contact:
+    name: API Support
+    url: https://signinsolutions.com/signinenterprise
+    email: support@tractionguest.com
+servers:
+- url: '{domain}'
+  variables:
+    domain:
+      enum:
+      - https://us.tractionguest.com/api/v3
+      - http://localhost:3000/api/v3
+      default: https://us.tractionguest.com/api/v3
+security:
+- TractionGuestAuth:
+  - all
+  - openid
+  - admin:webhooks
+  - watchlists:*
+  - watchlists:read
+  - watchlists:write
+  - users:*
+  - users:read
+  - users:write
+  - visitors:*
+  - visitors:read
+  - visitors:write
+  - parking:*
+  - parking:read
+  - parking:write
+  - locations:*
+  - locations:read
+  - locations:write
+  - hosts:*
+  - hosts:read
+  - hosts:write
+  - email_templates:*
+  - email_templates:read
+  - email_templates:write
+tags:
+- name: Signins
+  description: All endpoints related to models that track signing in and out of a location. E.g., Signin, Signout, SigninAcknowledgment models
+paths:
+  /signins/{signin_id}:
+    summary: Path used to manage a single Signin.
+    description: The REST endpoint/path used to get single instances of an `Signin`.
+    parameters:
+    - schema:
+        type: string
+      name: signin_id
+      in: path
+      required: true
+    get:
+      tags:
+      - Signins
+      parameters:
+      - name: include
+        description: A list of comma-separated related models to include
+        schema:
+          type: string
+        in: query
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: ./models/SigninDetail.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 2
+                    company: some text
+                    email: some text
+                    first_name: some text
+                    is_accounted_for: true
+                    is_acknowledged: true
+                    last_name: some text
+                    location_name: some text
+                    mobile_number: some text
+                    signed_out_timestamp: '2018-02-10T09:30:00Z'
+                    signin_photo_url: some text
+                    signin_timestamp: '2018-02-10T09:30:00Z'
+                    is_signed_out: true
+                    note: some text
+                    signin_acknowledgement:
+                      code: some text
+                      acknowledged_at: '2018-02-10T09:30:00Z'
+                      id: 99
+                    signin_data:
+                    - name: some text
+                      custom_fields:
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                    - name: some text
+                      custom_fields:
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                    hosts:
+                    - id: 71
+                      email: some text
+                      first_name: some text
+                      last_name: some text
+                      mobile_number: some text
+                      profile_pic_url: some text
+                    - id: 24
+                      email: some text
+                      first_name: some text
+                      last_name: some text
+                      mobile_number: some text
+                      profile_pic_url: some text
+                    signin_watchlist:
+                      id: 47
+                      external:
+                      - search_terms:
+                          name: some text
+                          company: some text
+                          city: some text
+                          country: some text
+                          state: some text
+                        integration: some text
+                        colour: GREEN
+                        matches:
+                        - id: some text
+                          alt_names:
+                          - some text
+                          - some text
+                          federal_register_notice: some text
+                          name: some text
+                          source_information_url: some text
+                          source_list_url: some text
+                          list: some text
+                          type: some text
+                          category: some text
+                          street1: some text
+                          street2: some text
+                          city: some text
+                          state: some text
+                          country: some text
+                          notes: some text
+                          frc: some text
+                          start: '2018-01-17'
+                          end: '2018-01-17'
+                          frserve: some text
+                          optional_ID: some text
+                          alert_type: some text
+                        - id: some text
+                          alt_names:
+                          - some text
+                          - some text
+                          federal_register_notice: some text
+                          name: some text
+                          source_information_url: some text
+                          source_list_url: some text
+                          list: some text
+                          type: some text
+                          category: some text
+                          street1: some text
+                          street2: some text
+                          city: some text
+                          state: some text
+                          country: some text
+                          notes: some text
+                          frc: some text
+                          start: '2018-01-17'
+                          end: '2018-01-17'
+                          frserve: some text
+                          optional_ID: some text
+                          alert_type: some text
+                      - search_terms:
+                          name: some text
+                          company: some text
+                          city: some text
+                          country: some text
+                          state: some text
+                        integration: some text
+                        colour: YELLOW
+                        matches:
+                        - id: some text
+                          alt_names:
+                          - some text
+                          - some text
+                          federal_register_notice: some text
+                          name: some text
+                          source_information_url: some text
+                          source_list_url: some text
+                          list: some text
+                          type: some text
+                          category: some text
+                          street1: some text
+                          street2: some text
+                          city: some text
+                          state: some text
+                          country: some text
+                          notes: some text
+                          frc: some text
+                          start: '2018-01-17'
+                          end: '2018-01-17'
+                          frserve: some text
+                          optional_ID: some text
+                          alert_type: some text
+                        - id: some text
+                          alt_names:
+                          - some text
+                          - some text
+                          federal_register_notice: some text
+                          name: some text
+                          source_information_url: some text
+                          source_list_url: some text
+                          list: some text
+                          type: some text
+                          category: some text
+                          street1: some text
+                          street2: some text
+                          city: some text
+                          state: some text
+                          country: some text
+                          notes: some text
+                          frc: some text
+                          start: '2018-01-17'
+                          end: '2018-01-17'
+                          frserve: some text
+                          optional_ID: some text
+                          alert_type: some text
+                      internal:
+                      - id: 13
+                        email: some text
+                        colour: some text
+                        last_name: some text
+                        first_name: some text
+                      - id: 71
+                        email: some text
+                        colour: some text
+                        last_name: some text
+                        first_name: some text
+                    documents:
+                    - docusigns:
+                      - template_id: some text
+                        integration: some text
+                        nda_status: some text
+                        nda_signed_date: '2018-02-10T09:30:00Z'
+                        envelope_id: some text
+                        sequence: '54'
+                        docusign_id: some text
+                        docusign_name: some text
+                        title: some text
+                      - template_id: some text
+                        integration: some text
+                        nda_status: some text
+                        nda_signed_date: '2018-02-10T09:30:00Z'
+                        envelope_id: some text
+                        sequence: '48'
+                        docusign_id: some text
+                        docusign_name: some text
+                        title: some text
+                      simple_signatures:
+                      - status: some text
+                        template_name: some text
+                        id: some text
+                        title: some text
+                      - status: some text
+                        template_name: some text
+                        id: some text
+                        title: some text
+                    - docusigns:
+                      - template_id: some text
+                        integration: some text
+                        nda_status: some text
+                        nda_signed_date: '2018-02-10T09:30:00Z'
+                        envelope_id: some text
+                        sequence: '28'
+                        docusign_id: some text
+                        docusign_name: some text
+                        title: some text
+                      - template_id: some text
+                        integration: some text
+                        nda_status: some text
+                        nda_signed_date: '2018-02-10T09:30:00Z'
+                        envelope_id: some text
+                        sequence: '82'
+                        docusign_id: some text
+                        docusign_name: some text
+                        title: some text
+                      simple_signatures:
+                      - status: some text
+                        template_name: some text
+                        id: some text
+                        title: some text
+                      - status: some text
+                        template_name: some text
+                        id: some text
+                        title: some text
+          description: Successful response - returns a single `Signin`.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+          description: A generic error
+        '401':
+          description: You don't have permission to view this Signin
+        '403':
+          description: You do not have permission for this action
+        '404':
+          description: The Signin does not exist
+      operationId: getSignin
+      summary: Get a Signin
+      description: Gets the details of a single instance of a `Signin`.
+    put:
+      requestBody:
+        description: 'The only updatable values for a `Signin` are `badge_number`, `badge_returned`, `is_accounted_for`, `is_signed_out`, and `is_acknowledged`.
+
+          `is_signed_out` and `is_acknowledged` are pseudo attributes that once set to true, are irreversible.'
+        content:
+          application/json:
+            schema:
+              $ref: ./models/SigninUpdateParams.v1.yaml
+            examples:
+              default:
+                value:
+                  is_signed_out: true
+                  is_acknowledged: true
+                  is_accounted_for: true
+        required: true
+      tags:
+      - Signins
+      parameters:
+      - $ref: '#/components/parameters/idempotencyKey'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: ./models/SigninDetail.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 5
+                    company: some text
+                    email: some text
+                    first_name: some text
+                    is_accounted_for: true
+                    is_acknowledged: true
+                    last_name: some text
+                    location_name: some text
+                    mobile_number: some text
+                    signed_out_timestamp: '2018-02-10T09:30:00Z'
+                    signin_photo_url: some text
+                    signin_timestamp: '2018-02-10T09:30:00Z'
+                    is_signed_out: true
+                    note: some text
+                    signin_acknowledgement:
+                      code: some text
+                      acknowledged_at: '2018-02-10T09:30:00Z'
+                      id: 9
+                    signin_data:
+                    - name: some text
+                      custom_fields:
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                    - name: some text
+                      custom_fields:
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                    hosts:
+                    - id: 72
+                      email: some text
+                      first_name: some text
+                      last_name: some text
+                      mobile_number: some text
+                      profile_pic_url: some text
+                    - id: 64
+                      email: some text
+                      first_name: some text
+                      last_name: some text
+                      mobile_number: some text
+                      profile_pic_url: some text
+                    signin_watchlist:
+                      id: 90
+                      external:
+                      - search_terms:
+                          name: some text
+                          company: some text
+                          city: some text
+                          country: some text
+                          state: some text
+                        integration: some text
+                        colour: RED
+                        matches:
+                        - id: some text
+                          alt_names:
+                          - some text
+                          - some text
+                          federal_register_notice: some text
+                          name: some text
+                          source_information_url: some text
+                          source_list_url: some text
+                          list: some text
+                          type: some text
+                          category: some text
+                          street1: some text
+                          street2: some text
+                          city: some text
+                          state: some text
+                          country: some text
+                          notes: some text
+                          frc: some text
+                          start: '2018-01-17'
+                          end: '2018-01-17'
+                          frserve: some text
+                          optional_ID: some text
+                          alert_type: some text
+                        - id: some text
+                          alt_names:
+                          - some text
+                          - some text
+                          federal_register_notice: some text
+                          name: some text
+                          source_information_url: some text
+                          source_list_url: some text
+                          list: some text
+                          type: some text
+                          category: some text
+                          street1: some text
+                          street2: some text
+                          city: some text
+                          state: some text
+                          country: some text
+                          notes: some text
+                          frc: some text
+                          start: '2018-01-17'
+                          end: '2018-01-17'
+                          frserve: some text
+                          optional_ID: some text
+                          alert_type: some text
+                      - search_terms:
+                          name: some text
+                          company: some text
+                          city: some text
+                          country: some text
+                          state: some text
+                        integration: some text
+                        colour: ORANGE
+                        matches:
+                        - id: some text
+                          alt_names:
+                          - some text
+                          - some text
+                          federal_register_notice: some text
+                          name: some text
+                          source_information_url: some text
+                          source_list_url: some text
+                          list: some text
+                          type: some text
+                          category: some text
+                          street1: some text
+                          street2: some text
+                          city: some text
+                          state: some text
+                          country: some text
+                          notes: some text
+                          frc: some text
+                          start: '2018-01-17'
+                          end: '2018-01-17'
+                          frserve: some text
+                          optional_ID: some text
+                          alert_type: some text
+                        - id: some text
+                          alt_names:
+                          - some text
+                          - some text
+                          federal_register_notice: some text
+                          name: some text
+                          source_information_url: some text
+                          source_list_url: some text
+                          list: some text
+                          type: some text
+                          category: some text
+                          street1: some text
+                          street2: some text
+                          city: some text
+                          state: some text
+                          country: some text
+                          notes: some text
+                          frc: some text
+                          start: '2018-01-17'
+                          end: '2018-01-17'
+                          frserve: some text
+                          optional_ID: some text
+                          alert_type: some text
+                      internal:
+                      - id: 32
+                        email: some text
+                        colour: some text
+                        last_name: some text
+                        first_name: some text
+                      - id: 98
+                        email: some text
+                        colour: some text
+                        last_name: some text
+                        first_name: some text
+                    documents:
+                    - docusigns:
+                      - template_id: some text
+                        integration: some text
+                        nda_status: some text
+                        nda_signed_date: '2018-02-10T09:30:00Z'
+                        envelope_id: some text
+                        sequence: '38'
+                        docusign_id: some text
+                        docusign_name: some text
+                        title: some text
+                      - template_id: some text
+                        integration: some text
+                        nda_status: some text
+                        nda_signed_date: '2018-02-10T09:30:00Z'
+                        envelope_id: some text
+                        sequence: '83'
+                        docusign_id: some text
+                        docusign_name: some text
+                        title: some text
+                      simple_signatures:
+                      - status: some text
+                        template_name: some text
+                        id: some text
+                        title: some text
+                      - status: some text
+                        template_name: some text
+                        id: some text
+                        title: some text
+                    - docusigns:
+                      - template_id: some text
+                        integration: some text
+                        nda_status: some text
+                        nda_signed_date: '2018-02-10T09:30:00Z'
+                        envelope_id: some text
+                        sequence: '49'
+                        docusign_id: some text
+                        docusign_name: some text
+                        title: some text
+                      - template_id: some text
+                        integration: some text
+                        nda_status: some text
+                        nda_signed_date: '2018-02-10T09:30:00Z'
+                        envelope_id: some text
+                        sequence: '71'
+                        docusign_id: some text
+                        docusign_name: some text
+                        title: some text
+                      simple_signatures:
+                      - status: some text
+                        template_name: some text
+                        id: some text
+                        title: some text
+                      - status: some text
+                        template_name: some text
+                        id: some text
+                        title: some text
+          description: The Signin has been acknowledged, or signed out.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+          description: A generic error
+        '401':
+          description: You don't have permission to update this Signin
+        '403':
+          description: You do not have permission for this action
+        '404':
+          description: The Signin does not exist
+        '422':
+          description: Your request was not formatted correctly
+      operationId: updateSignin
+      summary: Update a Signin
+      description: Update, acknowledge, or `Signout` a `Signin`
+  /signins:
+    summary: Path used to manage the list of Signins.
+    description: The REST endpoint/path used to list and create zero or more `Signin` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
+    get:
+      tags:
+      - Signins
+      parameters:
+      - name: location_ids
+        description: A comma separated list of Location IDs
+        schema:
+          type: string
+        in: query
+      - name: with_colours
+        description: 'A comma separated list of case-insensitive colour values.
+
+          i.e., `red`, `green`, `yellow`, and `orange`'
+        schema:
+          type: string
+        in: query
+      - name: query
+        description: Allows you to query by `company`, `email`, `first_name`, `last_name`, and `location_name`
+        schema:
+          type: string
+        in: query
+      - name: with_acknowledged
+        description: Filters to all those `Signin`s that have, or have not been acknowledged
+        schema:
+          type: boolean
+        in: query
+      - name: with_signed_in
+        description: Filters to all `Signin`s that are, or are not currently signed out.
+        schema:
+          type: boolean
+        in: query
+      - name: signin_before
+        description: Filters results to all those *before* the provided datetime
+        schema:
+          format: date
+          type: string
+        in: query
+      - name: signin_after
+        description: Filters results to all those *after* the provided datetime
+        schema:
+          format: date
+          type: string
+        in: query
+      - name: limit
+        description: Limits the results to a specified number, defaults to 50
+        schema:
+          type: integer
+        in: query
+      - name: offset
+        description: Offsets the results to a specified number, defaults to 0
+        schema:
+          type: integer
+        in: query
+      - name: query_sort
+        description: Allows you to override ordering by most relevant results when querying
+        schema:
+          enum:
+          - signin_timestamp_desc
+          - signin_timestamp_asc
+          type: string
+        in: query
+      - name: include
+        description: A list of comma-separated related models to include
+        schema:
+          type: string
+        in: query
+      - name: include_anonymized
+        description: Set this flag to `true` to include anonymized signins in the response
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedSigninsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    signins:
+                    - id: 70
+                      company: some text
+                      email: some text
+                      first_name: some text
+                      is_accounted_for: true
+                      is_acknowledged: true
+                      last_name: some text
+                      location_name: some text
+                      signed_out_timestamp: '2018-02-10T09:30:00Z'
+                      signin_photo_url: some text
+                      signin_timestamp: '2018-02-10T09:30:00Z'
+                      hosts:
+                      - id: 9
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      - id: 95
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      signin_watchlist:
+                        id: 25
+                        external:
+                        - search_terms:
+                            name: some text
+                            company: some text
+                            city: some text
+                            country: some text
+                            state: some text
+                          integration: some text
+                          colour: ORANGE
+                          matches:
+                          - id: some text
+                            alt_names:
+                            - some text
+                            - some text
+                            federal_register_notice: some text
+                            name: some text
+                            source_information_url: some text
+                            source_list_url: some text
+                            list: some text
+                            type: some text
+                            category: some text
+                            street1: some text
+                            street2: some text
+                            city: some text
+                            state: some text
+                            country: some text
+                            notes: some text
+                            frc: some text
+                            start: '2018-01-17'
+                            end: '2018-01-17'
+                            frserve: some text
+                            optional_ID: some text
+                            alert_type: some text
+                          - id: some text
+                            alt_names:
+                            - some text
+                            - some text
+                            federal_register_notice: some text
+                            name: some text
+                            source_information_url: some text
+                            source_list_url: some text
+                            list: some text
+                            type: some text
+                            category: some text
+                            street1: some text
+                            street2: some text
+                            city: some text
+                            state: some text
+                            country: some text
+                            notes: some text
+                            frc: some text
+                            start: '2018-01-17'
+                            end: '2018-01-17'
+                            frserve: some text
+                            optional_ID: some text
+                            alert_type: some text
+                        - search_terms:
+                            name: some text
+                            company: some text
+                            city: some text
+                            country: some text
+                            state: some text
+                          integration: some text
+                          colour: ORANGE
+                          matches:
+                          - id: some text
+                            alt_names:
+                            - some text
+                            - some text
+                            federal_register_notice: some text
+                            name: some text
+                            source_information_url: some text
+                            source_list_url: some text
+                            list: some text
+                            type: some text
+                            category: some text
+                            street1: some text
+                            street2: some text
+                            city: some text
+                            state: some text
+                            country: some text
+                            notes: some text
+                            frc: some text
+                            start: '2018-01-17'
+                            end: '2018-01-17'
+                            frserve: some text
+                            optional_ID: some text
+                            alert_type: some text
+                          - id: some text
+                            alt_names:
+                            - some text
+                            - some text
+                            federal_register_notice: some text
+                            name: some text
+                            source_information_url: some text
+                            source_list_url: some text
+                            list: some text
+                            type: some text
+                            category: some text
+                            street1: some text
+                            street2: some text
+                            city: some text
+                            state: some text
+                            country: some text
+                            notes: some text
+                            frc: some text
+                            start: '2018-01-17'
+                            end: '2018-01-17'
+                            frserve: some text
+                            optional_ID: some text
+                            alert_type: some text
+                        internal:
+                        - id: 10
+                          email: some text
+                          colour: some text
+                          last_name: some text
+                          first_name: some text
+                        - id: 25
+                          email: some text
+                          colour: some text
+                          last_name: some text
+                          first_name: some text
+                    - id: 50
+                      company: some text
+                      email: some text
+                      first_name: some text
+                      is_accounted_for: true
+                      is_acknowledged: true
+                      last_name: some text
+                      location_name: some text
+                      signed_out_timestamp: '2018-02-10T09:30:00Z'
+                      signin_photo_url: some text
+                      signin_timestamp: '2018-02-10T09:30:00Z'
+                      hosts:
+                      - id: 78
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      - id: 45
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      signin_watchlist:
+                        id: 89
+                        external:
+                        - search_terms:
+                            name: some text
+                            company: some text
+                            city: some text
+                            country: some text
+                            state: some text
+                          integration: some text
+                          colour: GREEN
+                          matches:
+                          - id: some text
+                            alt_names:
+                            - some text
+                            - some text
+                            federal_register_notice: some text
+                            name: some text
+                            source_information_url: some text
+                            source_list_url: some text
+                            list: some text
+                            type: some text
+                            category: some text
+                            street1: some text
+                            street2: some text
+                            city: some text
+                            state: some text
+                            country: some text
+                            notes: some text
+                            frc: some text
+                            start: '2018-01-17'
+                            end: '2018-01-17'
+                            frserve: some text
+                            optional_ID: some text
+                            alert_type: some text
+                          - id: some text
+                            alt_names:
+                            - some text
+                            - some text
+                            federal_register_notice: some text
+                            name: some text
+                            source_information_url: some text
+                            source_list_url: some text
+                            list: some text
+                            type: some text
+                            category: some text
+                            street1: some text
+                            street2: some text
+                            city: some text
+                            state: some text
+                            country: some text
+                            notes: some text
+                            frc: some text
+                            start: '2018-01-17'
+                            end: '2018-01-17'
+                            frserve: some text
+                            optional_ID: some text
+                            alert_type: some text
+                        - search_terms:
+                            name: some text
+                            company: some text
+                            city: some text
+                            country: some text
+                            state: some text
+                          integration: some text
+                          colour: RED
+                          matches:
+                          - id: some text
+                            alt_names:
+                            - some text
+                            - some text
+                            federal_register_notice: some text
+                            name: some text
+                            source_information_url: some text
+                            source_list_url: some text
+                            list: some text
+                            type: some text
+                            category: some text
+                            street1: some text
+                            street2: some text
+                            city: some text
+                            state: some text
+                            country: some text
+                            notes: some text
+                            frc: some text
+                            start: '2018-01-17'
+                            end: '2018-01-17'
+                            frserve: some text
+                            optional_ID: some text
+                            alert_type: some text
+                          - id: some text
+                            alt_names:
+                            - some text
+                            - some text
+                            federal_register_notice: some text
+                            name: some text
+                            source_information_url: some text
+                            source_list_url: some text
+                            list: some text
+                            type: some text
+                            category: some text
+                            street1: some text
+                            street2: some text
+                            city: some text
+                            state: some text
+                            country: some text
+                            notes: some text
+                            frc: some text
+                            start: '2018-01-17'
+                            end: '2018-01-17'
+                            frserve: some text
+                            optional_ID: some text
+                            alert_type: some text
+                        internal:
+                        - id: 94
+                          email: some text
+                          colour: some text
+                          last_name: some text
+                          first_name: some text
+                        - id: 79
+                          email: some text
+                          colour: some text
+                          last_name: some text
+                          first_name: some text
+                    pagination:
+                      total_records: 38
+                      current_offset: 31
+                      next_offset: 26
+          description: Successful response - returns an array of `Signin` entities.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+          description: A generic error
+        '401':
+          description: You don't have permission to view these Signins
+        '403':
+          description: You do not have permission for this action
+      operationId: getSignins
+      summary: List all Signins
+      description: Gets a list of all `Signin` entities.
+    post:
+      summary: Create Signin
+      operationId: createSignin
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Signin.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity (WebDAV)
+      description: Creates a Signin
+      tags:
+      - Signins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/SigninCreateParams.v1.yaml
+            examples:
+              default:
+                value:
+                  guest_email_template_id: 47
+                  host_email_template_id: 65
+                  host_ids:
+                  - 77
+                  - 49
+                  location_id: 79
+                  send_notifications: true
+                  sms_message: some text
+                  first_name: some text
+                  last_name: some text
+                  company: some text
+                  email: some text
+              registration:
+                value:
+                  registration_id: '123531144'
+                  guest_email_template_id: 47
+                  host_email_template_id: 65
+                  send_notifications: true
+                  sms_message: some text
+        description: Params for creating a Signin can omit certain fields if a `registration_id` is present.
+components:
+  parameters:
+    idempotencyKey:
+      name: Idempotency-Key
+      description: An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored
+      schema:
+        type: string
+      in: header
+      required: false
+  securitySchemes:
+    TractionGuestAuth:
+      openIdConnectUrl: https://us.tractionguest.com/.well-known/openid-configuration
+      type: openIdConnect

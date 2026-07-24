@@ -1,0 +1,157 @@
+openapi: 3.0.2
+info:
+  title: Sign In Solutions VMS AuditLogs Users API
+  version: 0.21.0
+  x-logo:
+    url: https://signinenterprise.com/wp-content/uploads/tg-logo-light@2.png
+    backgroundColor: '#FFFFFF'
+    altText: Sign In Solutions
+    href: https://signinsolutions.com/signinenterprise
+  description: 'The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.
+
+
+    # Getting Started
+
+    If you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).
+
+
+    We will also add you to our Slack channel where you can ask questions and get further help.
+
+
+    # Terms and Conditions
+
+    Please visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)
+
+
+    # Versioning
+
+    This API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.
+
+
+    * The `Major` number increments when potentially incompatible changes are made.
+
+    * The `Minor` number increments when backwards-compatible additions are made.
+
+    * The `Patch` number increments when backwards-compatible bug-fixes are made.
+
+    '
+  contact:
+    name: API Support
+    url: https://signinsolutions.com/signinenterprise
+    email: support@tractionguest.com
+servers:
+- url: '{domain}'
+  variables:
+    domain:
+      enum:
+      - https://us.tractionguest.com/api/v3
+      - http://localhost:3000/api/v3
+      default: https://us.tractionguest.com/api/v3
+security:
+- TractionGuestAuth:
+  - all
+  - openid
+  - admin:webhooks
+  - watchlists:*
+  - watchlists:read
+  - watchlists:write
+  - users:*
+  - users:read
+  - users:write
+  - visitors:*
+  - visitors:read
+  - visitors:write
+  - parking:*
+  - parking:read
+  - parking:write
+  - locations:*
+  - locations:read
+  - locations:write
+  - hosts:*
+  - hosts:read
+  - hosts:write
+  - email_templates:*
+  - email_templates:read
+  - email_templates:write
+tags:
+- name: Users
+  description: All endpoints related to the User model
+paths:
+  /users/{user_id}:
+    summary: Path used to manage a single User.
+    description: The REST endpoint/path used to get single instances of an `User` and their `PermissionBundle`s.
+    parameters:
+    - schema:
+        type: string
+      name: user_id
+      in: path
+      required: true
+    get:
+      tags:
+      - Users
+      parameters:
+      - name: include
+        description: A list of comma-separated related models to include
+        schema:
+          type: string
+        in: query
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: ./models/User.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 61
+                    registration_portal_enabled: true
+                    mobile_access_enabled: true
+                    first_name: some text
+                    last_name: some text
+                    email: some text
+                    account_uuid: some text
+                    permission_groups:
+                    - name: some text
+                      visibility: some text
+                      permissions:
+                      - some text
+                      - some text
+                    - name: some text
+                      visibility: some text
+                      permissions:
+                      - some text
+                      - some text
+          description: Successful response - returns a single `User`.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+          description: A generic error
+        '401':
+          description: You don't have permission to view this User
+        '403':
+          description: You do not have permission for this action
+        '404':
+          description: The User does not exist
+      operationId: getCurrentUser
+      summary: Get the current User
+      description: Gets the details of a single instance of the current `User`.
+components:
+  securitySchemes:
+    TractionGuestAuth:
+      openIdConnectUrl: https://us.tractionguest.com/.well-known/openid-configuration
+      type: openIdConnect

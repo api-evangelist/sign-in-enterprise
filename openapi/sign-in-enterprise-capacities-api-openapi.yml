@@ -1,0 +1,211 @@
+openapi: 3.0.2
+info:
+  title: Sign In Solutions VMS AuditLogs Capacities API
+  version: 0.21.0
+  x-logo:
+    url: https://signinenterprise.com/wp-content/uploads/tg-logo-light@2.png
+    backgroundColor: '#FFFFFF'
+    altText: Sign In Solutions
+    href: https://signinsolutions.com/signinenterprise
+  description: 'The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.
+
+
+    # Getting Started
+
+    If you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).
+
+
+    We will also add you to our Slack channel where you can ask questions and get further help.
+
+
+    # Terms and Conditions
+
+    Please visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)
+
+
+    # Versioning
+
+    This API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.
+
+
+    * The `Major` number increments when potentially incompatible changes are made.
+
+    * The `Minor` number increments when backwards-compatible additions are made.
+
+    * The `Patch` number increments when backwards-compatible bug-fixes are made.
+
+    '
+  contact:
+    name: API Support
+    url: https://signinsolutions.com/signinenterprise
+    email: support@tractionguest.com
+servers:
+- url: '{domain}'
+  variables:
+    domain:
+      enum:
+      - https://us.tractionguest.com/api/v3
+      - http://localhost:3000/api/v3
+      default: https://us.tractionguest.com/api/v3
+security:
+- TractionGuestAuth:
+  - all
+  - openid
+  - admin:webhooks
+  - watchlists:*
+  - watchlists:read
+  - watchlists:write
+  - users:*
+  - users:read
+  - users:write
+  - visitors:*
+  - visitors:read
+  - visitors:write
+  - parking:*
+  - parking:read
+  - parking:write
+  - locations:*
+  - locations:read
+  - locations:write
+  - hosts:*
+  - hosts:read
+  - hosts:write
+  - email_templates:*
+  - email_templates:read
+  - email_templates:write
+tags:
+- name: Capacities
+  description: All endpoints related to Capacity management.
+paths:
+  /locations/{location_id}/capacity_forecasts:
+    parameters:
+    - schema:
+        type: string
+      name: location_id
+      in: path
+      required: true
+    get:
+      summary: Get the capacity details for a location
+      tags:
+      - Capacities
+      responses:
+        '200':
+          description: Successful response returns the expected invites for the next N number of hours.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/CapacityForecast.v1.yaml
+              examples:
+                default:
+                  value:
+                    invites_by_hour:
+                    - range_start: '2020-07-17T00:59:59.999Z'
+                      range_end: '2020-07-17T01:59:59.999Z'
+                      expected_visitors: 0
+                    - range_start: '2020-07-17T01:59:59.999Z'
+                      range_end: '2020-07-17T02:59:59.999Z'
+                      expected_visitors: 0
+                    - range_start: '2020-07-17T02:59:59.999Z'
+                      range_end: '2020-07-17T03:59:59.999Z'
+                      expected_visitors: 0
+                    - range_start: '2020-07-17T03:59:59.999Z'
+                      range_end: '2020-07-17T04:59:59.999Z'
+                      expected_visitors: 0
+                    - range_start: '2020-07-17T04:59:59.999Z'
+                      range_end: '2020-07-17T05:59:59.999Z'
+                      expected_visitors: 0
+                    - range_start: '2020-07-17T05:59:59.999Z'
+                      range_end: '2020-07-17T06:59:59.999Z'
+                      expected_visitors: 0
+                    - range_start: '2020-07-17T06:59:59.999Z'
+                      range_end: '2020-07-17T07:59:59.999Z'
+                      expected_visitors: 0
+                    - range_start: '2020-07-17T07:59:59.999Z'
+                      range_end: '2020-07-17T08:59:59.999Z'
+                      expected_visitors: 1
+        '400':
+          description: A generic error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+                    - domain: some text
+                      attribute: some text
+                      code: some text
+                      message: some text
+        '401':
+          description: You don't have permission to view the details of the location's capacity.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        '403':
+          description: You do not have permission for this action
+      operationId: getCapacityForecast
+      description: Gets the details of the future capacity in a location.
+      parameters:
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 24
+          default: 8
+        in: query
+        name: hours_to_forecast
+        description: The next N number of hours, the data needs to be calculated. Range from 1 to 24. If not set, it defaults to 8.
+      - schema:
+          type: string
+        in: query
+        name: timestamp
+        description: 'ISO8601 timestamp(includes the offset value) to use as the start point for the capacity estimate report. Defaults to the current local timestamp of the location if not provided. Eg: "2020-07-16T17:05:08-07:00"'
+  /locations/{location_id}/capacities:
+    parameters:
+    - schema:
+        type: string
+      name: location_id
+      in: path
+      required: true
+    get:
+      summary: Get the current capacity details for a location
+      tags:
+      - Capacities
+      responses:
+        '200':
+          description: Successful response returns the current_signins and expected invites for the next hour.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Capacity.v1.yaml
+              examples:
+                default:
+                  value:
+                    signins_count: 189
+                    invites_expected_next_hour: 1
+        '400':
+          description: A generic error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        '401':
+          description: You don't have permission to view the details of the location's capacity.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        '403':
+          description: You do not have permission for this action
+      operationId: getCapacity
+      description: Get details of current capacity in a location
+components:
+  securitySchemes:
+    TractionGuestAuth:
+      openIdConnectUrl: https://us.tractionguest.com/.well-known/openid-configuration
+      type: openIdConnect
