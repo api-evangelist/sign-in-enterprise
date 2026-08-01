@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Sign In Solutions VMS API
+  version: 1.0.0
+extends: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: sign-in-enterprise
+    x-apievangelist-auth: oauth2-oidc
+    x-apievangelist-idempotency: Idempotency-Key
+    x-apievangelist-pagination: offset
+    x-apievangelist-compliance:
+    - SOC 2
+    - ISO 27001
+    - CSA STAR
+    - Cyber Essentials
+    - GDPR
+    - CCPA
+- target: $.info
+  update:
+    x-apievangelist-notes: >
+      Sign In Enterprise / Sign In Solutions visitor management REST API. OAuth 2.0
+      / OpenID Connect scoped access; writes are idempotent via the Idempotency-Key
+      header (24h retention). First-party SDKs are published in the tractionguest
+      GitHub organization.

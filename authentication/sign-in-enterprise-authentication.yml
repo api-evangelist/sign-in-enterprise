@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+docs: https://developers.signinenterprise.com/
+summary:
+  types:
+  - openIdConnect
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: TractionGuestAuth
+  type: openIdConnect
+  scheme: bearer
+  openIdConnectUrl: https://us.tractionguest.com/.well-known/openid-configuration
+  issuer: https://us.tractionguest.com
+  authorization_endpoint: https://us.tractionguest.com/oauth/authorize
+  token_endpoint: https://us.tractionguest.com/oauth/token
+  revocation_endpoint: https://us.tractionguest.com/oauth/revoke
+  introspection_endpoint: https://us.tractionguest.com/oauth/introspect
+  userinfo_endpoint: https://us.tractionguest.com/oauth/userinfo
+  jwks_uri: https://us.tractionguest.com/oauth/discovery/keys
+  scopes_reference: scopes/sign-in-enterprise-scopes.yml
+  sources:
+  - openapi/sign-in-enterprise-guest-api-openapi-original.yml
+  - well-known/sign-in-enterprise-openid-configuration.json
+notes: >
+  The Sign In Solutions VMS API authenticates every request with an OAuth 2.0 /
+  OpenID Connect bearer token. Access is limited-release; contact support to obtain
+  client credentials. Tokens carry fine-grained resource scopes (see scopes/).

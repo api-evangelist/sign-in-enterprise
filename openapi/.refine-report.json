@@ -1,0 +1,40 @@
+{
+  "provider": "sign-in-enterprise",
+  "sources": [
+    "sign-in-enterprise-auditlogs-api-openapi.yml",
+    "sign-in-enterprise-batches-api-openapi.yml",
+    "sign-in-enterprise-capacities-api-openapi.yml",
+    "sign-in-enterprise-emailtemplates-api-openapi.yml",
+    "sign-in-enterprise-groupvisits-api-openapi.yml",
+    "sign-in-enterprise-hosts-api-openapi.yml",
+    "sign-in-enterprise-invites-api-openapi.yml",
+    "sign-in-enterprise-locations-api-openapi.yml",
+    "sign-in-enterprise-packages-api-openapi.yml",
+    "sign-in-enterprise-parking-api-openapi.yml",
+    "sign-in-enterprise-registrations-api-openapi.yml",
+    "sign-in-enterprise-signins-api-openapi.yml",
+    "sign-in-enterprise-users-api-openapi.yml",
+    "sign-in-enterprise-watchlists-api-openapi.yml"
+  ],
+  "outputs": [
+    "sign-in-enterprise-auditlogs-api-openapi.yml",
+    "sign-in-enterprise-batches-api-openapi.yml",
+    "sign-in-enterprise-capacities-api-openapi.yml",
+    "sign-in-enterprise-emailtemplates-api-openapi.yml",
+    "sign-in-enterprise-groupvisits-api-openapi.yml",
+    "sign-in-enterprise-hosts-api-openapi.yml",
+    "sign-in-enterprise-invites-api-openapi.yml",
+    "sign-in-enterprise-locations-api-openapi.yml",
+    "sign-in-enterprise-packages-api-openapi.yml",
+    "sign-in-enterprise-parking-api-openapi.yml",
+    "sign-in-enterprise-registrations-api-openapi.yml",
+    "sign-in-enterprise-signins-api-openapi.yml",
+    "sign-in-enterprise-users-api-openapi.yml",
+    "sign-in-enterprise-watchlists-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

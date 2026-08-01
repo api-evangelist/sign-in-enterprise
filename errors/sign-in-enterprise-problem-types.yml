@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+format: http-status-json
+envelope:
+  content_type: application/json
+  notes: >
+    Errors are returned as JSON with a human-readable message and a standard HTTP
+    status code. The OpenAPI does not declare application/problem+json (RFC 9457),
+    so this catalog is derived from the declared 4xx responses across operations.
+problems:
+- status: 400
+  title: Bad Request
+  description: A generic error — the request could not be processed.
+- status: 401
+  title: Unauthorized
+  description: Authentication is missing or invalid, or you don't have permission to view the resource.
+- status: 403
+  title: Forbidden
+  description: You do not have permission for this action (missing or insufficient scope).
+- status: 404
+  title: Not Found
+  description: The requested resource does not exist.
+- status: 422
+  title: Unprocessable Entity
+  description: Your request was not formatted correctly (validation failure).

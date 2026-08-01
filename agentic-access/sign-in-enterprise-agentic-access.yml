@@ -1,0 +1,1373 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 43
+  by_action_class:
+    connected: 25
+    acting: 18
+  by_consequence:
+    read: 25
+    write: 18
+  human_in_the_loop_required: 0
+operations:
+- path: /batches/{batch_id}
+  method: get
+  operationId: getBatch
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /hosts
+  method: get
+  operationId: getHosts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /hosts
+  method: post
+  operationId: createHost
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /email_templates
+  method: get
+  operationId: getEmailTemplates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /signins/{signin_id}
+  method: get
+  operationId: getSignin
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /signins/{signin_id}
+  method: put
+  operationId: updateSignin
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /locations
+  method: get
+  operationId: getLocations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /locations/{location_id}/invites
+  method: post
+  operationId: createLocationInvite
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /invites
+  method: get
+  operationId: getInvites
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /invites/batch_delete
+  method: post
+  operationId: batchDeleteInvites
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /registrations/{registration_id}/invites
+  method: post
+  operationId: createRegistrationInvite
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /signins
+  method: get
+  operationId: getSignins
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /signins
+  method: post
+  operationId: createSignin
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /users/{user_id}
+  method: get
+  operationId: getCurrentUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /invites/{invite_id}
+  method: get
+  operationId: getInvite
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /invites/{invite_id}
+  method: put
+  operationId: updateInvite
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /invites/{invite_id}
+  method: delete
+  operationId: deleteInvite
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /watchlists/{watchlist_id}
+  method: get
+  operationId: getWatchlist
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - all
+    - watchlists:*
+    - watchlists:read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /watchlists/{watchlist_id}
+  method: put
+  operationId: updateWatchlist
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - all
+    - watchlists:*
+    - watchlists:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /watchlists/{watchlist_id}
+  method: delete
+  operationId: deleteWatchlist
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - all
+    - watchlists:*
+    - watchlists:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /watchlists
+  method: get
+  operationId: getWatchlists
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - all
+    - watchlists:*
+    - watchlists:read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /watchlists
+  method: post
+  operationId: createWatchlist
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - all
+    - watchlists:*
+    - watchlists:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /audit_logs
+  method: get
+  operationId: getAuditLogs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /audit_logs/{audit_log_id}
+  method: get
+  operationId: getAuditLog
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /registrations/{registration_id}
+  method: get
+  operationId: getRegistration
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - all
+    - signin:*
+    - signin:read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /hosts/batch
+  method: post
+  operationId: createHosts
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /registrations
+  method: get
+  operationId: getRegistrations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /locations/{location_id}/capacity_forecasts
+  method: get
+  operationId: getCapacityForecast
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /locations/{location_id}/capacities
+  method: get
+  operationId: getCapacity
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /locations/{location_id}
+  method: get
+  operationId: getLocation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /packages
+  method: get
+  operationId: getPackages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /packages
+  method: post
+  operationId: createPackage
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /packages/{package_id}
+  method: get
+  operationId: getPackage
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /packages/{package_id}
+  method: put
+  operationId: updatePackage
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /packages/{package_id}
+  method: delete
+  operationId: deletePackage
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /group_visits
+  method: get
+  operationId: getGroupVisits
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - all
+    - visitors:*
+    - visitors:read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /group_visits
+  method: post
+  operationId: createGroupVisit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - all
+    - visitors:*
+    - visitors:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /group_visits/{group_visit_id}
+  method: get
+  operationId: getGroupVisit
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - all
+    - visitors:*
+    - visitors:read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /group_visits/{group_visit_id}
+  method: put
+  operationId: updateGroupVisit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - all
+    - visitors:*
+    - visitors:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /group_visits/{group_visit_id}
+  method: delete
+  operationId: deleteGroupVisit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - all
+    - visitors:*
+    - visitors:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /parking_lots
+  method: get
+  operationId: getParkingLots
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /parking_lots/{parking_lot_id}/parking_stalls
+  method: get
+  operationId: getParkingStalls
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write
+- path: /parking_lots/{parking_lot_id}/available_stalls
+  method: get
+  operationId: getParkingLotAvailableStalls
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - admin:webhooks
+    - all
+    - email_templates:*
+    - email_templates:read
+    - email_templates:write
+    - hosts:*
+    - hosts:read
+    - hosts:write
+    - locations:*
+    - locations:read
+    - locations:write
+    - openid
+    - parking:*
+    - parking:read
+    - parking:write
+    - users:*
+    - users:read
+    - users:write
+    - visitors:*
+    - visitors:read
+    - visitors:write
+    - watchlists:*
+    - watchlists:read
+    - watchlists:write

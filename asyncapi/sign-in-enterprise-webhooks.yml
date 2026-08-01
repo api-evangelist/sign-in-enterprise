@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+type: Webhooks
+notes: >
+  The Sign In Solutions VMS API exposes a webhook administration surface: the
+  OAuth scope set (both the OpenAPI global security and the live OpenID Connect
+  scopes_supported) includes an admin:webhooks scope governing webhook subscription
+  management, alongside admin:workflow_triggers and admin:workflow_emails. This
+  confirms an event/webhook capability. No standalone AsyncAPI document or a public
+  event-catalog page was found at this pass, so specific event types are not
+  enumerated here (no fabrication).
+capability:
+  webhooks: true
+  scope: admin:webhooks
+  related_scopes:
+  - admin:workflow_triggers:*
+  - admin:workflow_emails:*
+evidence:
+- source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+  detail: global security scope admin:webhooks
+- source: well-known/sign-in-enterprise-openid-configuration.json
+  detail: scopes_supported includes admin:webhooks

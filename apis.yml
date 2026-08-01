@@ -1,8 +1,14 @@
 aid: sign-in-enterprise
 name: Sign In Enterprise
-description: 'Sign In Enterprise is a company surfaced as a portfolio company of bessemer-venture-partners
-  and added to the API Evangelist network as a stub for enrichment. Sector: vertical-software. This profile
-  is a lead awaiting the enrichment pipeline.'
+description: 'Sign In Enterprise (formerly Traction Guest, now part of Sign In Solutions)
+  is an enterprise visitor management system (VMS) used by security-conscious organizations
+  in aerospace and defense, government, manufacturing, pharmaceuticals, and technology.
+  Its REST API — branded "Guest Connect" and published as the Sign In Solutions VMS API —
+  lets developers retrieve and modify visitor and employee sign-in data to extend workflows:
+  managing hosts, invites, sign-ins, registrations, locations, capacities, parking, group
+  visits, watchlists, email templates, and audit logs. The API is REST over JSON, secured
+  with OAuth 2.0 / OpenID Connect scoped access, and supports idempotent writes via an
+  Idempotency-Key header.'
 url: https://raw.githubusercontent.com/api-evangelist/sign-in-enterprise/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +16,271 @@ x-backed-by:
 - bessemer-venture-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://signinsolutions.com/hubfs/Creatives/Logos/Sign%20In%20Solutions%20Logo.svg
 tags:
 - Company
 - Vertical Software
-apis: []
+- Visitor Management
+- Physical Security
+- Workplace Experience
+- Identity
+- Compliance
+- Access Control
+apis:
+- aid: sign-in-enterprise:sign-in-enterprise-auditlogs-api
+  name: Sign In Enterprise AuditLogs API
+  description: All endpoints related to the AuditLog model.
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - AuditLogs
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-auditlogs-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-batches-api
+  name: Sign In Enterprise Batches API
+  description: All endpoints related to Batch-type actions.
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Batches
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-batches-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-capacities-api
+  name: Sign In Enterprise Capacities API
+  description: All endpoints related to Capacity management.
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Capacities
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-capacities-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-emailtemplates-api
+  name: Sign In Enterprise EmailTemplates API
+  description: All endpoints relating to operations for the EmailTemplate model
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - EmailTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-emailtemplates-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-groupvisits-api
+  name: Sign In Enterprise GroupVisits API
+  description: All endpoints related to Group Visits (Appointments).
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - GroupVisits
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-groupvisits-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-hosts-api
+  name: Sign In Enterprise Hosts API
+  description: All endpoints relating to the Host model
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Hosts
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-hosts-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-invites-api
+  name: Sign In Enterprise Invites API
+  description: All endpoints relating to the Invite model
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Invites
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-invites-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-locations-api
+  name: Sign In Enterprise Locations API
+  description: All endpoints relating to the Location model, aka. DeviceConfigurations
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-locations-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-packages-api
+  name: Sign In Enterprise Packages API
+  description: All endpoints relating to the Packages model
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-packages-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-parking-api
+  name: Sign In Enterprise Parking API
+  description: >-
+    All endpoint related to the parking feature, including the ParkingLot and ParkingStallRange models
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Parking
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-parking-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-registrations-api
+  name: Sign In Enterprise Registrations API
+  description: All endpoints related to Registrations.
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Registrations
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-registrations-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-signins-api
+  name: Sign In Enterprise Signins API
+  description: >-
+    All endpoints related to models that track signing in and out of a location. E.g., Signin, Signout,
+    SigninAcknowledgment models
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Signins
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-signins-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-users-api
+  name: Sign In Enterprise Users API
+  description: All endpoints related to the User model
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-users-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-watchlists-api
+  name: Sign In Enterprise Watchlists API
+  description: All endpoint related to the Watchlist model
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Watchlists
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-watchlists-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: TrustCenter
+  url: security/sign-in-enterprise-trust-center.yml
 - type: Website
-  url: https://signinenterprise.com/
+  url: https://signinsolutions.com/signinenterprise
+- type: DeveloperPortal
+  url: https://signinsolutions.com/developer-api
+- type: Documentation
+  url: https://developers.signinenterprise.com/
+- type: APIReference
+  url: https://developers.signinenterprise.com/
+- type: Pricing
+  url: https://signinsolutions.com/pricing
+- type: Blog
+  url: https://signinsolutions.com/blog
+- type: Support
+  url: https://help.signinsolutions.com/
+- type: PrivacyPolicy
+  url: https://signinsolutions.com/privacy
+- type: TermsOfService
+  url: https://signinsolutions.com/terms-and-conditions
+- type: Login
+  url: https://us.tractionguest.com/users/sign_in
+- type: GitHubOrganization
+  url: https://github.com/tractionguest
+- type: Compliance
+  url: https://signinsolutions.com/compliance-hub
+- type: Packages
+  url: packages/sign-in-enterprise-packages.yml
+- type: SDKs
+  url: packages/sign-in-enterprise-packages.yml
+- type: WellKnown
+  url: well-known/sign-in-enterprise-well-known.yml
+- type: Authentication
+  url: authentication/sign-in-enterprise-authentication.yml
+- type: OAuthScopes
+  url: scopes/sign-in-enterprise-scopes.yml
+- type: Conventions
+  url: conventions/sign-in-enterprise-conventions.yml
+- type: Idempotency
+  url: conventions/sign-in-enterprise-conventions.yml
+- type: ErrorCatalog
+  url: errors/sign-in-enterprise-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/sign-in-enterprise-lifecycle.yml
+- type: Conformance
+  url: conformance/sign-in-enterprise-conformance.yml
+- type: DataModel
+  url: data-model/sign-in-enterprise-data-model.yml
+- type: Webhooks
+  url: asyncapi/sign-in-enterprise-webhooks.yml
+- type: MCPServer
+  url: mcp/sign-in-enterprise-mcp.yml
+- type: AgenticAccess
+  url: agentic-access/sign-in-enterprise-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/sign-in-enterprise-llms.txt
+- type: DomainSecurity
+  url: security/sign-in-enterprise-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 23
+  pass: local-v1

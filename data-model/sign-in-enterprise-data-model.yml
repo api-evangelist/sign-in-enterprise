@@ -1,0 +1,59 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+notes: >
+  The OpenAPI declares operations with inline response bodies (no named
+  components.schemas), so this entity graph is derived from the resource paths,
+  their nesting, and id-reference parameters rather than $ref links.
+entities:
+- name: Host
+  paths: ['/hosts', '/hosts/batch', '/hosts/{host_id}']
+- name: EmailTemplate
+  paths: ['/email_templates']
+- name: Signin
+  paths: ['/signins', '/signins/{signin_id}']
+- name: Location
+  paths: ['/locations', '/locations/{location_id}']
+- name: Invite
+  paths: ['/invites', '/invites/{invite_id}', '/invites/batch_delete']
+- name: Registration
+  paths: ['/registrations', '/registrations/{registration_id}']
+- name: Watchlist
+  paths: ['/watchlists', '/watchlists/{watchlist_id}']
+- name: AuditLog
+  paths: ['/audit_logs', '/audit_logs/{audit_log_id}']
+- name: Package
+  paths: ['/packages', '/packages/{package_id}']
+- name: GroupVisit
+  paths: ['/group_visits', '/group_visits/{group_visit_id}']
+- name: ParkingLot
+  paths: ['/parking_lots', '/parking_lots/{parking_lot_id}/parking_stalls']
+- name: ParkingStall
+  paths: ['/parking_lots/{parking_lot_id}/parking_stalls', '/parking_lots/{parking_lot_id}/available_stalls']
+- name: Capacity
+  paths: ['/locations/{location_id}/capacities', '/locations/{location_id}/capacity_forecasts']
+- name: User
+  paths: ['/users/{user_id}']
+- name: BatchJob
+  paths: ['/batches/{batch_id}']
+relationships:
+- from: Invite
+  to: Location
+  kind: belongs_to
+  via: location_id
+- from: Location
+  to: Invite
+  kind: has_many
+  via: location_id
+- from: Invite
+  to: Registration
+  kind: belongs_to
+  via: registration_id
+- from: Location
+  to: Capacity
+  kind: has_many
+  via: location_id
+- from: ParkingLot
+  to: ParkingStall
+  kind: has_many
+  via: parking_lot_id

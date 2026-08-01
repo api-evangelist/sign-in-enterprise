@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+docs: https://developers.signinenterprise.com/
+versioning:
+  scheme: uri-path
+  current: v3
+  base_path: /api/v3
+  spec_version: 0.21.0
+release_status:
+  stage: limited-release
+  detail: >
+    The API is under limited release to select customers as the team gathers and
+    iterates on feedback; early access is requested via support@tractionguest.com.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No formal deprecation/Sunset-header policy is published at this pass.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  notes: >
+    A status.tractionguest.com host exists but did not serve a valid page at this
+    pass (TLS/525); no working public status page confirmed.
+deprecated_operations: []

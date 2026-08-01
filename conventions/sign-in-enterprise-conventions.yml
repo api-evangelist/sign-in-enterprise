@@ -1,0 +1,49 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+docs: https://developers.signinenterprise.com/
+authentication:
+  style: oauth2-oidc-bearer
+  detail: OAuth 2.0 / OpenID Connect bearer token with fine-grained resource scopes
+  reference: authentication/sign-in-enterprise-authentication.yml
+idempotency:
+  supported: true
+  mechanism: header
+  header: Idempotency-Key
+  scope: write operations
+  retention: 24 hours
+  min_length: 10
+  notes: >
+    Any API request carrying an Idempotency-Key header is executed only once no
+    matter how many times it is submitted. Keys are stored for 24 hours; any key
+    shorter than 10 characters is ignored. Declared as components.parameters.idempotencyKey
+    in the OpenAPI.
+pagination:
+  style: offset
+  params:
+  - limit
+  - offset
+  sort_params:
+  - sort_by
+  - query_sort
+  - sort_with
+  notes: List endpoints page with limit/offset query parameters and offer sort controls.
+versioning:
+  scheme: uri-path
+  current: v3
+  base_path: /api/v3
+  detail: Version is embedded in the base path (https://us.tractionguest.com/api/v3).
+content_types:
+  request: application/json
+  response: application/json
+error_envelope:
+  format: json
+  reference: errors/sign-in-enterprise-problem-types.yml
+  notes: Error responses return JSON with a message; standard HTTP status codes (400/401/403/404/422).
+rate_limiting:
+  documented: false
+  notes: No rate-limit signaling documented in the OpenAPI or developer portal at this pass.
+webhooks:
+  supported: true
+  detail: An admin:webhooks OAuth scope governs webhook subscription management.
+  reference: asyncapi/sign-in-enterprise-webhooks.yml

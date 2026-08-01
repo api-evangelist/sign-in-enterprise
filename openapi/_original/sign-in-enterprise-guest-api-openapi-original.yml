@@ -1,0 +1,4494 @@
+openapi: 3.0.2
+info:
+  title: Sign In Solutions VMS API
+  version: 0.21.0
+  x-logo:
+    url: "https://signinenterprise.com/wp-content/uploads/tg-logo-light@2.png"
+    backgroundColor: "#FFFFFF"
+    altText: Sign In Solutions
+    href: "https://signinsolutions.com/signinenterprise"
+  description: |
+    The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.
+
+    # Getting Started
+    If you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).
+
+    We will also add you to our Slack channel where you can ask questions and get further help.
+
+    # Terms and Conditions
+    Please visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)
+
+    # Versioning
+    This API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.
+
+    * The `Major` number increments when potentially incompatible changes are made.
+    * The `Minor` number increments when backwards-compatible additions are made.
+    * The `Patch` number increments when backwards-compatible bug-fixes are made.
+  contact:
+    name: API Support
+    url: "https://signinsolutions.com/signinenterprise"
+    email: support@tractionguest.com
+servers:
+  - url: "{domain}"
+    variables:
+      domain:
+        enum:
+          - "https://us.tractionguest.com/api/v3"
+          - "http://localhost:3000/api/v3"
+        default: "https://us.tractionguest.com/api/v3"
+paths:
+  "/batches/{batch_id}":
+    parameters:
+      - schema:
+          type: string
+        name: batch_id
+        in: path
+        required: true
+    get:
+      summary: Get a BatchJob
+      tags:
+        - Batches
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/BatchJob.v1.yaml
+        4XX:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+      operationId: getBatch
+      description: Retrieve a given `BatchJob` entity.
+  /hosts:
+    summary: Path used to manage the list of Hosts.
+    description: "The REST endpoint/path used to list and create zero or more `Host` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively."
+    get:
+      tags:
+        - Hosts
+      parameters:
+        - name: query
+          description: "Will filter by `first_name`, `last_name`, and `email`"
+          schema:
+            type: string
+          in: query
+        - name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+          schema:
+            type: integer
+          in: query
+        - name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+          schema:
+            type: integer
+          in: query
+        - name: include
+          description: A list of comma-separated related models to include
+          schema:
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedHostsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    hosts:
+                      - id: 71
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      - id: 2
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                    pagination:
+                      total_records: 14
+                      current_offset: 41
+                      next_offset: 85
+          description: Successful response - returns an array of `Host` entities.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view these Hosts
+        "403":
+          description: You do not have permission for this action
+      operationId: getHosts
+      summary: List all Hosts
+      description: Gets a list of all `Host` entities.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/HostCreateParams.v1.yaml
+            examples:
+              default:
+                value:
+                  email: some text
+                  first_name: some text
+                  last_name: some text
+                  profile_pic_url: some text
+                  department: some text
+                  mobile_number: some text
+        required: true
+      tags:
+        - Hosts
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Host.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 1
+                    email: some text
+                    first_name: some text
+                    last_name: some text
+                    profile_pic_url: some text
+                    department: some text
+                    mobile_number: some text
+          description: Successful response
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+      operationId: createHost
+      summary: Create a Host
+      description: Creates a Host
+  /email_templates:
+    summary: Path used to manage the list of EmailTemplates.
+    description: The REST endpoint/path used to list zero or more `EmailTemplate` entities.  This path contains a `GET` operation to perform the list task.
+    get:
+      tags:
+        - EmailTemplates
+      parameters:
+        - name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+          schema:
+            type: integer
+          in: query
+        - name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+          schema:
+            type: integer
+          in: query
+        - name: include
+          description: A list of comma-separated related models to include
+          schema:
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedEmailTemplatesList.v1.yaml
+              examples:
+                default:
+                  value:
+                    email_templates:
+                      - id: 58
+                        name: some text
+                        template_type: some text
+                      - id: 90
+                        name: some text
+                        template_type: some text
+                    pagination:
+                      total_records: 84
+                      current_offset: 99
+                      next_offset: 45
+          description: Successful response - returns an array of `EmailTemplate` entities.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view this EmailTemplate
+        "403":
+          description: You do not have permission for this action
+      operationId: getEmailTemplates
+      summary: List all EmailTemplates
+      description: Gets a list of all `EmailTemplate` entities.
+  "/signins/{signin_id}":
+    summary: Path used to manage a single Signin.
+    description: The REST endpoint/path used to get single instances of an `Signin`.
+    get:
+      tags:
+        - Signins
+      parameters:
+        - name: include
+          description: A list of comma-separated related models to include
+          schema:
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/SigninDetail.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 2
+                    company: some text
+                    email: some text
+                    first_name: some text
+                    is_accounted_for: true
+                    is_acknowledged: true
+                    last_name: some text
+                    location_name: some text
+                    mobile_number: some text
+                    signed_out_timestamp: "2018-02-10T09:30:00Z"
+                    signin_photo_url: some text
+                    signin_timestamp: "2018-02-10T09:30:00Z"
+                    is_signed_out: true
+                    note: some text
+                    signin_acknowledgement:
+                      code: some text
+                      acknowledged_at: "2018-02-10T09:30:00Z"
+                      id: 99
+                    signin_data:
+                      - name: some text
+                        custom_fields:
+                          - format: string
+                            field_name: some text
+                            field_value: some text
+                          - format: string
+                            field_name: some text
+                            field_value: some text
+                      - name: some text
+                        custom_fields:
+                          - format: string
+                            field_name: some text
+                            field_value: some text
+                          - format: string
+                            field_name: some text
+                            field_value: some text
+                    hosts:
+                      - id: 71
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      - id: 24
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                    signin_watchlist:
+                      id: 47
+                      external:
+                        - search_terms:
+                            name: some text
+                            company: some text
+                            city: some text
+                            country: some text
+                            state: some text
+                          integration: some text
+                          colour: GREEN
+                          matches:
+                            - id: some text
+                              alt_names:
+                                - some text
+                                - some text
+                              federal_register_notice: some text
+                              name: some text
+                              source_information_url: some text
+                              source_list_url: some text
+                              list: some text
+                              type: some text
+                              category: some text
+                              street1: some text
+                              street2: some text
+                              city: some text
+                              state: some text
+                              country: some text
+                              notes: some text
+                              frc: some text
+                              start: "2018-01-17"
+                              end: "2018-01-17"
+                              frserve: some text
+                              optional_ID: some text
+                              alert_type: some text
+                            - id: some text
+                              alt_names:
+                                - some text
+                                - some text
+                              federal_register_notice: some text
+                              name: some text
+                              source_information_url: some text
+                              source_list_url: some text
+                              list: some text
+                              type: some text
+                              category: some text
+                              street1: some text
+                              street2: some text
+                              city: some text
+                              state: some text
+                              country: some text
+                              notes: some text
+                              frc: some text
+                              start: "2018-01-17"
+                              end: "2018-01-17"
+                              frserve: some text
+                              optional_ID: some text
+                              alert_type: some text
+                        - search_terms:
+                            name: some text
+                            company: some text
+                            city: some text
+                            country: some text
+                            state: some text
+                          integration: some text
+                          colour: YELLOW
+                          matches:
+                            - id: some text
+                              alt_names:
+                                - some text
+                                - some text
+                              federal_register_notice: some text
+                              name: some text
+                              source_information_url: some text
+                              source_list_url: some text
+                              list: some text
+                              type: some text
+                              category: some text
+                              street1: some text
+                              street2: some text
+                              city: some text
+                              state: some text
+                              country: some text
+                              notes: some text
+                              frc: some text
+                              start: "2018-01-17"
+                              end: "2018-01-17"
+                              frserve: some text
+                              optional_ID: some text
+                              alert_type: some text
+                            - id: some text
+                              alt_names:
+                                - some text
+                                - some text
+                              federal_register_notice: some text
+                              name: some text
+                              source_information_url: some text
+                              source_list_url: some text
+                              list: some text
+                              type: some text
+                              category: some text
+                              street1: some text
+                              street2: some text
+                              city: some text
+                              state: some text
+                              country: some text
+                              notes: some text
+                              frc: some text
+                              start: "2018-01-17"
+                              end: "2018-01-17"
+                              frserve: some text
+                              optional_ID: some text
+                              alert_type: some text
+                      internal:
+                        - id: 13
+                          email: some text
+                          colour: some text
+                          last_name: some text
+                          first_name: some text
+                        - id: 71
+                          email: some text
+                          colour: some text
+                          last_name: some text
+                          first_name: some text
+                    documents:
+                      - docusigns:
+                          - template_id: some text
+                            integration: some text
+                            nda_status: some text
+                            nda_signed_date: "2018-02-10T09:30:00Z"
+                            envelope_id: some text
+                            sequence: '54'
+                            docusign_id: some text
+                            docusign_name: some text
+                            title: some text
+                          - template_id: some text
+                            integration: some text
+                            nda_status: some text
+                            nda_signed_date: "2018-02-10T09:30:00Z"
+                            envelope_id: some text
+                            sequence: '48'
+                            docusign_id: some text
+                            docusign_name: some text
+                            title: some text
+                        simple_signatures:
+                          - status: some text
+                            template_name: some text
+                            id: some text
+                            title: some text
+                          - status: some text
+                            template_name: some text
+                            id: some text
+                            title: some text
+                      - docusigns:
+                          - template_id: some text
+                            integration: some text
+                            nda_status: some text
+                            nda_signed_date: "2018-02-10T09:30:00Z"
+                            envelope_id: some text
+                            sequence: '28'
+                            docusign_id: some text
+                            docusign_name: some text
+                            title: some text
+                          - template_id: some text
+                            integration: some text
+                            nda_status: some text
+                            nda_signed_date: "2018-02-10T09:30:00Z"
+                            envelope_id: some text
+                            sequence: '82'
+                            docusign_id: some text
+                            docusign_name: some text
+                            title: some text
+                        simple_signatures:
+                          - status: some text
+                            template_name: some text
+                            id: some text
+                            title: some text
+                          - status: some text
+                            template_name: some text
+                            id: some text
+                            title: some text
+          description: Successful response - returns a single `Signin`.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view this Signin
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The Signin does not exist
+      operationId: getSignin
+      summary: Get a Signin
+      description: Gets the details of a single instance of a `Signin`.
+    put:
+      requestBody:
+        description: |-
+          The only updatable values for a `Signin` are `badge_number`, `badge_returned`, `is_accounted_for`, `is_signed_out`, and `is_acknowledged`.
+          `is_signed_out` and `is_acknowledged` are pseudo attributes that once set to true, are irreversible.
+        content:
+          application/json:
+            schema:
+              $ref: ./models/SigninUpdateParams.v1.yaml
+            examples:
+              default:
+                value:
+                  is_signed_out: true
+                  is_acknowledged: true
+                  is_accounted_for: true
+        required: true
+      tags:
+        - Signins
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/SigninDetail.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 5
+                    company: some text
+                    email: some text
+                    first_name: some text
+                    is_accounted_for: true
+                    is_acknowledged: true
+                    last_name: some text
+                    location_name: some text
+                    mobile_number: some text
+                    signed_out_timestamp: "2018-02-10T09:30:00Z"
+                    signin_photo_url: some text
+                    signin_timestamp: "2018-02-10T09:30:00Z"
+                    is_signed_out: true
+                    note: some text
+                    signin_acknowledgement:
+                      code: some text
+                      acknowledged_at: "2018-02-10T09:30:00Z"
+                      id: 9
+                    signin_data:
+                      - name: some text
+                        custom_fields:
+                          - format: string
+                            field_name: some text
+                            field_value: some text
+                          - format: string
+                            field_name: some text
+                            field_value: some text
+                      - name: some text
+                        custom_fields:
+                          - format: string
+                            field_name: some text
+                            field_value: some text
+                          - format: string
+                            field_name: some text
+                            field_value: some text
+                    hosts:
+                      - id: 72
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      - id: 64
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                    signin_watchlist:
+                      id: 90
+                      external:
+                        - search_terms:
+                            name: some text
+                            company: some text
+                            city: some text
+                            country: some text
+                            state: some text
+                          integration: some text
+                          colour: RED
+                          matches:
+                            - id: some text
+                              alt_names:
+                                - some text
+                                - some text
+                              federal_register_notice: some text
+                              name: some text
+                              source_information_url: some text
+                              source_list_url: some text
+                              list: some text
+                              type: some text
+                              category: some text
+                              street1: some text
+                              street2: some text
+                              city: some text
+                              state: some text
+                              country: some text
+                              notes: some text
+                              frc: some text
+                              start: "2018-01-17"
+                              end: "2018-01-17"
+                              frserve: some text
+                              optional_ID: some text
+                              alert_type: some text
+                            - id: some text
+                              alt_names:
+                                - some text
+                                - some text
+                              federal_register_notice: some text
+                              name: some text
+                              source_information_url: some text
+                              source_list_url: some text
+                              list: some text
+                              type: some text
+                              category: some text
+                              street1: some text
+                              street2: some text
+                              city: some text
+                              state: some text
+                              country: some text
+                              notes: some text
+                              frc: some text
+                              start: "2018-01-17"
+                              end: "2018-01-17"
+                              frserve: some text
+                              optional_ID: some text
+                              alert_type: some text
+                        - search_terms:
+                            name: some text
+                            company: some text
+                            city: some text
+                            country: some text
+                            state: some text
+                          integration: some text
+                          colour: ORANGE
+                          matches:
+                            - id: some text
+                              alt_names:
+                                - some text
+                                - some text
+                              federal_register_notice: some text
+                              name: some text
+                              source_information_url: some text
+                              source_list_url: some text
+                              list: some text
+                              type: some text
+                              category: some text
+                              street1: some text
+                              street2: some text
+                              city: some text
+                              state: some text
+                              country: some text
+                              notes: some text
+                              frc: some text
+                              start: "2018-01-17"
+                              end: "2018-01-17"
+                              frserve: some text
+                              optional_ID: some text
+                              alert_type: some text
+                            - id: some text
+                              alt_names:
+                                - some text
+                                - some text
+                              federal_register_notice: some text
+                              name: some text
+                              source_information_url: some text
+                              source_list_url: some text
+                              list: some text
+                              type: some text
+                              category: some text
+                              street1: some text
+                              street2: some text
+                              city: some text
+                              state: some text
+                              country: some text
+                              notes: some text
+                              frc: some text
+                              start: "2018-01-17"
+                              end: "2018-01-17"
+                              frserve: some text
+                              optional_ID: some text
+                              alert_type: some text
+                      internal:
+                        - id: 32
+                          email: some text
+                          colour: some text
+                          last_name: some text
+                          first_name: some text
+                        - id: 98
+                          email: some text
+                          colour: some text
+                          last_name: some text
+                          first_name: some text
+                    documents:
+                      - docusigns:
+                          - template_id: some text
+                            integration: some text
+                            nda_status: some text
+                            nda_signed_date: "2018-02-10T09:30:00Z"
+                            envelope_id: some text
+                            sequence: '38'
+                            docusign_id: some text
+                            docusign_name: some text
+                            title: some text
+                          - template_id: some text
+                            integration: some text
+                            nda_status: some text
+                            nda_signed_date: "2018-02-10T09:30:00Z"
+                            envelope_id: some text
+                            sequence: '83'
+                            docusign_id: some text
+                            docusign_name: some text
+                            title: some text
+                        simple_signatures:
+                          - status: some text
+                            template_name: some text
+                            id: some text
+                            title: some text
+                          - status: some text
+                            template_name: some text
+                            id: some text
+                            title: some text
+                      - docusigns:
+                          - template_id: some text
+                            integration: some text
+                            nda_status: some text
+                            nda_signed_date: "2018-02-10T09:30:00Z"
+                            envelope_id: some text
+                            sequence: '49'
+                            docusign_id: some text
+                            docusign_name: some text
+                            title: some text
+                          - template_id: some text
+                            integration: some text
+                            nda_status: some text
+                            nda_signed_date: "2018-02-10T09:30:00Z"
+                            envelope_id: some text
+                            sequence: '71'
+                            docusign_id: some text
+                            docusign_name: some text
+                            title: some text
+                        simple_signatures:
+                          - status: some text
+                            template_name: some text
+                            id: some text
+                            title: some text
+                          - status: some text
+                            template_name: some text
+                            id: some text
+                            title: some text
+          description: "The Signin has been acknowledged, or signed out."
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to update this Signin
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The Signin does not exist
+        "422":
+          description: Your request was not formatted correctly
+      operationId: updateSignin
+      summary: Update a Signin
+      description: "Update, acknowledge, or `Signout` a `Signin`"
+    parameters:
+      - schema:
+          type: string
+        name: signin_id
+        in: path
+        required: true
+  /locations:
+    summary: Path used to manage the list of Locations.
+    description: The REST endpoint/path used to list zero or more `Location` entities.
+    get:
+      tags:
+        - Locations
+      parameters:
+        - name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+          schema:
+            type: integer
+          in: query
+        - name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+          schema:
+            type: integer
+          in: query
+        - name: query
+          description: Queries by Location `name`
+          schema:
+            type: string
+          in: query
+        - name: include
+          description: A list of comma-separated related models to include
+          schema:
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedLocationsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    pagination:
+                      total_records: 61
+                      current_offset: 41
+                      next_offset: 28
+                    locations:
+                      - id: 28
+                        name: Default
+                        max_capacity: 40
+                      - id: 97
+                        name: Rogers Arena
+                        max_capacity: 45
+          description: Successful response - returns an array of `Location` entities.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view these Locations
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "403":
+          description: You do not have permission for this action
+      operationId: getLocations
+      summary: List all Locations
+      description: Gets a list of all `Location` entities.
+  "/locations/{location_id}/invites":
+    summary: Path used to manage a single Location's invites.
+    description: The REST endpoint/path used to create single instances of an `Invite` for a specific `Location`.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/InviteCreateParams.v1.yaml
+            examples:
+              default:
+                value:
+                  company: some text
+                  email: some text
+                  end_date: "2020-07-17T01:59:59.999Z"
+                  last_name: some text
+                  start_date: "2020-07-17T01:59:59.999Z"
+                  title: some text
+                  watchlist_colour: ORANGE
+                  host_ids:
+                    - 96
+                    - 2
+                  flex_values:
+                    - flex_definition_id: 1
+                      raw_value: Canada
+                      label: Country
+                    - flex_definition_id: 2
+                      raw_value: English
+                      label: Language
+                  email_template_id: 53
+                  mobile_number: some text
+                  first_name: some text
+                  license_plate: some text
+                  notification_triggers:
+                    - offset_direction: BEFORE
+                      offset_unit: days
+                      offset_amount: 34
+                      offset_origin: START
+                      email_template_id: 63
+                      notification_groups:
+                        - some text
+                        - some text
+                    - offset_direction: AFTER
+                      offset_unit: hours
+                      offset_amount: 12
+                      offset_origin: END
+                      email_template_id: 2
+                      notification_groups:
+                        - some text
+                        - some text
+                  parking_stall:
+                    stall_number: 66
+                    parking_lot_id: 321
+                    parking_stall_id: 332
+        required: true
+      tags:
+        - Invites
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/InviteDetail.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 93
+                    company: some text
+                    created_at: "2020-07-17T01:59:59.999Z"
+                    email: some text
+                    end_date: "2020-07-17T01:59:59.999Z"
+                    first_name: some text
+                    last_name: some text
+                    license_plate: some text
+                    start_date: "2020-07-17T01:59:59.999Z"
+                    hosts:
+                      - id: 23
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      - id: 33
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                    location:
+                      id: 20
+                      name: some text
+                    watchlist_colour: YELLOW
+                    email_template:
+                      id: 15
+                      name: some text
+                      template_type: some text
+                    custom_fields:
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                    notification_triggers:
+                      - offset_direction: AFTER
+                        offset_amount: 66
+                        offset_origin: END
+                        email_template_id: 80
+                        notification_groups:
+                          - some text
+                          - some text
+                        offset_unit: hours
+                        email_template_name: some text
+                      - offset_direction: BEFORE
+                        offset_amount: 21
+                        offset_origin: END
+                        email_template_id: 30
+                        notification_groups:
+                          - some text
+                          - some text
+                        offset_unit: days
+                        email_template_name: some text
+                    mobile_number: some text
+                    invite_watchlist:
+                      id: 3
+                      external_colours:
+                        - some text
+                      internal_colours:
+                        - some text
+                        - some text
+          description: Created the `Invite` for the `Location`
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to create this Invite
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The Location does not exist
+        "422":
+          description: Your request was not formatted correctly
+      operationId: createLocationInvite
+      summary: Create an Invite
+      description: Creates a new `Invite` for a specific `Location`.
+    parameters:
+      - schema:
+          type: string
+        name: location_id
+        in: path
+        required: true
+  /invites:
+    summary: Path used to manage the list of Invites.
+    description: "The REST endpoint/path used to list and create zero or more `Invite` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively."
+    get:
+      tags:
+        - Invites
+      parameters:
+        - name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+          schema:
+            type: integer
+          in: query
+        - name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+          schema:
+            type: integer
+          in: query
+        - name: query
+          description: "Filters by `first_name`, `last_name`, `company`, and `email`"
+          schema:
+            type: string
+          in: query
+        - name: with_colours
+          description: |-
+            A comma separated list of case-insensitive colour values.
+            i.e., `red`, `green`, `yellow`, and `orange`
+          schema:
+            type: string
+          in: query
+        - name: location_ids
+          description: A comma separated list of Location IDs
+          schema:
+            type: string
+          in: query
+        - name: sort_by
+          description: Sorts by the field name and direction provided where the pattern is `FIELD_NAME_DIRECTION`
+          schema:
+            enum:
+              - start_date_asc
+              - start_date_desc
+              - end_date_asc
+              - end_date_desc
+              - created_at_asc
+              - created_at_desc
+              - updated_at_asc
+              - updated_at_desc
+          in: query
+        - name: starts_before
+          description: Filters results to all those *before* the provided datetime
+          schema:
+            format: date
+            type: string
+          in: query
+        - name: starts_after
+          description: Filters results to all those *after* the provided datetime
+          schema:
+            format: date
+            type: string
+          in: query
+        - name: include
+          description: |-
+            A list of comma-separated related models to include
+            i.e., 'assigned_stall'
+          schema:
+            type: string
+          in: query
+        - name: is_approved
+          description: "True to return approved and auto approved invites, False to return pending and rejected invites"
+          schema:
+            type: boolean
+          in: query
+        - name: active_after
+          description: "Checks that an invite hasn't yet started, or has started and is still active after a specified time"
+          schema:
+            format: date-time
+            type: string
+          in: query
+        - name: active_before
+          description: Checks that an invite hasn't ended before a specified time
+          schema:
+            format: date-time
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedInvitesList.v1.yaml
+              examples:
+                default:
+                  value:
+                    pagination:
+                      total_records: 89
+                      current_offset: 72
+                      next_offset: 29
+                      last_id: 49
+                    invites:
+                      - id: 37
+                        first_name: some text
+                        last_name: some text
+                        start_date: "2018-02-10T09:30:00Z"
+                        location:
+                          id: 70
+                          name: some text
+                        watchlist_colour: RED
+                        hosts:
+                          - id: 78
+                            email: some text
+                            first_name: some text
+                            last_name: some text
+                            profile_pic_url: some text
+                            department: some text
+                            mobile_number: some text
+                          - id: 41
+                            email: some text
+                            first_name: some text
+                            last_name: some text
+                            profile_pic_url: some text
+                            department: some text
+                            mobile_number: some text
+                        invite_watchlist:
+                          id: 61
+                          external_colours:
+                            - some text
+                            - some text
+                          internal_colours:
+                            - some text
+                            - some text
+                          external:
+                            - search_terms:
+                                name: some text
+                                company: some text
+                                city: some text
+                                country: some text
+                                state: some text
+                              integration: some text
+                              colour: YELLOW
+                              matches:
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: some text
+                                  end: some text
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                  pair_status: some text
+                                  pair_reason: some text
+                                  pair_comments: some text
+                                  application_display_name: some text
+                                  application_id: some text
+                                  client_id: some text
+                                  client_key: some text
+                                  client_full_name: some text
+                                  list_key: some text
+                                  list_name: some text
+                                  list_id: some text
+                                  list_version: some text
+                                  list_modify_date: some text
+                                  list_profile_id: some text
+                                  list_profile_key: some text
+                                  link_single_string_name: some text
+                                  list_parent_single_string_name: some text
+                                  list_category: some text
+                                  list_pep_category: some text
+                                  list_do_bs: some text
+                                  list_countries: some text
+                                  rank_string: some text
+                                  ranktype: some text
+                                  rankweight: some text
+                                  pair_load_date: some text
+                                  e_address_to: some text
+                                  e_address_cc: some text
+                                  origin: some text
+                                  secondsviewed: some text
+                                  initial_user: some text
+                                  is_pair_parent_flag: some text
+                                  pair_met_search_criteria_flag: some text
+                                  editable_due_to_assignment_flag: some text
+                                  modify_date: some text
+                                  modified_by_user: some text
+                                  pair_report_type: some text
+                                  finscan_category: some text
+                                  wrapper_status: some text
+                                  source_lists: some text
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: some text
+                                  end: some text
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                  pair_status: some text
+                                  pair_reason: some text
+                                  pair_comments: some text
+                                  application_display_name: some text
+                                  application_id: some text
+                                  client_id: some text
+                                  client_key: some text
+                                  client_full_name: some text
+                                  list_key: some text
+                                  list_name: some text
+                                  list_id: some text
+                                  list_version: some text
+                                  list_modify_date: some text
+                                  list_profile_id: some text
+                                  list_profile_key: some text
+                                  link_single_string_name: some text
+                                  list_parent_single_string_name: some text
+                                  list_category: some text
+                                  list_pep_category: some text
+                                  list_do_bs: some text
+                                  list_countries: some text
+                                  rank_string: some text
+                                  ranktype: some text
+                                  rankweight: some text
+                                  pair_load_date: some text
+                                  e_address_to: some text
+                                  e_address_cc: some text
+                                  origin: some text
+                                  secondsviewed: some text
+                                  initial_user: some text
+                                  is_pair_parent_flag: some text
+                                  pair_met_search_criteria_flag: some text
+                                  editable_due_to_assignment_flag: some text
+                                  modify_date: some text
+                                  modified_by_user: some text
+                                  pair_report_type: some text
+                                  finscan_category: some text
+                                  wrapper_status: some text
+                                  source_lists: some text
+                            - search_terms:
+                                name: some text
+                                company: some text
+                                city: some text
+                                country: some text
+                                state: some text
+                              integration: some text
+                              colour: RED
+                              matches:
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: some text
+                                  end: some text
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                  pair_status: some text
+                                  pair_reason: some text
+                                  pair_comments: some text
+                                  application_display_name: some text
+                                  application_id: some text
+                                  client_id: some text
+                                  client_key: some text
+                                  client_full_name: some text
+                                  list_key: some text
+                                  list_name: some text
+                                  list_id: some text
+                                  list_version: some text
+                                  list_modify_date: some text
+                                  list_profile_id: some text
+                                  list_profile_key: some text
+                                  link_single_string_name: some text
+                                  list_parent_single_string_name: some text
+                                  list_category: some text
+                                  list_pep_category: some text
+                                  list_do_bs: some text
+                                  list_countries: some text
+                                  rank_string: some text
+                                  ranktype: some text
+                                  rankweight: some text
+                                  pair_load_date: some text
+                                  e_address_to: some text
+                                  e_address_cc: some text
+                                  origin: some text
+                                  secondsviewed: some text
+                                  initial_user: some text
+                                  is_pair_parent_flag: some text
+                                  pair_met_search_criteria_flag: some text
+                                  editable_due_to_assignment_flag: some text
+                                  modify_date: some text
+                                  modified_by_user: some text
+                                  pair_report_type: some text
+                                  finscan_category: some text
+                                  wrapper_status: some text
+                                  source_lists: some text
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: some text
+                                  end: some text
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                  pair_status: some text
+                                  pair_reason: some text
+                                  pair_comments: some text
+                                  application_display_name: some text
+                                  application_id: some text
+                                  client_id: some text
+                                  client_key: some text
+                                  client_full_name: some text
+                                  list_key: some text
+                                  list_name: some text
+                                  list_id: some text
+                                  list_version: some text
+                                  list_modify_date: some text
+                                  list_profile_id: some text
+                                  list_profile_key: some text
+                                  link_single_string_name: some text
+                                  list_parent_single_string_name: some text
+                                  list_category: some text
+                                  list_pep_category: some text
+                                  list_do_bs: some text
+                                  list_countries: some text
+                                  rank_string: some text
+                                  ranktype: some text
+                                  rankweight: some text
+                                  pair_load_date: some text
+                                  e_address_to: some text
+                                  e_address_cc: some text
+                                  origin: some text
+                                  secondsviewed: some text
+                                  initial_user: some text
+                                  is_pair_parent_flag: some text
+                                  pair_met_search_criteria_flag: some text
+                                  editable_due_to_assignment_flag: some text
+                                  modify_date: some text
+                                  modified_by_user: some text
+                                  pair_report_type: some text
+                                  finscan_category: some text
+                                  wrapper_status: some text
+                                  source_lists: some text
+                          internal:
+                            - id: 92
+                              email: some text
+                              colour: some text
+                              last_name: some text
+                              first_name: some text
+                            - id: 44
+                              email: some text
+                              colour: some text
+                              last_name: some text
+                              first_name: some text
+                        end_date: "2020-07-17T01:59:59.999Z"
+                        email: some text
+                        mobile_number: some text
+                      - id: 0
+                        first_name: some text
+                        last_name: some text
+                        start_date: "2018-02-10T09:30:00Z"
+                        location:
+                          id: 66
+                          name: some text
+                        watchlist_colour: RED
+                        hosts:
+                          - id: 92
+                            email: some text
+                            first_name: some text
+                            last_name: some text
+                            profile_pic_url: some text
+                            department: some text
+                            mobile_number: some text
+                          - id: 85
+                            email: some text
+                            first_name: some text
+                            last_name: some text
+                            profile_pic_url: some text
+                            department: some text
+                            mobile_number: some text
+                        invite_watchlist:
+                          id: 57
+                          external_colours:
+                            - some text
+                            - some text
+                          internal_colours:
+                            - some text
+                            - some text
+                          external:
+                            - search_terms:
+                                name: some text
+                                company: some text
+                                city: some text
+                                country: some text
+                                state: some text
+                              integration: some text
+                              colour: GREEN
+                              matches:
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: some text
+                                  end: some text
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                  pair_status: some text
+                                  pair_reason: some text
+                                  pair_comments: some text
+                                  application_display_name: some text
+                                  application_id: some text
+                                  client_id: some text
+                                  client_key: some text
+                                  client_full_name: some text
+                                  list_key: some text
+                                  list_name: some text
+                                  list_id: some text
+                                  list_version: some text
+                                  list_modify_date: some text
+                                  list_profile_id: some text
+                                  list_profile_key: some text
+                                  link_single_string_name: some text
+                                  list_parent_single_string_name: some text
+                                  list_category: some text
+                                  list_pep_category: some text
+                                  list_do_bs: some text
+                                  list_countries: some text
+                                  rank_string: some text
+                                  ranktype: some text
+                                  rankweight: some text
+                                  pair_load_date: some text
+                                  e_address_to: some text
+                                  e_address_cc: some text
+                                  origin: some text
+                                  secondsviewed: some text
+                                  initial_user: some text
+                                  is_pair_parent_flag: some text
+                                  pair_met_search_criteria_flag: some text
+                                  editable_due_to_assignment_flag: some text
+                                  modify_date: some text
+                                  modified_by_user: some text
+                                  pair_report_type: some text
+                                  finscan_category: some text
+                                  wrapper_status: some text
+                                  source_lists: some text
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: some text
+                                  end: some text
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                  pair_status: some text
+                                  pair_reason: some text
+                                  pair_comments: some text
+                                  application_display_name: some text
+                                  application_id: some text
+                                  client_id: some text
+                                  client_key: some text
+                                  client_full_name: some text
+                                  list_key: some text
+                                  list_name: some text
+                                  list_id: some text
+                                  list_version: some text
+                                  list_modify_date: some text
+                                  list_profile_id: some text
+                                  list_profile_key: some text
+                                  link_single_string_name: some text
+                                  list_parent_single_string_name: some text
+                                  list_category: some text
+                                  list_pep_category: some text
+                                  list_do_bs: some text
+                                  list_countries: some text
+                                  rank_string: some text
+                                  ranktype: some text
+                                  rankweight: some text
+                                  pair_load_date: some text
+                                  e_address_to: some text
+                                  e_address_cc: some text
+                                  origin: some text
+                                  secondsviewed: some text
+                                  initial_user: some text
+                                  is_pair_parent_flag: some text
+                                  pair_met_search_criteria_flag: some text
+                                  editable_due_to_assignment_flag: some text
+                                  modify_date: some text
+                                  modified_by_user: some text
+                                  pair_report_type: some text
+                                  finscan_category: some text
+                                  wrapper_status: some text
+                                  source_lists: some text
+                            - search_terms:
+                                name: some text
+                                company: some text
+                                city: some text
+                                country: some text
+                                state: some text
+                              integration: some text
+                              colour: YELLOW
+                              matches:
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: some text
+                                  end: some text
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                  pair_status: some text
+                                  pair_reason: some text
+                                  pair_comments: some text
+                                  application_display_name: some text
+                                  application_id: some text
+                                  client_id: some text
+                                  client_key: some text
+                                  client_full_name: some text
+                                  list_key: some text
+                                  list_name: some text
+                                  list_id: some text
+                                  list_version: some text
+                                  list_modify_date: some text
+                                  list_profile_id: some text
+                                  list_profile_key: some text
+                                  link_single_string_name: some text
+                                  list_parent_single_string_name: some text
+                                  list_category: some text
+                                  list_pep_category: some text
+                                  list_do_bs: some text
+                                  list_countries: some text
+                                  rank_string: some text
+                                  ranktype: some text
+                                  rankweight: some text
+                                  pair_load_date: some text
+                                  e_address_to: some text
+                                  e_address_cc: some text
+                                  origin: some text
+                                  secondsviewed: some text
+                                  initial_user: some text
+                                  is_pair_parent_flag: some text
+                                  pair_met_search_criteria_flag: some text
+                                  editable_due_to_assignment_flag: some text
+                                  modify_date: some text
+                                  modified_by_user: some text
+                                  pair_report_type: some text
+                                  finscan_category: some text
+                                  wrapper_status: some text
+                                  source_lists: some text
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: some text
+                                  end: some text
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                  pair_status: some text
+                                  pair_reason: some text
+                                  pair_comments: some text
+                                  application_display_name: some text
+                                  application_id: some text
+                                  client_id: some text
+                                  client_key: some text
+                                  client_full_name: some text
+                                  list_key: some text
+                                  list_name: some text
+                                  list_id: some text
+                                  list_version: some text
+                                  list_modify_date: some text
+                                  list_profile_id: some text
+                                  list_profile_key: some text
+                                  link_single_string_name: some text
+                                  list_parent_single_string_name: some text
+                                  list_category: some text
+                                  list_pep_category: some text
+                                  list_do_bs: some text
+                                  list_countries: some text
+                                  rank_string: some text
+                                  ranktype: some text
+                                  rankweight: some text
+                                  pair_load_date: some text
+                                  e_address_to: some text
+                                  e_address_cc: some text
+                                  origin: some text
+                                  secondsviewed: some text
+                                  initial_user: some text
+                                  is_pair_parent_flag: some text
+                                  pair_met_search_criteria_flag: some text
+                                  editable_due_to_assignment_flag: some text
+                                  modify_date: some text
+                                  modified_by_user: some text
+                                  pair_report_type: some text
+                                  finscan_category: some text
+                                  wrapper_status: some text
+                                  source_lists: some text
+                          internal:
+                            - id: 46
+                              email: some text
+                              colour: some text
+                              last_name: some text
+                              first_name: some text
+                            - id: 37
+                              email: some text
+                              colour: some text
+                              last_name: some text
+                              first_name: some text
+                        end_date: "2020-07-17T01:59:59.999Z"
+                        email: some text
+                        mobile_number: some text
+          description: Successful response - returns an array of `Invite` entities.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view these Invites
+        "403":
+          description: You do not have permission for this action
+      operationId: getInvites
+      summary: List all Invites
+      description: Gets a list of all `Invite` entities.
+  /invites/batch_delete:
+    post:
+      summary: Delete Multiple Invites
+      tags:
+        - Invites
+        - Batches
+      responses:
+        "202":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: ./models/BatchJob.v1.yaml
+        4XX:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+      operationId: batchDeleteInvites
+      description: Queues up a "delete" background task for one or more `Invite` entities.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/IdentifierList.v1.yaml
+        description: ""
+  "/registrations/{registration_id}/invites":
+    summary: Path used to create an `Invite` from `Registration` data.
+    description: The REST endpoint/path used to create an instance of an `Invite`. This path contains a `POST` operation used to perform the create task.
+    post:
+      tags:
+        - Invites
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/InviteDetail.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 93
+                    company: some text
+                    created_at: "2020-07-17T01:59:59.999Z"
+                    email: some text
+                    end_date: "2020-07-17T01:59:59.999Z"
+                    first_name: some text
+                    last_name: some text
+                    start_date: "2020-07-17T01:59:59.999Z"
+                    hosts:
+                      - id: 23
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      - id: 33
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                    location:
+                      id: 20
+                      name: some text
+                    watchlist_colour: YELLOW
+                    email_template:
+                      id: 15
+                      name: some text
+                      template_type: some text
+                    custom_fields:
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                    notification_triggers:
+                      - offset_direction: AFTER
+                        offset_amount: 66
+                        offset_origin: END
+                        email_template_id: 80
+                        notification_groups:
+                          - some text
+                          - some text
+                        offset_unit: hours
+                        email_template_name: some text
+                      - offset_direction: BEFORE
+                        offset_amount: 21
+                        offset_origin: END
+                        email_template_id: 30
+                        notification_groups:
+                          - some text
+                          - some text
+                        offset_unit: days
+                        email_template_name: some text
+                    mobile_number: some text
+                    invite_watchlist:
+                      id: 3
+                      external_colours:
+                        - some text
+                      internal_colours:
+                        - some text
+                        - some text
+          description: Created an `Invite` from the given `Registration` UUID.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to create this Invite
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The Location does not exist
+        "422":
+          description: Your request was not formatted correctly
+      operationId: createRegistrationInvite
+      summary: Create an Invite from a Registration
+      description: Creates a new `Invite` from `Registration` data.
+    parameters:
+      - schema:
+          type: string
+        name: registration_id
+        in: path
+        required: true
+  /signins:
+    summary: Path used to manage the list of Signins.
+    description: "The REST endpoint/path used to list and create zero or more `Signin` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively."
+    get:
+      tags:
+        - Signins
+      parameters:
+        - name: location_ids
+          description: A comma separated list of Location IDs
+          schema:
+            type: string
+          in: query
+        - name: with_colours
+          description: |-
+            A comma separated list of case-insensitive colour values.
+            i.e., `red`, `green`, `yellow`, and `orange`
+          schema:
+            type: string
+          in: query
+        - name: query
+          description: "Allows you to query by `company`, `email`, `first_name`, `last_name`, and `location_name`"
+          schema:
+            type: string
+          in: query
+        - name: with_acknowledged
+          description: "Filters to all those `Signin`s that have, or have not been acknowledged"
+          schema:
+            type: boolean
+          in: query
+        - name: with_signed_in
+          description: "Filters to all `Signin`s that are, or are not currently signed out."
+          schema:
+            type: boolean
+          in: query
+        - name: signin_before
+          description: Filters results to all those *before* the provided datetime
+          schema:
+            format: date
+            type: string
+          in: query
+        - name: signin_after
+          description: Filters results to all those *after* the provided datetime
+          schema:
+            format: date
+            type: string
+          in: query
+        - name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+          schema:
+            type: integer
+          in: query
+        - name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+          schema:
+            type: integer
+          in: query
+        - name: query_sort
+          description: Allows you to override ordering by most relevant results when querying
+          schema:
+            enum:
+              - signin_timestamp_desc
+              - signin_timestamp_asc
+            type: string
+          in: query
+        - name: include
+          description: A list of comma-separated related models to include
+          schema:
+            type: string
+          in: query
+        - name: include_anonymized
+          description: Set this flag to `true` to include anonymized signins in the response
+          in: query
+          schema:
+            type: boolean
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedSigninsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    signins:
+                      - id: 70
+                        company: some text
+                        email: some text
+                        first_name: some text
+                        is_accounted_for: true
+                        is_acknowledged: true
+                        last_name: some text
+                        location_name: some text
+                        signed_out_timestamp: "2018-02-10T09:30:00Z"
+                        signin_photo_url: some text
+                        signin_timestamp: "2018-02-10T09:30:00Z"
+                        hosts:
+                          - id: 9
+                            email: some text
+                            first_name: some text
+                            last_name: some text
+                            mobile_number: some text
+                            profile_pic_url: some text
+                          - id: 95
+                            email: some text
+                            first_name: some text
+                            last_name: some text
+                            mobile_number: some text
+                            profile_pic_url: some text
+                        signin_watchlist:
+                          id: 25
+                          external:
+                            - search_terms:
+                                name: some text
+                                company: some text
+                                city: some text
+                                country: some text
+                                state: some text
+                              integration: some text
+                              colour: ORANGE
+                              matches:
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: "2018-01-17"
+                                  end: "2018-01-17"
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: "2018-01-17"
+                                  end: "2018-01-17"
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                            - search_terms:
+                                name: some text
+                                company: some text
+                                city: some text
+                                country: some text
+                                state: some text
+                              integration: some text
+                              colour: ORANGE
+                              matches:
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: "2018-01-17"
+                                  end: "2018-01-17"
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: "2018-01-17"
+                                  end: "2018-01-17"
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                          internal:
+                            - id: 10
+                              email: some text
+                              colour: some text
+                              last_name: some text
+                              first_name: some text
+                            - id: 25
+                              email: some text
+                              colour: some text
+                              last_name: some text
+                              first_name: some text
+                      - id: 50
+                        company: some text
+                        email: some text
+                        first_name: some text
+                        is_accounted_for: true
+                        is_acknowledged: true
+                        last_name: some text
+                        location_name: some text
+                        signed_out_timestamp: "2018-02-10T09:30:00Z"
+                        signin_photo_url: some text
+                        signin_timestamp: "2018-02-10T09:30:00Z"
+                        hosts:
+                          - id: 78
+                            email: some text
+                            first_name: some text
+                            last_name: some text
+                            mobile_number: some text
+                            profile_pic_url: some text
+                          - id: 45
+                            email: some text
+                            first_name: some text
+                            last_name: some text
+                            mobile_number: some text
+                            profile_pic_url: some text
+                        signin_watchlist:
+                          id: 89
+                          external:
+                            - search_terms:
+                                name: some text
+                                company: some text
+                                city: some text
+                                country: some text
+                                state: some text
+                              integration: some text
+                              colour: GREEN
+                              matches:
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: "2018-01-17"
+                                  end: "2018-01-17"
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: "2018-01-17"
+                                  end: "2018-01-17"
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                            - search_terms:
+                                name: some text
+                                company: some text
+                                city: some text
+                                country: some text
+                                state: some text
+                              integration: some text
+                              colour: RED
+                              matches:
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: "2018-01-17"
+                                  end: "2018-01-17"
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                                - id: some text
+                                  alt_names:
+                                    - some text
+                                    - some text
+                                  federal_register_notice: some text
+                                  name: some text
+                                  source_information_url: some text
+                                  source_list_url: some text
+                                  list: some text
+                                  type: some text
+                                  category: some text
+                                  street1: some text
+                                  street2: some text
+                                  city: some text
+                                  state: some text
+                                  country: some text
+                                  notes: some text
+                                  frc: some text
+                                  start: "2018-01-17"
+                                  end: "2018-01-17"
+                                  frserve: some text
+                                  optional_ID: some text
+                                  alert_type: some text
+                          internal:
+                            - id: 94
+                              email: some text
+                              colour: some text
+                              last_name: some text
+                              first_name: some text
+                            - id: 79
+                              email: some text
+                              colour: some text
+                              last_name: some text
+                              first_name: some text
+                    pagination:
+                      total_records: 38
+                      current_offset: 31
+                      next_offset: 26
+          description: Successful response - returns an array of `Signin` entities.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view these Signins
+        "403":
+          description: You do not have permission for this action
+      operationId: getSignins
+      summary: List all Signins
+      description: Gets a list of all `Signin` entities.
+    post:
+      summary: Create Signin
+      operationId: createSignin
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Signin.v1.yaml
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "422":
+          description: Unprocessable Entity (WebDAV)
+      description: Creates a Signin
+      tags:
+        - Signins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/SigninCreateParams.v1.yaml
+            examples:
+              default:
+                value:
+                  guest_email_template_id: 47
+                  host_email_template_id: 65
+                  host_ids:
+                    - 77
+                    - 49
+                  location_id: 79
+                  send_notifications: true
+                  sms_message: some text
+                  first_name: some text
+                  last_name: some text
+                  company: some text
+                  email: some text
+              registration:
+                value:
+                  registration_id: "123531144"
+                  guest_email_template_id: 47
+                  host_email_template_id: 65
+                  send_notifications: true
+                  sms_message: some text
+        description: Params for creating a Signin can omit certain fields if a `registration_id` is present.
+  "/users/{user_id}":
+    summary: Path used to manage a single User.
+    description: The REST endpoint/path used to get single instances of an `User` and their `PermissionBundle`s.
+    get:
+      tags:
+        - Users
+      parameters:
+        - name: include
+          description: A list of comma-separated related models to include
+          schema:
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/User.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 61
+                    registration_portal_enabled: true
+                    mobile_access_enabled: true
+                    first_name: some text
+                    last_name: some text
+                    email: some text
+                    account_uuid: some text
+                    permission_groups:
+                      - name: some text
+                        visibility: some text
+                        permissions:
+                          - some text
+                          - some text
+                      - name: some text
+                        visibility: some text
+                        permissions:
+                          - some text
+                          - some text
+          description: Successful response - returns a single `User`.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view this User
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The User does not exist
+      operationId: getCurrentUser
+      summary: Get the current User
+      description: Gets the details of a single instance of the current `User`.
+    parameters:
+      - schema:
+          type: string
+        name: user_id
+        in: path
+        required: true
+  "/invites/{invite_id}":
+    summary: Path used to manage a single Invite.
+    description: "The REST endpoint/path used to get, update, and delete single instances of an `Invite`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively."
+    get:
+      tags:
+        - Invites
+      parameters:
+        - name: include
+          description: |-
+            A list of comma-separated related models to include
+            i.e., 'assigned_stall'
+          schema:
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/InviteDetail.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 2
+                    company: some text
+                    created_at: "2020-07-17T01:59:59.999Z"
+                    email: some text
+                    end_date: "2020-07-17T01:59:59.999Z"
+                    first_name: some text
+                    last_name: some text
+                    start_date: "2020-07-17T01:59:59.999Z"
+                    hosts:
+                      - id: 68
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      - id: 82
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                    location:
+                      id: 10
+                      name: some text
+                    watchlist_colour: GREEN
+                    email_template:
+                      id: 0
+                      name: some text
+                      template_type: some text
+                    custom_fields:
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                    notification_triggers:
+                      - offset_direction: AFTER
+                        offset_amount: 95
+                        offset_origin: START
+                        email_template_id: 83
+                        notification_groups:
+                          - some text
+                          - some text
+                        offset_unit: days
+                        email_template_name: some text
+                      - offset_direction: AFTER
+                        offset_amount: 32
+                        offset_origin: END
+                        email_template_id: 32
+                        notification_groups:
+                          - some text
+                          - some text
+                        offset_unit: days
+                        email_template_name: some text
+                    mobile_number: some text
+                    invite_watchlist:
+                      id: 47
+                      external_colours:
+                        - some text
+                        - some text
+                      internal_colours:
+                        - some text
+                        - some text
+          description: Successful response - returns a single `Invite`.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view this Invite
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The Invite you are looking for does not exist
+      operationId: getInvite
+      summary: Get an Invite
+      description: Gets the details of a single instance of a `Invite`.
+    put:
+      requestBody:
+        description: Updated `Invite` information.
+        content:
+          application/json:
+            schema:
+              $ref: ./models/InviteUpdateParams.v1.yaml
+            examples:
+              default:
+                value:
+                  on_premise: true
+                  user_id: 45
+                  license_plate: some text
+                  flex_values:
+                    - flex_definition_id: 1
+                      raw_value: Canada
+                      label: Country
+                    - flex_definition_id: 2
+                      raw_value: English
+                      label: Language
+        required: true
+      tags:
+        - Invites
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/InviteDetail.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 54
+                    company: some text
+                    created_at: "2020-07-17T01:59:59.999Z"
+                    email: some text
+                    end_date: "2020-07-17T01:59:59.999Z"
+                    first_name: some text
+                    last_name: some text
+                    license_plate: some text
+                    start_date: "2020-07-17T01:59:59.999Z"
+                    hosts:
+                      - id: 64
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                      - id: 54
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        mobile_number: some text
+                        profile_pic_url: some text
+                    location:
+                      id: 67
+                      name: some text
+                    watchlist_colour: YELLOW
+                    email_template:
+                      id: 77
+                      name: some text
+                      template_type: some text
+                    custom_fields:
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                      - format: string
+                        field_name: some text
+                        field_value: some text
+                    notification_triggers:
+                      - offset_direction: AFTER
+                        offset_amount: 45
+                        offset_origin: START
+                        email_template_id: 93
+                        notification_groups:
+                          - some text
+                          - some text
+                        offset_unit: hours
+                        email_template_name: some text
+                      - offset_direction: AFTER
+                        offset_amount: 28
+                        offset_origin: END
+                        email_template_id: 19
+                        notification_groups:
+                          - some text
+                          - some text
+                        offset_unit: days
+                        email_template_name: some text
+                    mobile_number: some text
+                    invite_watchlist:
+                      id: 43
+                      external_colours:
+                        - some text
+                      internal_colours:
+                        - some text
+          description: Successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view this Invite
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The Invite does not exist
+        "422":
+          description: Your request was not formatted correctly
+      operationId: updateInvite
+      summary: Update an Invite
+      description: Updates an existing `Invite`.
+    delete:
+      tags:
+        - Invites
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "204":
+          description: The `Invite` has been deleted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: There was an error in trying to delete the `Invite`
+      operationId: deleteInvite
+      summary: Deletes an Invite
+      description: Deletes a single instance of `Invite`
+    parameters:
+      - schema:
+          type: string
+        name: invite_id
+        in: path
+        required: true
+  "/watchlists/{watchlist_id}":
+    summary: Path used to manage a single Watchlist.
+    description: The REST endpoint/path used to get single instances of a `Watchlist`.
+    get:
+      tags:
+        - Watchlists
+      parameters:
+        - name: include
+          description: A list of comma-separated related models to include
+          schema:
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Watchlist.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 7
+                    colour: GREEN
+                    email: name@example.com
+                    first_name: Alex
+                    last_name: Trebec
+                    notes: some text
+                    photo: some text
+                    aliases:
+                      - some text
+                      - some text
+                    driver_license: some text
+          description: Successful response - returns a single `Watchlist`.
+        4XX:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples: {}
+      security:
+        - TractionGuestAuth:
+            - all
+            - "watchlists:*"
+            - "watchlists:read"
+      operationId: getWatchlist
+      summary: Get a Watchlist
+      description: Gets the details of a single instance of a `Watchlist`.
+    put:
+      requestBody:
+        description: The watchlist record attributes to update
+        content:
+          application/json:
+            schema:
+              $ref: ./models/WatchlistCreateParams.v1.yaml
+            examples:
+              NewWatchlist:
+                value:
+                  colour: YELLOW
+                  email: some text
+                  first_name: some text
+                  last_name: some text
+                  notes: some text
+                  aliases:
+                    - some text
+                    - some text
+                  base64_image: aGVsbG8=
+                  driver_license: some text
+        required: true
+      tags:
+        - Watchlists
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Watchlist.v1.yaml
+              examples:
+                UpdatedWatchlist:
+                  value:
+                    id: 66
+                    colour: GREEN
+                    email: some text
+                    first_name: some text
+                    last_name: some text
+                    notes: some text
+                    photo: some text
+                    aliases:
+                      - some text
+                      - some text
+                    driver_license: some text
+          description: The complete updated watchlist record
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: Bad request
+      security:
+        - TractionGuestAuth:
+            - all
+            - "watchlists:*"
+            - "watchlists:write"
+      operationId: updateWatchlist
+      summary: Update a Watchlist
+      description: Update an existing `Watchlist` record. Every operation against this endpoint is recorded in the audit log.
+    delete:
+      tags:
+        - Watchlists
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "204":
+          description: The Watchlist has been deleted
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: Bad request
+      security:
+        - TractionGuestAuth:
+            - all
+            - "watchlists:*"
+            - "watchlists:write"
+      operationId: deleteWatchlist
+      summary: Deletes a Watchlist
+      description: Deletes a single instance of `Watchlist`
+    parameters:
+      - schema:
+          type: string
+        name: watchlist_id
+        in: path
+        required: true
+  /watchlists:
+    summary: Path used to manage the list of Watchlists.
+    description: The REST endpoint/path used to list zero or more `Watchlist` entities.
+    get:
+      tags:
+        - Watchlists
+      parameters:
+        - name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+          schema:
+            type: integer
+          in: query
+        - name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+          schema:
+            type: integer
+          in: query
+        - name: query
+          description: "Query the results by `first_name`, `last_name`, `email`, `colour`, and `notes` all at once."
+          schema:
+            type: string
+          in: query
+        - name: with_colours
+          description: |-
+            A comma separated list of case-insensitive colour values.
+            i.e., `red`, `green`, `yellow`, and `orange`
+          schema:
+            type: string
+          in: query
+        - name: include
+          description: A list of comma-separated related models to include
+          schema:
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedWatchlistList.v1.yaml
+              examples:
+                default:
+                  value:
+                    pagination:
+                      total_records: 78
+                      current_offset: 62
+                      next_offset: 57
+                    watchlists:
+                      - id: 24
+                        colour: GREEN
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        notes: some text
+                        photo: some text
+                        aliases:
+                          - some text
+                          - some text
+                        driver_license: some text
+                      - id: 26
+                        colour: ORANGE
+                        email: some text
+                        first_name: some text
+                        last_name: some text
+                        notes: some text
+                        photo: some text
+                        aliases:
+                          - some text
+                          - some text
+                        driver_license: some text
+          description: Successful response - returns an array of `Watchlist` entities.
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+      security:
+        - TractionGuestAuth:
+            - all
+            - "watchlists:*"
+            - "watchlists:read"
+      operationId: getWatchlists
+      summary: List all Watchlists
+      description: Gets a list of all `Watchlist` entities.
+    post:
+      requestBody:
+        description: The new `Watchlist` to create
+        content:
+          application/json:
+            schema:
+              $ref: ./models/WatchlistCreateParams.v1.yaml
+            examples:
+              NewWatchlist:
+                value:
+                  colour: GREEN
+                  email: some text
+                  first_name: some text
+                  last_name: some text
+                  notes: some text
+                  aliases:
+                    - some text
+                    - some text
+                  base64_image: aGVsbG8=
+                  driver_license: some text
+        required: true
+      tags:
+        - Watchlists
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Watchlist.v1.yaml
+              examples:
+                NewWatchlist:
+                  value:
+                    id: 77
+                    colour: GREEN
+                    email: some text
+                    first_name: some text
+                    last_name: some text
+                    notes: some text
+                    photo: some text
+                    aliases:
+                      - some text
+                      - some text
+                    driver_license: some text
+          description: The newly created `Watchlist`
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: An error happened
+      security:
+        - TractionGuestAuth:
+            - all
+            - "watchlists:*"
+            - "watchlists:write"
+      operationId: createWatchlist
+      summary: Create Watchlist
+      description: "Create a new `Watchlist` record. Please note, every action taken against this endpoint is recorded in the audit log."
+  /audit_logs:
+    summary: Path used to manage the list of AuditLogs.
+    description: The REST endpoint/path used to list zero or more `AuditLog` entities.  This path contains a `GET` operation to perform the list task.
+    get:
+      tags:
+        - AuditLogs
+      parameters:
+        - name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+          schema:
+            type: integer
+          in: query
+          required: false
+        - name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+          schema:
+            type: integer
+          in: query
+          required: false
+        - name: sort_by
+          description: Sorts by the field name and direction provided where the pattern is `FIELD_NAME_DIRECTION`
+          schema:
+            type: string
+          in: query
+        - name: auditable_id
+          description: The unique ID of a model that has associated audit logs
+          schema:
+            type: integer
+          in: query
+        - name: auditable_type
+          description: |
+            The name of the model that has associated audit logs. Valid values include:
+            - `user`
+            - `device_configuration`
+            - `signin`
+            - `invite`
+            - `watchlist_record`
+            - `account_preference`
+            - `signout`
+            - `host`
+            - `invite_watchlist`
+            - `location_preference`
+            - `parking_lot`
+            - `parking_stall`
+            - `permission_bundle`
+            - `person`
+            - `physical_access_grant`
+            - `physical_access_provider`
+            - `physical_access_rule`
+            - `security_badge_type`
+            - `signin_watchlist`
+            - `user_group_physical_access_rule`
+            - `visitor`
+            - `bulk_data_batch`
+          schema:
+            type: string
+          in: query
+        - name: action_type
+          description: |
+            The action performed by the user. Valid values include:
+            - `create`
+            - `update`
+            - `destroy`
+          schema:
+            type: string
+          in: query
+        - name: user_id
+          description: The ID of the user who performed the database change
+          schema:
+            type: integer
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedAuditLogsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    audit_logs:
+                      - id: 19
+                        auditable_id: 85
+                        auditable_type: some text
+                        user_id: 56
+                        username: some text
+                        action: some text
+                        audited_changes:
+                          - field_name: result
+                            field_value_before: "{}"
+                            field_value_after: '{"external":[],"internal":[{"id":1,"email":"some@email.com","notes":null,"colour":"RED"}]}'
+                            format: json
+                          - field_name: user_id
+                            field_value_before: "1"
+                            field_value_after: "2"
+                            format: integer
+                          - field_name: flag_enabled
+                            field_value_after: "true"
+                            format: boolean
+                          - field_name: email
+                            field_value_before: ""
+                            field_value_after: some@email.com
+                            format: string
+                        version: 64
+                        comment: some text
+                        remote_address: some text
+                        request_uuid: some text
+                        created_at: some text
+                      - id: 4
+                        auditable_id: 84
+                        auditable_type: some text
+                        user_id: 78
+                        username: some text
+                        action: some text
+                        audited_changes:
+                          - field_name: email
+                            field_value_before: ""
+                            field_value_after: another@email.com
+                            format: string
+                        version: 27
+                        comment: some text
+                        remote_address: some text
+                        request_uuid: some text
+                        created_at: some text
+                    pagination:
+                      total_records: 44
+                      current_offset: 71
+                      next_offset: 27
+          description: Successful response - returns an array of `AuditLog` entities.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "401":
+          description: You don't have permission to view this AuditLog
+        "403":
+          description: You do not have permission for this action
+      operationId: getAuditLogs
+      summary: List all AuditLogs
+      description: Gets a list of all `AuditLog` entities.
+  "/audit_logs/{audit_log_id}":
+    summary: Path used to manage a single AuditLog.
+    description: The REST endpoint/path used to get single instances of an `AuditLog`.
+    get:
+      tags:
+        - AuditLogs
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/AuditLog.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 90
+                    auditable_id: 49
+                    auditable_type: some text
+                    user_id: 72
+                    username: some text
+                    action: some text
+                    audited_changes:
+                      - field_name: result
+                        field_value_before: "{}"
+                        field_value_after: '{"external":[],"internal":[{"id":1,"email":"some@email.com","notes":null,"colour":"RED"}]}'
+                        format: json
+                      - field_name: user_id
+                        field_value_before: "1"
+                        field_value_after: "2"
+                        format: integer
+                      - field_name: flag_enabled
+                        field_value_after: "true"
+                        format: boolean
+                      - field_name: email
+                        field_value_before: ""
+                        field_value_after: some@email.com
+                        format: string
+                    version: 66
+                    comment: some text
+                    remote_address: some text
+                    request_uuid: some text
+                    created_at: some text
+          description: Successful response - returns a single `AuditLog`.
+        "400":
+          description: A generic error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "401":
+          description: You don't have permission to view this AuditLog
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The AuditLog does not exist
+      operationId: getAuditLog
+      summary: Get an AuditLog
+      description: Gets the details of a single instance of an `AuditLog`.
+    parameters:
+      - schema:
+          type: string
+        name: audit_log_id
+        in: path
+        required: true
+  "/registrations/{registration_id}":
+    summary: Path used to display a single Registration.
+    description: The REST endpoint/path used to get single instances of a `Registration`.
+    get:
+      parameters:
+        - name: include
+          description: A list of comma-separated related models to include
+          schema:
+            type: string
+          in: query
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/RegistrationDetail.v1.yaml
+              examples:
+                Default:
+                  value:
+                    id: uuid
+                    created_at: "2018-02-10T09:30:00Z"
+                    name: some text
+                    email: some text
+                    company: some text
+                    photo_url: some text
+                    invite:
+                      id: 96
+                      first_name: some text
+                      last_name: some text
+                      start_date: "2018-02-10T09:30:00Z"
+                      location:
+                        id: 95
+                        name: some text
+                      watchlist_colour: GREEN
+                      hosts:
+                        - id: 61
+                          email: some text
+                          first_name: some text
+                          last_name: some text
+                          profile_pic_url: some text
+                          department: some text
+                          mobile_number: some text
+                        - id: 57
+                          email: some text
+                          first_name: some text
+                          last_name: some text
+                          profile_pic_url: some text
+                          department: some text
+                          mobile_number: some text
+                      invite_watchlist:
+                        id: 7
+                        external_colours:
+                          - some text
+                          - some text
+                        internal_colours:
+                          - some text
+                          - some text
+                      end_date: "2020-07-17T01:59:59.999Z"
+                      email: some text
+                      mobile_number: some text
+                    visitor:
+                      id: uuid
+                      active: true
+                      company: some text
+                      created_via: some text
+                      email: some text
+                      first_name: some text
+                      last_name: some text
+                      mobile: some text
+                      note: some text
+                      profile_pic_content_type: some text
+                      profile_pic_file_name: some text
+                      profile_pic_file_size: some text
+                      profile_pic_updated_at: some text
+                      watchlist_level: some text
+                      created_at: "2018-02-10T09:30:00Z"
+                      updated_at: "2018-02-10T09:30:00Z"
+                    guest_responses:
+                      - title: some text
+                        sequence: 9
+                        id: uuid-1
+                        page_type: some text
+                        custom_fields:
+                          - field_name: some text
+                            field_value: some text
+                          - field_name: some text
+                            field_value: some text
+                      - title: some text
+                        sequence: 8
+                        id: uuid-2
+                        page_type: some text
+                        custom_fields:
+                          - field_name: some text
+                            field_value: some text
+                          - field_name: some text
+                            field_value: some text
+          description: Successful response - returns a single `RegistrationDetail`.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+          description: A generic error
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The specified Registration was not found
+      security:
+        - TractionGuestAuth:
+            - all
+            - "signin:*"
+            - "signin:read"
+      operationId: getRegistration
+      summary: Get a Registration
+      description: Gets the details of a single instance of a `Registration`
+      tags:
+        - Registrations
+    parameters:
+      - schema:
+          type: string
+        name: registration_id
+        in: path
+        required: true
+  /hosts/batch:
+    post:
+      summary: Create multiple Hosts
+      operationId: createHosts
+      responses:
+        "202":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: ./models/BatchJob.v1.yaml
+              examples:
+                default:
+                  value:
+                    bid: string
+                    created_at: date-string
+                    status: string
+                    total_records: 12
+                    worker_name: string
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+      tags:
+        - Hosts
+      description: "Creates a batch of `Host` records in an async queue. Please note, every action taken against this endpoint is recorded in the audit log."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/HostBatchCreateParams.v1.yaml
+            examples: {}
+        description: ""
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+  /registrations:
+    get:
+      summary: List all Registrations
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedRegistrationsList.v1.yaml
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "401":
+          description: Unauthorized
+      operationId: getRegistrations
+      description: Gets a list of all `Registration` entities.
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+        - schema:
+            type: string
+          in: query
+          name: location_ids
+          description: A comma separated list of Location IDs
+        - schema:
+            type: string
+          in: query
+          name: created_before
+          description: Restricts results to only those that were created before the provided date
+        - schema:
+            type: string
+          in: query
+          name: created_after
+          description: Restricts results to only those that were created after the provided date
+        - schema:
+            type: boolean
+          in: query
+          name: needs_confirmation
+          description: "A confirmed `Registration` is one with an associated `Invite`. This filter returns those without an `Invite` when true, and those with an `Invite` when false."
+      tags:
+        - Registrations
+  "/locations/{location_id}/capacity_forecasts":
+    parameters:
+      - schema:
+          type: string
+        name: location_id
+        in: path
+        required: true
+    get:
+      summary: Get the capacity details for a location
+      tags:
+        - Capacities
+      responses:
+        "200":
+          description: Successful response returns the expected invites for the next N number of hours.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/CapacityForecast.v1.yaml
+              examples:
+                default:
+                  value:
+                    invites_by_hour:
+                      - range_start: "2020-07-17T00:59:59.999Z"
+                        range_end: "2020-07-17T01:59:59.999Z"
+                        expected_visitors: 0
+                      - range_start: "2020-07-17T01:59:59.999Z"
+                        range_end: "2020-07-17T02:59:59.999Z"
+                        expected_visitors: 0
+                      - range_start: "2020-07-17T02:59:59.999Z"
+                        range_end: "2020-07-17T03:59:59.999Z"
+                        expected_visitors: 0
+                      - range_start: "2020-07-17T03:59:59.999Z"
+                        range_end: "2020-07-17T04:59:59.999Z"
+                        expected_visitors: 0
+                      - range_start: "2020-07-17T04:59:59.999Z"
+                        range_end: "2020-07-17T05:59:59.999Z"
+                        expected_visitors: 0
+                      - range_start: "2020-07-17T05:59:59.999Z"
+                        range_end: "2020-07-17T06:59:59.999Z"
+                        expected_visitors: 0
+                      - range_start: "2020-07-17T06:59:59.999Z"
+                        range_end: "2020-07-17T07:59:59.999Z"
+                        expected_visitors: 0
+                      - range_start: "2020-07-17T07:59:59.999Z"
+                        range_end: "2020-07-17T08:59:59.999Z"
+                        expected_visitors: 1
+        "400":
+          description: A generic error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    errors:
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+                      - domain: some text
+                        attribute: some text
+                        code: some text
+                        message: some text
+        "401":
+          description: You don't have permission to view the details of the location's capacity.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "403":
+          description: You do not have permission for this action
+      operationId: getCapacityForecast
+      description: Gets the details of the future capacity in a location.
+      parameters:
+        - schema:
+            type: integer
+            minimum: 1
+            maximum: 24
+            default: 8
+          in: query
+          name: hours_to_forecast
+          description: "The next N number of hours, the data needs to be calculated. Range from 1 to 24. If not set, it defaults to 8."
+        - schema:
+            type: string
+          in: query
+          name: timestamp
+          description: 'ISO8601 timestamp(includes the offset value) to use as the start point for the capacity estimate report. Defaults to the current local timestamp of the location if not provided. Eg: "2020-07-16T17:05:08-07:00"'
+  "/locations/{location_id}/capacities":
+    parameters:
+      - schema:
+          type: string
+        name: location_id
+        in: path
+        required: true
+    get:
+      summary: Get the current capacity details for a location
+      tags:
+        - Capacities
+      responses:
+        "200":
+          description: Successful response returns the current_signins and expected invites for the next hour.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Capacity.v1.yaml
+              examples:
+                default:
+                  value:
+                    signins_count: 189
+                    invites_expected_next_hour: 1
+        "400":
+          description: A generic error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "401":
+          description: You don't have permission to view the details of the location's capacity.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "403":
+          description: You do not have permission for this action
+      operationId: getCapacity
+      description: Get details of current capacity in a location
+  "/locations/{location_id}":
+    parameters:
+      - schema:
+          type: string
+        name: location_id
+        in: path
+        required: true
+    get:
+      summary: Get the details of a location
+      tags:
+        - Locations
+      responses:
+        "200":
+          description: Successful response - returns a single `Location`.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Location.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 1
+                    name: Default
+                    max_capacity: 30
+                    timezone: America/Vancouver
+        "400":
+          description: A generic error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+              examples: {}
+        "401":
+          description: You don't have permission to view this Location
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The Location does not exist
+      operationId: getLocation
+      description: Gets details of a single instance of `Location`.
+  /packages:
+    get:
+      summary: Get packages
+      tags:
+        - Packages
+      responses:
+        "200":
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedPackagesList.v1.yaml
+              examples:
+                example:
+                  value:
+                    packages:
+                      - id: 70
+                        package_state: picked_up
+                        recipient:
+                          id: 5
+                          email: tsala@example.com
+                          first_name: Tatiane
+                          last_name: Sala
+                          mobile_number: (604)111-1111
+                          profile_pic_url: "https://i.pravatar.cc/"
+                          department: Development
+                        location:
+                          name: Vancouver
+                          id: 2
+                        carrier_name: Purolator
+                        created_at: "2020-08-11T01:59:59.999Z"
+                        picked_up_at: "2020-08-17T01:59:59.999Z"
+                        image:
+                          full_size_url: "https://i.pravatar.cc/"
+                      - id: 72
+                        package_state: processing
+                        location:
+                          name: Vancouver
+                          id: 2
+                        created_at: "2020-08-19T01:59:59.999Z"
+                        image:
+                          full_size_url: "https://i.pravatar.cc/"
+                      - id: 73
+                        package_state: needs_attention
+                        location:
+                          name: Default
+                          id: 1
+                        created_at: "2020-09-18T01:59:59.999Z"
+                        image:
+                          full_size_url: "https://i.pravatar.cc/"
+                      - id: 74
+                        package_state: recipient_matched
+                        recipient:
+                          id: 4
+                          email: vbaldys@example.com
+                          first_name: Veronica
+                          last_name: Baldys
+                          mobile_number: (604)999-9999
+                          profile_pic_url: "https://i.pravatar.cc/"
+                          department: Development
+                        location:
+                          name: Vancouver
+                          id: 2
+                        carrier_name: Canada Post
+                        created_at: "2020-07-18T01:59:59.999Z"
+                        picked_up_at: null
+                        image:
+                          full_size_url: "https://i.pravatar.cc/"
+                    pagination:
+                      total_records: 5
+                      current_offset: 0
+                      next_offset: null
+                      last_id: null
+                      limit: 20
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: ""
+      operationId: getPackages
+      description: "Gets a list of [Package] entities."
+      parameters:
+        - schema:
+            type: string
+            example: "1,2,3"
+          in: query
+          name: location_ids
+          description: |-
+            A comma separated list of Location ids for filtering. i.e. '1,2,3'
+            Will return all packages from all locations if none are specified
+        - schema:
+            type: integer
+            minimum: 1
+            default: 50
+          in: query
+          name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+        - schema:
+            type: integer
+            minimum: 0
+            default: 0
+          in: query
+          name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+        - schema:
+            type: string
+            example: "recipient,location,image"
+          in: query
+          name: include
+          description: "A list of comma-separated related models to include. Possible values: 'recipient', 'location', 'image'"
+        - schema:
+            type: boolean
+          in: query
+          name: picked_up
+          description: Filters packages by their "picked_up" state..
+          allowEmptyValue: false
+        - schema:
+            type: string
+          in: query
+          name: query
+          description: Searches for packages by recipient name
+    post:
+      summary: Create package
+      operationId: createPackage
+      tags:
+        - Packages
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Package.v1.yaml
+              examples: {}
+        4XX:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+      description: "Creates a [Package] entity by extracting information about the recipient and carrier from the given image file."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/PackageCreateParams.v1.yaml
+        description: Parameters for creating a package
+  "/packages/{package_id}":
+    parameters:
+      - schema:
+          type: string
+        name: package_id
+        in: path
+        required: true
+    get:
+      summary: Get Package
+      tags:
+        - Packages
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Package.v1.yaml
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: User submission error
+      operationId: getPackage
+      description: Gets the details of a single instance of a Package
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: include
+          description: |
+            A list of comma-separated related models to include
+    put:
+      summary: Update Package
+      operationId: updatePackage
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/Package.v1.yaml
+        4XX:
+          description: User submission error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+      description: |
+        Update/Edit information about a Package.
+
+        picked_up - changes the package_state to picked up and assigns non null value to picked_up_at
+
+        recipient_id - update the package's intended recipient. Changes package_state to 'recipient_matched' if a match hasn't been found and notifies host about their package via email. A previous recipient will stop getting notifications
+
+        carrier_name - change/update the package's carrier/courier information
+      tags:
+        - Packages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/PackageUpdateParams.v1.yaml
+        description: ""
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+    delete:
+      summary: "Delete Package"
+      operationId: deletePackage
+      responses:
+        "204":
+          description: The package has been deleted
+        4XX:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+      description: Delete a pacakge
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      security:
+        - TractionGuestAuth: []
+      tags:
+        - Packages
+  /group_visits:
+    get:
+      summary: List all Group Visits (Appointments)
+      tags:
+        - GroupVisits
+      responses:
+        "200":
+          description: Successful response - returns an array of `GroupVisit` entities.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedGroupVisitsList.v1.yaml
+              examples:
+                default:
+                  value:
+                    pagination:
+                      total_records: 0
+                      current_offset: 0
+                      next_offset: 0
+                      last_id: 0
+                      limit: 0
+                    group_visits:
+                      - id: 1
+                        location:
+                          id: 1
+                          name: Location Name
+                          max_capacity: 10
+                          timezone: UTC
+                        hosts:
+                          - id: 0
+                            email: email@sample.com
+                            first_name: John
+                            last_name: Smith
+                            profile_pic_url: string
+                            department: Accounting
+                            mobile_number: string
+                        name: Appointment Name
+                        start_time: "2021-01-01T12:34:56Z"
+                        end_time: "2021-01-01T12:34:56Z"
+                        created_at: "2021-01-01T12:34:56Z"
+                        updated_at: "2021-01-01T12:34:56Z"
+                        registration_limit: 5
+                        registration_url: null
+                        invites_count: 0
+                        unconfirmed_registrations_count: 0
+                        manual_registration_approval: true
+                        public_registration_enabled: true
+        "400":
+          description: A generic error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "401":
+          description: You do not have permission to view this
+        "403":
+          description: You do not have permission for this action
+      security:
+        - TractionGuestAuth:
+            - all
+            - "visitors:*"
+            - "visitors:read"
+      operationId: getGroupVisits
+      description: Gets a list of all `GroupVisit` entities (Appointments).
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: limit
+          description: Limits the results to a specified number. Defaults to 50.
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Offsets the results to a specified number. Defaults to 0.
+        - schema:
+            type: string
+          in: query
+          name: location_ids
+          description: "A comma-separated string of locations IDs, to only show group visits (appointments) from those locations."
+        - schema:
+            type: string
+          in: query
+          name: sort_with
+          description: "A combination of attribute and direction, joined with an underscore, for sorting. Valid attributes are: `created_at`, `updated_at`, `name`, and `start_time`. Valid directions are `asc` and `desc`. E.g., `name_desc`, `start_time_asc`."
+    post:
+      summary: Create a new Group Visit (Appointment)
+      security:
+        - TractionGuestAuth:
+            - all
+            - "visitors:*"
+            - "visitors:write"
+      operationId: createGroupVisit
+      responses:
+        "201":
+          description: Created the `GroupVisit`
+          content:
+            application/json:
+              schema:
+                $ref: ./models/GroupVisit.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 0
+                    location:
+                      id: 0
+                      name: Location Name
+                      max_capacity: 0
+                      timezone: UTC
+                    hosts:
+                      - id: 0
+                        email: email@sample.com
+                        first_name: Jane
+                        last_name: Doe
+                        profile_pic_url: string
+                        department: Engineering
+                        mobile_number: string
+                    name: Appointment Name
+                    start_time: "2021-01-01T12:34:56Z"
+                    end_time: "2021-01-01T12:34:56Z"
+                    created_at: "2021-01-01T12:34:56Z"
+                    updated_at: "2021-01-01T12:34:56Z"
+                    registration_limit: 0
+                    registration_url: url
+                    invites_count: 0
+                    unconfirmed_registrations_count: 0
+                    manual_registration_approval: true
+                    public_registration_enabled: true
+        "400":
+          description: A generic error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "401":
+          description: You do not have permission to create this
+        "403":
+          description: You do not have permission for this action
+        "422":
+          description: Your request was not formatted correctly
+      description: Creates a `GroupVisit` (Appointment)
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/GroupVisitCreateParams.v1.yaml
+        description: ""
+      tags:
+        - GroupVisits
+  "/group_visits/{group_visit_id}":
+    parameters:
+      - schema:
+          type: string
+        name: group_visit_id
+        in: path
+        required: true
+    get:
+      summary: Get a Group Visit (Appointment)
+      tags:
+        - GroupVisits
+      responses:
+        "200":
+          description: Successful response - returns a single `GroupVisit`.
+          content:
+            application/json:
+              schema:
+                $ref: ./models/GroupVisit.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 0
+                    location:
+                      id: 0
+                      name: Location Name
+                      max_capacity: 0
+                      timezone: UTC
+                    hosts:
+                      - id: 0
+                        email: demo@example.com
+                        first_name: Jack
+                        last_name: Frost
+                        profile_pic_url: url
+                        department: Weather Monitoring
+                        mobile_number: string
+                    name: Appointment Name
+                    start_time: "2021-01-01T12:34:56Z"
+                    end_time: "2021-01-01T12:34:56Z"
+                    created_at: "2021-01-01T12:34:56Z"
+                    updated_at: "2021-01-01T12:34:56Z"
+                    registration_limit: 0
+                    registration_url: url
+                    invites_count: 0
+                    unconfirmed_registrations_count: 0
+                    manual_registration_approval: true
+                    public_registration_enabled: true
+        "400":
+          description: A generic error
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "401":
+          description: You do not have permission to view this GroupVisit
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The GroupVisit does not exist
+      security:
+        - TractionGuestAuth:
+            - all
+            - "visitors:*"
+            - "visitors:read"
+      operationId: getGroupVisit
+      description: Gets the details of a single instance of a `GroupVisit`.
+    put:
+      summary: Update a Group Visit (Appointment)
+      security:
+        - TractionGuestAuth:
+            - all
+            - "visitors:*"
+            - "visitors:write"
+      operationId: updateGroupVisit
+      responses:
+        "202":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/GroupVisit.v1.yaml
+              examples:
+                default:
+                  value:
+                    id: 0
+                    location:
+                      id: 0
+                      name: Location Name
+                      max_capacity: 0
+                      timezone: UTC
+                    hosts:
+                      - id: 0
+                        email: email@sample.com
+                        first_name: Jane
+                        last_name: Doe
+                        profile_pic_url: string
+                        department: Engineering
+                        mobile_number: string
+                    name: Appointment Name
+                    start_time: "2021-01-01T12:34:56Z"
+                    end_time: "2021-01-01T12:34:56Z"
+                    created_at: "2021-01-01T12:34:56Z"
+                    updated_at: "2021-01-01T12:34:56Z"
+                    registration_limit: 0
+                    registration_url: url
+                    invites_count: 0
+                    unconfirmed_registrations_count: 0
+                    manual_registration_approval: true
+                    public_registration_enabled: true
+        "400":
+          description: A generic error
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+        "401":
+          description: You do not have permission to view this GroupVisit
+        "403":
+          description: You do not have permission for this action
+        "404":
+          description: The GroupVisit does not exist
+        "422":
+          description: Your request was not formatted correctly
+      description: Updates an existing `GroupVisit` (Appointment).
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/GroupVisitUpdateParams.v1.yaml
+        description: ""
+      tags:
+        - GroupVisits
+    delete:
+      summary: Delete a Group Visit (Appointment)
+      security:
+        - TractionGuestAuth:
+            - all
+            - "visitors:*"
+            - "visitors:write"
+      operationId: deleteGroupVisit
+      responses:
+        "204":
+          description: The `GroupVisit` has been deleted
+        "400":
+          description: There was an error in trying to delete the `GroupVisit`
+      description: Deletes a single instance of `GroupVisit` (Appointment).
+      parameters:
+        - $ref: "#/components/parameters/idempotencyKey"
+      tags:
+        - GroupVisits
+  /parking_lots:
+    get:
+      summary: Get parking lots
+      tags:
+        - Parking
+      responses:
+        "200":
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: ./models/PaginatedParkingLotsList.v1.yaml
+              examples:
+                example:
+                  value:
+                    parking_lots:
+                      - id: 1
+                        name: 'West Lot'
+                        user_id: 1
+                        locations:
+                          - id: 1
+                            name: 'Default'
+                      - id: 2
+                        name: 'East Lot'
+                        user_id: 1
+                        locations:
+                          - id: 2
+                            name: 'Vancouver'
+                    pagination:
+                      total_records: 5
+                      current_offset: 0
+                      next_offset: null
+                      last_id: null
+                      limit: 20
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: ""
+      operationId: getParkingLots
+      description: "Gets a list of [ParkingLot] entities."
+      parameters:
+        - schema:
+            type: integer
+            minimum: 1
+            default: 50
+          in: query
+          name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+        - schema:
+            type: integer
+            minimum: 0
+            default: 0
+          in: query
+          name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+  "/parking_lots/{parking_lot_id}/parking_stalls":
+    parameters:
+      - schema:
+          type: string
+        name: parking_lot_id
+        in: path
+        required: true
+    get:
+      summary: Get stalls of parking lot
+      tags:
+        - Parking
+      responses:
+        "200":
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref:
+                  ./models/PaginatedParkingStallsList.v1.yaml
+              examples:
+                example:
+                  value:
+                    parking_stalls:
+                      - id: 1
+                        parking_lot_id: 1
+                        stall_type: 'Handicap'
+                        range: '0'
+                        stall_count: 5
+                        range_prefix: 'H'
+                        range_postfix: ''
+                      - id: 2
+                        parking_lot_id: 1
+                        stall_type: 'General'
+                        range: '5'
+                        stall_count: 95
+                        range_prefix: 'P'
+                        range_postfix: ''
+                    pagination:
+                      total_records: 5
+                      current_offset: 0
+                      next_offset: null
+                      last_id: null
+                      limit: 20
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: ""
+      operationId: getParkingStalls
+      description: "Gets a list of [ParkingStall] entities."
+      parameters:
+        - schema:
+            type: integer
+            minimum: 1
+            default: 50
+          in: query
+          name: limit
+          description: "Limits the results to a specified number, defaults to 50"
+        - schema:
+            type: integer
+            minimum: 0
+            default: 0
+          in: query
+          name: offset
+          description: "Offsets the results to a specified number, defaults to 0"
+  "/parking_lots/{parking_lot_id}/available_stalls":
+    parameters:
+      - schema:
+          type: string
+        name: parking_lot_id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: stall_type
+        in: query
+        required: true
+        description: "The type of stall to filter by. E.g., 'Compact', 'Standard', 'Electric', 'Handicapped'"
+      - schema:
+          type: string
+          format: date-time
+        name: start_date
+        in: query
+        required: true
+        description: "The start date to filter by. E.g., '2024-06-13T15:30:00'"
+      - schema:
+          type: string
+          format: date-time
+        name: end_date
+        in: query
+        required: true
+        description: "The end date to filter by. E.g., '2024-06-13T15:30:00'"
+      - schema:
+          type: string
+        name: timezone
+        in: query
+        required: false
+        description: "The IANA timezone to be used if not provided in both start_date and end_date. E.g., 'America/Vancouver'"
+    get:
+      summary: Get available stalls for stall type
+      tags:
+        - Parking
+      responses:
+        "200":
+          description: OK
+          headers: {}
+          content:
+            application/json:
+                schema:
+                  $ref:
+                    ./models/ParkingLotAvailableStallsList.v1.yaml
+                example:
+                  - parking_stall_id: 23
+                    range: null
+                    stall_count: 5
+                    open_stalls:
+                    - 1
+                    - 2
+                    - 3
+                    - 4
+                    - 5
+        4XX:
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ErrorsList.v1.yaml
+          description: ""
+      operationId: getParkingLotAvailableStalls
+      description: "Gets a list of [ParkingLotAvailableStalls] entities."
+components:
+  parameters:
+    idempotencyKey:
+      name: Idempotency-Key
+      description: "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored"
+      schema:
+        type: string
+      in: header
+      required: false
+  securitySchemes:
+    TractionGuestAuth:
+      openIdConnectUrl: "https://us.tractionguest.com/.well-known/openid-configuration"
+      type: openIdConnect
+  schemas: {}
+security:
+  - TractionGuestAuth:
+      - all
+      - openid
+      - "admin:webhooks"
+      - "watchlists:*"
+      - "watchlists:read"
+      - "watchlists:write"
+      - "users:*"
+      - "users:read"
+      - "users:write"
+      - "visitors:*"
+      - "visitors:read"
+      - "visitors:write"
+      - "parking:*"
+      - "parking:read"
+      - "parking:write"
+      - "locations:*"
+      - "locations:read"
+      - "locations:write"
+      - "hosts:*"
+      - "hosts:read"
+      - "hosts:write"
+      - "email_templates:*"
+      - "email_templates:read"
+      - "email_templates:write"
+tags:
+  - name: EmailTemplates
+    description: All endpoints relating to operations for the EmailTemplate model
+  - name: Hosts
+    description: All endpoints relating to the Host model
+  - name: Invites
+    description: All endpoints relating to the Invite model
+  - name: Locations
+    description: "All endpoints relating to the Location model, aka. DeviceConfigurations"
+  - name: Packages
+    description: All endpoints relating to the Packages model
+  - name: Parking
+    description: "All endpoint related to the parking feature, including the ParkingLot and ParkingStallRange models"
+  - name: Signins
+    description: "All endpoints related to models that track signing in and out of a location. E.g., Signin, Signout, SigninAcknowledgment models"
+  - name: Users
+    description: All endpoints related to the User model
+  - name: Watchlists
+    description: All endpoint related to the Watchlist model
+  - name: AuditLogs
+    description: All endpoints related to the AuditLog model.
+  - name: Registrations
+    description: All endpoints related to Registrations.
+  - name: Capacities
+    description: All endpoints related to Capacity management.
+  - name: Batches
+    description: All endpoints related to Batch-type actions.
+  - name: GroupVisits
+    description: All endpoints related to Group Visits (Appointments).

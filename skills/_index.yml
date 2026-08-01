@@ -1,0 +1,13 @@
+generated: '2026-07-21'
+method: generated
+api: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+skills:
+- file: sign-in-enterprise-invite-and-signin.md
+  name: Invite a visitor and record their sign-in
+  operations: [getLocations, createLocationInvite, getInvite, updateInvite, getSignins, getSignin, updateSignin]
+- file: sign-in-enterprise-manage-hosts.md
+  name: Provision and manage hosts
+  operations: [getHosts, createHost, createHosts, getBatch]
+- file: sign-in-enterprise-watchlist-screening.md
+  name: Maintain watchlists for visitor screening
+  operations: [getWatchlists, createWatchlist, getWatchlist, updateWatchlist, deleteWatchlist]

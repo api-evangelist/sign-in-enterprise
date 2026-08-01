@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+docs: https://trust.signinsolutions.com/
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OpenID Connect / OAuth 2.0 authorizationCode flow with scoped access
+- id: oidc
+  conforms: true
+  evidence: OpenID Connect discovery published at /.well-known/openid-configuration
+- id: rfc8414-oauth-as-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200 with authorization-server metadata
+- id: rest-json
+  conforms: true
+  evidence: REST over application/json with standard HTTP status codes
+- id: idempotency
+  conforms: true
+  evidence: Idempotency-Key request header supported on write operations (24h retention)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors returned as plain JSON, not application/problem+json
+- id: soc2
+  conforms: true
+  evidence: SOC 2 listed on trust.signinsolutions.com
+- id: iso27001
+  conforms: true
+  evidence: ISO 27001 listed on trust.signinsolutions.com
+- id: csa-star
+  conforms: true
+  evidence: CSA STAR listed on trust.signinsolutions.com
+- id: cyber-essentials
+  conforms: true
+  evidence: Cyber Essentials listed on trust.signinsolutions.com
+- id: gdpr
+  conforms: true
+  evidence: GDPR compliance documented on trust center and compliance hub
+- id: ccpa
+  conforms: true
+  evidence: CCPA compliance documented on trust center and compliance hub

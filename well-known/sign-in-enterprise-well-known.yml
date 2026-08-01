@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: searched
+host: https://us.tractionguest.com
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: sign-in-enterprise-openid-configuration.json
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: sign-in-enterprise-oauth-authorization-server.json
+- path: /.well-known/security.txt
+  status: 404
+- path: /api-catalog
+  status: 404
+notes: >
+  OpenID Connect discovery (RFC 8414 OAuth authorization-server metadata and the
+  OIDC configuration) is published on the API host us.tractionguest.com and drives
+  the API's authorization/token/introspection/revocation endpoints and its scope set.
+  No security.txt or api-catalog document is published on the API host.

@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+docs: https://developers.signinenterprise.com/
+reference: well-known/sign-in-enterprise-openid-configuration.json
+schemes:
+- name: TractionGuestAuth
+  type: openIdConnect
+  source: well-known/sign-in-enterprise-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://us.tractionguest.com/oauth/authorize
+    tokenUrl: https://us.tractionguest.com/oauth/token
+# scopes_supported harvested verbatim from the live OpenID Connect discovery document
+scopes:
+- {scope: openid, description: OpenID Connect authentication}
+- {scope: all, description: Full access to all authorized resources}
+- {scope: 'admin:webhooks', description: Manage webhook subscriptions}
+- {scope: 'admin:workflow_triggers:*', description: Full access to workflow triggers}
+- {scope: 'admin:workflow_triggers:read', description: Read workflow triggers}
+- {scope: 'admin:workflow_triggers:write', description: Create and update workflow triggers}
+- {scope: 'admin:workflow_emails:*', description: Full access to workflow emails}
+- {scope: 'admin:workflow_emails:read', description: Read workflow emails}
+- {scope: 'admin:workflow_emails:write', description: Create and update workflow emails}
+- {scope: 'audit_logs:*', description: Full access to audit logs}
+- {scope: 'audit_logs:read', description: Read audit logs}
+- {scope: 'batch_jobs:*', description: Full access to batch jobs}
+- {scope: 'batch_jobs:read', description: Read batch jobs}
+- {scope: 'batch_jobs:write', description: Create batch jobs}
+- {scope: 'custom_fields:*', description: Full access to custom fields}
+- {scope: 'custom_fields:read', description: Read custom fields}
+- {scope: 'custom_fields:write', description: Create and update custom fields}
+- {scope: 'devices:*', description: Full access to devices}
+- {scope: 'devices:read', description: Read devices}
+- {scope: 'devices:write', description: Create and update devices}
+- {scope: 'watchlists:*', description: Full access to watchlists}
+- {scope: 'watchlists:read', description: Read watchlists}
+- {scope: 'watchlists:write', description: Create and update watchlists}
+- {scope: 'screening_providers:*', description: Full access to screening providers}
+- {scope: 'screening_providers:read', description: Read screening providers}
+- {scope: 'screening_providers:write', description: Configure screening providers}
+- {scope: 'users:*', description: Full access to users}
+- {scope: 'users:read', description: Read users}
+- {scope: 'users:write', description: Create and update users}
+- {scope: 'visitors:*', description: Full access to visitors}
+- {scope: 'visitors:read', description: Read visitors and sign-ins}
+- {scope: 'visitors:write', description: Create and update visitors and sign-ins}
+- {scope: 'parking:*', description: Full access to parking}
+- {scope: 'parking:read', description: Read parking lots and stalls}
+- {scope: 'parking:write', description: Manage parking allocations}
+- {scope: 'locations:*', description: Full access to locations}
+- {scope: 'locations:read', description: Read locations}
+- {scope: 'locations:write', description: Create and update locations}
+- {scope: 'hosts:*', description: Full access to hosts}
+- {scope: 'hosts:read', description: Read hosts}
+- {scope: 'hosts:write', description: Create and update hosts}
+- {scope: 'email_templates:*', description: Full access to email templates}
+- {scope: 'email_templates:read', description: Read email templates}
+- {scope: 'email_templates:write', description: Create and update email templates}
+- {scope: 'registrations:*', description: Full access to registrations}
+- {scope: 'registrations:read', description: Read registrations}
+- {scope: 'capacities:*', description: Full access to capacity data}
+- {scope: 'capacities:read', description: Read location capacities and forecasts}

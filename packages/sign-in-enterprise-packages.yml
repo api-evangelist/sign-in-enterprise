@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/tractionguest
+notes: >
+  First-party client SDKs are published as open source in the tractionguest GitHub
+  organization (the former Traction Guest / now Sign In Enterprise). They are
+  generated from the Sign In Solutions VMS OpenAPI via swagger-codegen and were
+  last updated April 2026. They are distributed as source repositories rather than
+  through language package registries (not found on npm or PyPI as of this pass).
+packages:
+- language: typescript
+  registry: github
+  name: guest-typescript-sdk
+  package_name: guest_sdk
+  url: https://github.com/tractionguest/guest-typescript-sdk
+  install: npm install git+https://github.com/tractionguest/guest-typescript-sdk.git
+  official: true
+- language: python
+  registry: github
+  name: guest-python-sdk
+  url: https://github.com/tractionguest/guest-python-sdk
+  install: pip install git+https://github.com/tractionguest/guest-python-sdk.git
+  official: true
+- language: swift
+  registry: github
+  name: guest-swift-sdk
+  url: https://github.com/tractionguest/guest-swift-sdk
+  official: true
+- language: objective-c
+  registry: github
+  name: guest-objc-sdk
+  url: https://github.com/tractionguest/guest-objc-sdk
+  official: true
+- language: java
+  registry: github
+  name: guest-android-sdk
+  url: https://github.com/tractionguest/guest-android-sdk
+  official: true
+- language: dart
+  registry: github
+  name: guest-dart-sdk
+  url: https://github.com/tractionguest/guest-dart-sdk
+  official: true

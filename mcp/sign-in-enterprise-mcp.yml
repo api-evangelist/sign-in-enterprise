@@ -1,0 +1,139 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
+server:
+  name: sign-in-enterprise
+  transport: stdio
+notes: No official hosted MCP server was found. Candidate tool list derived one-per-operation
+  from the Sign In Solutions VMS OpenAPI; not an endorsed server.
+tools:
+- name: getBatch
+  description: Get a BatchJob
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getBatch
+- name: getHosts
+  description: List all Hosts
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getHosts
+- name: createHost
+  description: Create a Host
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#createHost
+- name: getEmailTemplates
+  description: List all EmailTemplates
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getEmailTemplates
+- name: getSignin
+  description: Get a Signin
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getSignin
+- name: updateSignin
+  description: Update a Signin
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#updateSignin
+- name: getLocations
+  description: List all Locations
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getLocations
+- name: createLocationInvite
+  description: Create an Invite
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#createLocationInvite
+- name: getInvites
+  description: List all Invites
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getInvites
+- name: batchDeleteInvites
+  description: Delete Multiple Invites
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#batchDeleteInvites
+- name: createRegistrationInvite
+  description: Create an Invite from a Registration
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#createRegistrationInvite
+- name: getSignins
+  description: List all Signins
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getSignins
+- name: createSignin
+  description: Create Signin
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#createSignin
+- name: getCurrentUser
+  description: Get the current User
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getCurrentUser
+- name: getInvite
+  description: Get an Invite
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getInvite
+- name: updateInvite
+  description: Update an Invite
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#updateInvite
+- name: deleteInvite
+  description: Deletes an Invite
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#deleteInvite
+- name: getWatchlist
+  description: Get a Watchlist
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getWatchlist
+- name: updateWatchlist
+  description: Update a Watchlist
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#updateWatchlist
+- name: deleteWatchlist
+  description: Deletes a Watchlist
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#deleteWatchlist
+- name: getWatchlists
+  description: List all Watchlists
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getWatchlists
+- name: createWatchlist
+  description: Create Watchlist
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#createWatchlist
+- name: getAuditLogs
+  description: List all AuditLogs
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getAuditLogs
+- name: getAuditLog
+  description: Get an AuditLog
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getAuditLog
+- name: getRegistration
+  description: Get a Registration
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getRegistration
+- name: createHosts
+  description: Create multiple Hosts
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#createHosts
+- name: getRegistrations
+  description: List all Registrations
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getRegistrations
+- name: getCapacityForecast
+  description: Get the capacity details for a location
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getCapacityForecast
+- name: getCapacity
+  description: Get the current capacity details for a location
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getCapacity
+- name: getLocation
+  description: Get the details of a location
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getLocation
+- name: getPackages
+  description: Get packages
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getPackages
+- name: createPackage
+  description: Create package
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#createPackage
+- name: getPackage
+  description: Get Package
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getPackage
+- name: updatePackage
+  description: Update Package
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#updatePackage
+- name: deletePackage
+  description: Delete Package
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#deletePackage
+- name: getGroupVisits
+  description: List all Group Visits (Appointments)
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getGroupVisits
+- name: createGroupVisit
+  description: Create a new Group Visit (Appointment)
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#createGroupVisit
+- name: getGroupVisit
+  description: Get a Group Visit (Appointment)
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getGroupVisit
+- name: updateGroupVisit
+  description: Update a Group Visit (Appointment)
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#updateGroupVisit
+- name: deleteGroupVisit
+  description: Delete a Group Visit (Appointment)
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#deleteGroupVisit
+- name: getParkingLots
+  description: Get parking lots
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getParkingLots
+- name: getParkingStalls
+  description: Get stalls of parking lot
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getParkingStalls
+- name: getParkingLotAvailableStalls
+  description: Get available stalls for stall type
+  source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getParkingLotAvailableStalls
