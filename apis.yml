@@ -219,6 +219,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/sign-in-enterprise-guest-api-overlay.yaml
 - type: TrustCenter
   url: security/sign-in-enterprise-trust-center.yml
 - type: Website
