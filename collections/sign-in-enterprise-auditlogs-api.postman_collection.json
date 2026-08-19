@@ -1,0 +1,680 @@
+{
+  "item": [
+    {
+      "id": "6facfbdf-37de-401b-958a-4274f907b9e7",
+      "name": "AuditLogs",
+      "description": {
+        "content": "All endpoints related to the AuditLog model.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "039e5164-ed83-4214-bcf0-44ccdfe80f25",
+          "name": "List all AuditLogs",
+          "request": {
+            "name": "List all AuditLogs",
+            "description": {
+              "content": "Gets a list of all `AuditLog` entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit_logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limits the results to a specified number, defaults to 50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offsets the results to a specified number, defaults to 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Sorts by the field name and direction provided where the pattern is `FIELD_NAME_DIRECTION`"
+                },
+                {
+                  "disabled": false,
+                  "key": "auditable_id",
+                  "value": "<integer>",
+                  "description": "The unique ID of a model that has associated audit logs"
+                },
+                {
+                  "disabled": false,
+                  "key": "auditable_type",
+                  "value": "<string>",
+                  "description": "The name of the model that has associated audit logs. Valid values include:\n- `user`\n- `device_configuration`\n- `signin`\n- `invite`\n- `watchlist_record`\n- `account_preference`\n- `signout`\n- `host`\n- `invite_watchlist`\n- `location_preference`\n- `parking_lot`\n- `parking_stall`\n- `permission_bundle`\n- `person`\n- `physical_access_grant`\n- `physical_access_provider`\n- `physical_access_rule`\n- `security_badge_type`\n- `signin_watchlist`\n- `user_group_physical_access_rule`\n- `visitor`\n- `bulk_data_batch`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_type",
+                  "value": "<string>",
+                  "description": "The action performed by the user. Valid values include:\n- `create`\n- `update`\n- `destroy`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<integer>",
+                  "description": "The ID of the user who performed the database change"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc4d5d41-b306-4b80-aca0-3e5e6a517908",
+              "name": "Successful response - returns an array of `AuditLog` entities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "auditable_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "auditable_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audit_logs\": [\n    {\n      \"id\": 19,\n      \"auditable_id\": 85,\n      \"auditable_type\": \"some text\",\n      \"user_id\": 56,\n      \"username\": \"some text\",\n      \"action\": \"some text\",\n      \"audited_changes\": [\n        {\n          \"field_name\": \"result\",\n          \"field_value_before\": \"{}\",\n          \"field_value_after\": \"{\\\"external\\\":[],\\\"internal\\\":[{\\\"id\\\":1,\\\"email\\\":\\\"some@email.com\\\",\\\"notes\\\":null,\\\"colour\\\":\\\"RED\\\"}]}\",\n          \"format\": \"json\"\n        },\n        {\n          \"field_name\": \"user_id\",\n          \"field_value_before\": \"1\",\n          \"field_value_after\": \"2\",\n          \"format\": \"integer\"\n        },\n        {\n          \"field_name\": \"flag_enabled\",\n          \"field_value_after\": \"true\",\n          \"format\": \"boolean\"\n        },\n        {\n          \"field_name\": \"email\",\n          \"field_value_before\": \"\",\n          \"field_value_after\": \"some@email.com\",\n          \"format\": \"string\"\n        }\n      ],\n      \"version\": 64,\n      \"comment\": \"some text\",\n      \"remote_address\": \"some text\",\n      \"request_uuid\": \"some text\",\n      \"created_at\": \"some text\"\n    },\n    {\n      \"id\": 4,\n      \"auditable_id\": 84,\n      \"auditable_type\": \"some text\",\n      \"user_id\": 78,\n      \"username\": \"some text\",\n      \"action\": \"some text\",\n      \"audited_changes\": [\n        {\n          \"field_name\": \"email\",\n          \"field_value_before\": \"\",\n          \"field_value_after\": \"another@email.com\",\n          \"format\": \"string\"\n        }\n      ],\n      \"version\": 27,\n      \"comment\": \"some text\",\n      \"remote_address\": \"some text\",\n      \"request_uuid\": \"some text\",\n      \"created_at\": \"some text\"\n    }\n  ],\n  \"pagination\": {\n    \"total_records\": 44,\n    \"current_offset\": 71,\n    \"next_offset\": 27\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9084a4d-6d93-4cae-81b8-03f179960ca6",
+              "name": "A generic error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "auditable_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "auditable_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    },\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "087c1e68-deff-4e6c-bc4e-c0b658875921",
+              "name": "You don't have permission to view this AuditLog",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "auditable_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "auditable_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a637c65a-b55e-4526-8a91-24ae30f3e0da",
+              "name": "You do not have permission for this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "auditable_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "auditable_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16aeca95-aec5-41f5-8e0f-b7275956f403",
+          "name": "Get an AuditLog",
+          "request": {
+            "name": "Get an AuditLog",
+            "description": {
+              "content": "Gets the details of a single instance of an `AuditLog`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit_logs",
+                ":audit_log_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "audit_log_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0336398-f583-4d74-b2d8-0245b590fe4b",
+              "name": "Successful response - returns a single `AuditLog`.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    ":audit_log_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audit_log_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 90,\n  \"auditable_id\": 49,\n  \"auditable_type\": \"some text\",\n  \"user_id\": 72,\n  \"username\": \"some text\",\n  \"action\": \"some text\",\n  \"audited_changes\": [\n    {\n      \"field_name\": \"result\",\n      \"field_value_before\": \"{}\",\n      \"field_value_after\": \"{\\\"external\\\":[],\\\"internal\\\":[{\\\"id\\\":1,\\\"email\\\":\\\"some@email.com\\\",\\\"notes\\\":null,\\\"colour\\\":\\\"RED\\\"}]}\",\n      \"format\": \"json\"\n    },\n    {\n      \"field_name\": \"user_id\",\n      \"field_value_before\": \"1\",\n      \"field_value_after\": \"2\",\n      \"format\": \"integer\"\n    },\n    {\n      \"field_name\": \"flag_enabled\",\n      \"field_value_after\": \"true\",\n      \"format\": \"boolean\"\n    },\n    {\n      \"field_name\": \"email\",\n      \"field_value_before\": \"\",\n      \"field_value_after\": \"some@email.com\",\n      \"format\": \"string\"\n    }\n  ],\n  \"version\": 66,\n  \"comment\": \"some text\",\n  \"remote_address\": \"some text\",\n  \"request_uuid\": \"some text\",\n  \"created_at\": \"some text\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d79eaf5d-bc46-413a-a4ca-39f8fb6d8581",
+              "name": "A generic error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    ":audit_log_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audit_log_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "558095c9-2592-414b-ad8d-92f071a828bf",
+              "name": "You don't have permission to view this AuditLog",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    ":audit_log_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audit_log_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3417aa0f-151f-471e-923b-55383f032f3a",
+              "name": "You do not have permission for this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    ":audit_log_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audit_log_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4cea3588-f637-4ed8-a78e-bc5ba85db4f3",
+              "name": "The AuditLog does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    ":audit_log_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audit_log_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "https://us.tractionguest.com/api/v3",
+      "key": "domain"
+    },
+    {
+      "type": "string",
+      "value": "{{domain}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0fc236a4-dbfa-4109-908f-9c1fbce97372",
+    "name": "Sign In Solutions VMS AuditLogs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.\n\n# Getting Started\nIf you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).\n\nWe will also add you to our Slack channel where you can ask questions and get further help.\n\n# Terms and Conditions\nPlease visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)\n\n# Versioning\nThis API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.\n\n* The `Major` number increments when potentially incompatible changes are made.\n* The `Minor` number increments when backwards-compatible additions are made.\n* The `Patch` number increments when backwards-compatible bug-fixes are made.\n\n\nContact Support:\n Name: API Support\n Email: support@tractionguest.com",
+      "type": "text/plain"
+    }
+  }
+}

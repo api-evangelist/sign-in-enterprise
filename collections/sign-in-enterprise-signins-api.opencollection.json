@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sign In Solutions VMS AuditLogs Signins API",
+    "version": "0.21.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Signin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/signins/:signin_id",
+            "params": [
+              {
+                "name": "signin_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "A list of comma-separated related models to include"
+              }
+            ]
+          },
+          "docs": "Gets the details of a single instance of a `Signin`."
+        },
+        {
+          "info": {
+            "name": "Update a Signin",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{domain}/signins/:signin_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "signin_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update, acknowledge, or `Signout` a `Signin`"
+        },
+        {
+          "info": {
+            "name": "List all Signins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/signins",
+            "params": [
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma separated list of Location IDs"
+              },
+              {
+                "name": "with_colours",
+                "value": "",
+                "type": "query",
+                "description": "A comma separated list of case-insensitive colour values.\ni.e., `red`, `green`, `yellow`, and `orange`"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Allows you to query by `company`, `email`, `first_name`, `last_name`, and `location_name`"
+              },
+              {
+                "name": "with_acknowledged",
+                "value": "",
+                "type": "query",
+                "description": "Filters to all those `Signin`s that have, or have not been acknowledged"
+              },
+              {
+                "name": "with_signed_in",
+                "value": "",
+                "type": "query",
+                "description": "Filters to all `Signin`s that are, or are not currently signed out."
+              },
+              {
+                "name": "signin_before",
+                "value": "",
+                "type": "query",
+                "description": "Filters results to all those *before* the provided datetime"
+              },
+              {
+                "name": "signin_after",
+                "value": "",
+                "type": "query",
+                "description": "Filters results to all those *after* the provided datetime"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the results to a specified number, defaults to 50"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offsets the results to a specified number, defaults to 0"
+              },
+              {
+                "name": "query_sort",
+                "value": "",
+                "type": "query",
+                "description": "Allows you to override ordering by most relevant results when querying"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "A list of comma-separated related models to include"
+              },
+              {
+                "name": "include_anonymized",
+                "value": "",
+                "type": "query",
+                "description": "Set this flag to `true` to include anonymized signins in the response"
+              }
+            ]
+          },
+          "docs": "Gets a list of all `Signin` entities."
+        },
+        {
+          "info": {
+            "name": "Create Signin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{domain}/signins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Signin"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

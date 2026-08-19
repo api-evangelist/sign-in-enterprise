@@ -5,8 +5,8 @@ source: openapi/sign-in-enterprise-guest-api-openapi-original.yml
 server:
   name: sign-in-enterprise
   transport: stdio
-notes: No official hosted MCP server was found. Candidate tool list derived one-per-operation
-  from the Sign In Solutions VMS OpenAPI; not an endorsed server.
+notes: No official hosted MCP server was found. Candidate tool list derived one-per-operation from the
+  Sign In Solutions VMS OpenAPI; not an endorsed server.
 tools:
 - name: getBatch
   description: Get a BatchJob
@@ -137,3 +137,9 @@ tools:
 - name: getParkingLotAvailableStalls
   description: Get available stalls for stall type
   source_operation: openapi/sign-in-enterprise-guest-api-openapi-original.yml#getParkingLotAvailableStalls
+deployment:
+  mode: none
+  verified: derived
+  tools: 43
+  checked: '2026-08-12'
+  source: catalog MCP census

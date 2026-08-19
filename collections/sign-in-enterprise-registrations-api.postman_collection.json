@@ -1,0 +1,579 @@
+{
+  "item": [
+    {
+      "id": "a80bd650-9f0b-47da-94c5-4b0d5df64ebd",
+      "name": "Registrations",
+      "description": {
+        "content": "All endpoints related to Registrations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5702e67e-1c05-4a46-81e8-a2506c8a9d2b",
+          "name": "Get a Registration",
+          "request": {
+            "name": "Get a Registration",
+            "description": {
+              "content": "Gets the details of a single instance of a `Registration`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registrations",
+                ":registration_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "A list of comma-separated related models to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "registration_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "4697aacd-867d-4140-877d-6ebac9cf9d83",
+              "name": "Successful response - returns a single `RegistrationDetail`.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations",
+                    ":registration_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "registration_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"uuid\",\n  \"created_at\": \"2018-02-10T09:30:00Z\",\n  \"name\": \"some text\",\n  \"email\": \"some text\",\n  \"company\": \"some text\",\n  \"photo_url\": \"some text\",\n  \"invite\": {\n    \"id\": 96,\n    \"first_name\": \"some text\",\n    \"last_name\": \"some text\",\n    \"start_date\": \"2018-02-10T09:30:00Z\",\n    \"location\": {\n      \"id\": 95,\n      \"name\": \"some text\"\n    },\n    \"watchlist_colour\": \"GREEN\",\n    \"hosts\": [\n      {\n        \"id\": 61,\n        \"email\": \"some text\",\n        \"first_name\": \"some text\",\n        \"last_name\": \"some text\",\n        \"profile_pic_url\": \"some text\",\n        \"department\": \"some text\",\n        \"mobile_number\": \"some text\"\n      },\n      {\n        \"id\": 57,\n        \"email\": \"some text\",\n        \"first_name\": \"some text\",\n        \"last_name\": \"some text\",\n        \"profile_pic_url\": \"some text\",\n        \"department\": \"some text\",\n        \"mobile_number\": \"some text\"\n      }\n    ],\n    \"invite_watchlist\": {\n      \"id\": 7,\n      \"external_colours\": [\n        \"some text\",\n        \"some text\"\n      ],\n      \"internal_colours\": [\n        \"some text\",\n        \"some text\"\n      ]\n    },\n    \"end_date\": \"2020-07-17T01:59:59.999Z\",\n    \"email\": \"some text\",\n    \"mobile_number\": \"some text\"\n  },\n  \"visitor\": {\n    \"id\": \"uuid\",\n    \"active\": true,\n    \"company\": \"some text\",\n    \"created_via\": \"some text\",\n    \"email\": \"some text\",\n    \"first_name\": \"some text\",\n    \"last_name\": \"some text\",\n    \"mobile\": \"some text\",\n    \"note\": \"some text\",\n    \"profile_pic_content_type\": \"some text\",\n    \"profile_pic_file_name\": \"some text\",\n    \"profile_pic_file_size\": \"some text\",\n    \"profile_pic_updated_at\": \"some text\",\n    \"watchlist_level\": \"some text\",\n    \"created_at\": \"2018-02-10T09:30:00Z\",\n    \"updated_at\": \"2018-02-10T09:30:00Z\"\n  },\n  \"guest_responses\": [\n    {\n      \"title\": \"some text\",\n      \"sequence\": 9,\n      \"id\": \"uuid-1\",\n      \"page_type\": \"some text\",\n      \"custom_fields\": [\n        {\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        },\n        {\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        }\n      ]\n    },\n    {\n      \"title\": \"some text\",\n      \"sequence\": 8,\n      \"id\": \"uuid-2\",\n      \"page_type\": \"some text\",\n      \"custom_fields\": [\n        {\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        },\n        {\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b53d978-e0a1-4e95-a9b5-4c42cf11e0f1",
+              "name": "A generic error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations",
+                    ":registration_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "registration_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    },\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49ca86a0-3e96-4267-b703-49db451a7424",
+              "name": "You do not have permission for this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations",
+                    ":registration_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "registration_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "372af3ea-688d-466f-a778-33c35b634599",
+              "name": "The specified Registration was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations",
+                    ":registration_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "registration_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdbca7bb-ed53-4437-b6e7-e25ab4a7b6a0",
+          "name": "List all Registrations",
+          "request": {
+            "name": "List all Registrations",
+            "description": {
+              "content": "Gets a list of all `Registration` entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registrations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limits the results to a specified number, defaults to 50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offsets the results to a specified number, defaults to 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_ids",
+                  "value": "<string>",
+                  "description": "A comma separated list of Location IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_before",
+                  "value": "<string>",
+                  "description": "Restricts results to only those that were created before the provided date"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_after",
+                  "value": "<string>",
+                  "description": "Restricts results to only those that were created after the provided date"
+                },
+                {
+                  "disabled": false,
+                  "key": "needs_confirmation",
+                  "value": "<boolean>",
+                  "description": "A confirmed `Registration` is one with an associated `Invite`. This filter returns those without an `Invite` when true, and those with an `Invite` when false."
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6f8ab4a-b8f0-4777-bef5-6ddb822f55c3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "needs_confirmation",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b274cde0-f1da-4d2c-9157-27c231784489",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "needs_confirmation",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe40d786-e4e8-4d37-91f9-146232638645",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "needs_confirmation",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "https://us.tractionguest.com/api/v3",
+      "key": "domain"
+    },
+    {
+      "type": "string",
+      "value": "{{domain}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b566a9eb-a6fd-4154-af55-5301b6e36161",
+    "name": "Sign In Solutions VMS AuditLogs Registrations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.\n\n# Getting Started\nIf you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).\n\nWe will also add you to our Slack channel where you can ask questions and get further help.\n\n# Terms and Conditions\nPlease visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)\n\n# Versioning\nThis API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.\n\n* The `Major` number increments when potentially incompatible changes are made.\n* The `Minor` number increments when backwards-compatible additions are made.\n* The `Patch` number increments when backwards-compatible bug-fixes are made.\n\n\nContact Support:\n Name: API Support\n Email: support@tractionguest.com",
+      "type": "text/plain"
+    }
+  }
+}

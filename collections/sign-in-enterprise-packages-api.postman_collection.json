@@ -1,0 +1,933 @@
+{
+  "item": [
+    {
+      "id": "e175b1fa-f59f-466b-998e-e706d9453ba5",
+      "name": "Packages",
+      "description": {
+        "content": "All endpoints relating to the Packages model",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36b7fd70-a9c4-4099-835c-4d45aebd9ccd",
+          "name": "Get packages",
+          "request": {
+            "name": "Get packages",
+            "description": {
+              "content": "Gets a list of [Package] entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "location_ids",
+                  "value": "<string>",
+                  "description": "A comma separated list of Location ids for filtering. i.e. '1,2,3'\nWill return all packages from all locations if none are specified"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Limits the results to a specified number, defaults to 50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offsets the results to a specified number, defaults to 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "A list of comma-separated related models to include. Possible values: 'recipient', 'location', 'image'"
+                },
+                {
+                  "disabled": false,
+                  "key": "picked_up",
+                  "value": "<boolean>",
+                  "description": "Filters packages by their \"picked_up\" state.."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Searches for packages by recipient name"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9781e3b8-d774-4d86-8223-731ff28fafc7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_ids",
+                      "value": "1,2,3"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "include",
+                      "value": "recipient,location,image"
+                    },
+                    {
+                      "key": "picked_up",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"packages\": [\n    {\n      \"id\": 70,\n      \"package_state\": \"picked_up\",\n      \"recipient\": {\n        \"id\": 5,\n        \"email\": \"tsala@example.com\",\n        \"first_name\": \"Tatiane\",\n        \"last_name\": \"Sala\",\n        \"mobile_number\": \"(604)111-1111\",\n        \"profile_pic_url\": \"https://i.pravatar.cc/\",\n        \"department\": \"Development\"\n      },\n      \"location\": {\n        \"name\": \"Vancouver\",\n        \"id\": 2\n      },\n      \"carrier_name\": \"Purolator\",\n      \"created_at\": \"2020-08-11T01:59:59.999Z\",\n      \"picked_up_at\": \"2020-08-17T01:59:59.999Z\",\n      \"image\": {\n        \"full_size_url\": \"https://i.pravatar.cc/\"\n      }\n    },\n    {\n      \"id\": 72,\n      \"package_state\": \"processing\",\n      \"location\": {\n        \"name\": \"Vancouver\",\n        \"id\": 2\n      },\n      \"created_at\": \"2020-08-19T01:59:59.999Z\",\n      \"image\": {\n        \"full_size_url\": \"https://i.pravatar.cc/\"\n      }\n    },\n    {\n      \"id\": 73,\n      \"package_state\": \"needs_attention\",\n      \"location\": {\n        \"name\": \"Default\",\n        \"id\": 1\n      },\n      \"created_at\": \"2020-09-18T01:59:59.999Z\",\n      \"image\": {\n        \"full_size_url\": \"https://i.pravatar.cc/\"\n      }\n    },\n    {\n      \"id\": 74,\n      \"package_state\": \"recipient_matched\",\n      \"recipient\": {\n        \"id\": 4,\n        \"email\": \"vbaldys@example.com\",\n        \"first_name\": \"Veronica\",\n        \"last_name\": \"Baldys\",\n        \"mobile_number\": \"(604)999-9999\",\n        \"profile_pic_url\": \"https://i.pravatar.cc/\",\n        \"department\": \"Development\"\n      },\n      \"location\": {\n        \"name\": \"Vancouver\",\n        \"id\": 2\n      },\n      \"carrier_name\": \"Canada Post\",\n      \"created_at\": \"2020-07-18T01:59:59.999Z\",\n      \"picked_up_at\": null,\n      \"image\": {\n        \"full_size_url\": \"https://i.pravatar.cc/\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_records\": 5,\n    \"current_offset\": 0,\n    \"next_offset\": null,\n    \"last_id\": null,\n    \"limit\": 20\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d33463ec-f813-48df-aac4-e70b0e7e7e85",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_ids",
+                      "value": "1,2,3"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "include",
+                      "value": "recipient,location,image"
+                    },
+                    {
+                      "key": "picked_up",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60f167ce-cce2-4557-b046-6135bd59604a",
+          "name": "Create package",
+          "request": {
+            "name": "Create package",
+            "description": {
+              "content": "Creates a [Package] entity by extracting information about the recipient and carrier from the given image file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "765a956d-d3ed-414d-9968-4d0400e51c51",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8ea7b2d-e2ee-4d76-8327-1da84c50b42f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8046182b-92de-4ed4-94dd-ebd9b85f586f",
+          "name": "Get Package",
+          "request": {
+            "name": "Get Package",
+            "description": {
+              "content": "Gets the details of a single instance of a Package",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":package_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "A list of comma-separated related models to include\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "package_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f35f4fbe-e278-4841-91bd-15b8f21914c4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b09ccd8f-da3b-485e-96bf-c45e76d4e636",
+              "name": "User submission error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f585104-1b6b-4534-b4ce-4a60f67feb3c",
+          "name": "Update Package",
+          "request": {
+            "name": "Update Package",
+            "description": {
+              "content": "Update/Edit information about a Package.\n\npicked_up - changes the package_state to picked up and assigns non null value to picked_up_at\n\nrecipient_id - update the package's intended recipient. Changes package_state to 'recipient_matched' if a match hasn't been found and notifies host about their package via email. A previous recipient will stop getting notifications\n\ncarrier_name - change/update the package's carrier/courier information\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":package_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "package_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "24c12ca7-857d-4b6e-b48e-de74184f6f78",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b03979ff-d2cf-4271-a2d5-08c3e4f10018",
+              "name": "User submission error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "058b5c23-de43-4f6e-ad5e-591ab5def271",
+          "name": "Delete Package",
+          "request": {
+            "name": "Delete Package",
+            "description": {
+              "content": "Delete a pacakge",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":package_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "package_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "dd4f0d34-c133-4173-9462-54b1f9485c65",
+              "name": "The package has been deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0bd893ea-abd3-4102-9ed3-1bdc8ef446f2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "https://us.tractionguest.com/api/v3",
+      "key": "domain"
+    },
+    {
+      "type": "string",
+      "value": "{{domain}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6d603bfa-82f7-45c3-ae6e-2427dbaf9702",
+    "name": "Sign In Solutions VMS AuditLogs Packages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.\n\n# Getting Started\nIf you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).\n\nWe will also add you to our Slack channel where you can ask questions and get further help.\n\n# Terms and Conditions\nPlease visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)\n\n# Versioning\nThis API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.\n\n* The `Major` number increments when potentially incompatible changes are made.\n* The `Minor` number increments when backwards-compatible additions are made.\n* The `Patch` number increments when backwards-compatible bug-fixes are made.\n\n\nContact Support:\n Name: API Support\n Email: support@tractionguest.com",
+      "type": "text/plain"
+    }
+  }
+}

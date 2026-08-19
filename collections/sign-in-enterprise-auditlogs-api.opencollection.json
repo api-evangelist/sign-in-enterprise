@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sign In Solutions VMS AuditLogs API",
+    "version": "0.21.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AuditLogs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all AuditLogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/audit_logs",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the results to a specified number, defaults to 50"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offsets the results to a specified number, defaults to 0"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Sorts by the field name and direction provided where the pattern is `FIELD_NAME_DIRECTION`"
+              },
+              {
+                "name": "auditable_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique ID of a model that has associated audit logs"
+              },
+              {
+                "name": "auditable_type",
+                "value": "",
+                "type": "query",
+                "description": "The name of the model that has associated audit logs. Valid values include:\n- `user`\n- `device_configuration`\n- `signin`\n- `invite`\n- `watchlist_record`\n- `account_preference`\n- `signout`\n- `host`\n- `invite_watchlist`\n- `location_preference`\n- `parking_lot`\n- `parking_stall`\n- `permission_bundle`\n- `person`\n- `physical_access_grant`\n- `physical_access_provider`\n- `physical_access_rule`\n- `security_badge_type`\n- `signin_watchlist`\n- `user_group_physical_access_rule`\n- `visitor`\n- `bulk_data_batch`\n"
+              },
+              {
+                "name": "action_type",
+                "value": "",
+                "type": "query",
+                "description": "The action performed by the user. Valid values include:\n- `create`\n- `update`\n- `destroy`\n"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the user who performed the database change"
+              }
+            ]
+          },
+          "docs": "Gets a list of all `AuditLog` entities."
+        },
+        {
+          "info": {
+            "name": "Get an AuditLog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/audit_logs/:audit_log_id",
+            "params": [
+              {
+                "name": "audit_log_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the details of a single instance of an `AuditLog`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

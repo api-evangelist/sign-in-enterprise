@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sign In Solutions VMS AuditLogs Hosts API",
+    "version": "0.21.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/hosts",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Will filter by `first_name`, `last_name`, and `email`"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the results to a specified number, defaults to 50"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offsets the results to a specified number, defaults to 0"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "A list of comma-separated related models to include"
+              }
+            ]
+          },
+          "docs": "Gets a list of all `Host` entities."
+        },
+        {
+          "info": {
+            "name": "Create a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{domain}/hosts",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Host"
+        },
+        {
+          "info": {
+            "name": "Create multiple Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{domain}/hosts/batch",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a batch of `Host` records in an async queue. Please note, every action taken against this endpoint is recorded in the audit log."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

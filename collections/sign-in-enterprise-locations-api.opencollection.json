@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sign In Solutions VMS AuditLogs Locations API",
+    "version": "0.21.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/locations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the results to a specified number, defaults to 50"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offsets the results to a specified number, defaults to 0"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Queries by Location `name`"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "A list of comma-separated related models to include"
+              }
+            ]
+          },
+          "docs": "Gets a list of all `Location` entities."
+        },
+        {
+          "info": {
+            "name": "Get the details of a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/locations/:location_id",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets details of a single instance of `Location`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sign In Solutions VMS AuditLogs EmailTemplates API",
+    "version": "0.21.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EmailTemplates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all EmailTemplates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/email_templates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the results to a specified number, defaults to 50"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offsets the results to a specified number, defaults to 0"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "A list of comma-separated related models to include"
+              }
+            ]
+          },
+          "docs": "Gets a list of all `EmailTemplate` entities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

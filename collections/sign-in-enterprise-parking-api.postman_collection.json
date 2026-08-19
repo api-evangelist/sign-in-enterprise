@@ -1,0 +1,591 @@
+{
+  "item": [
+    {
+      "id": "b574b241-c5b4-4310-98c9-4e515de80f50",
+      "name": "Parking",
+      "description": {
+        "content": "All endpoint related to the parking feature, including the ParkingLot and ParkingStallRange models",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b3f8bf6-3716-43ad-8fa8-548e15f31f6c",
+          "name": "Get parking lots",
+          "request": {
+            "name": "Get parking lots",
+            "description": {
+              "content": "Gets a list of [ParkingLot] entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parking_lots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Limits the results to a specified number, defaults to 50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offsets the results to a specified number, defaults to 0"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79346e06-dfe2-4462-a4f4-bff2c547fce5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parking_lots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parking_lots\": [\n    {\n      \"id\": 1,\n      \"name\": \"West Lot\",\n      \"user_id\": 1,\n      \"locations\": [\n        {\n          \"id\": 1,\n          \"name\": \"Default\"\n        }\n      ]\n    },\n    {\n      \"id\": 2,\n      \"name\": \"East Lot\",\n      \"user_id\": 1,\n      \"locations\": [\n        {\n          \"id\": 2,\n          \"name\": \"Vancouver\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"total_records\": 5,\n    \"current_offset\": 0,\n    \"next_offset\": null,\n    \"last_id\": null,\n    \"limit\": 20\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86bb2d81-0c8e-4e52-a4b3-8aca8ec01f1a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parking_lots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f935f29-e6b0-4b6c-a20d-284a300fe910",
+          "name": "Get stalls of parking lot",
+          "request": {
+            "name": "Get stalls of parking lot",
+            "description": {
+              "content": "Gets a list of [ParkingStall] entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parking_lots",
+                ":parking_lot_id",
+                "parking_stalls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Limits the results to a specified number, defaults to 50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offsets the results to a specified number, defaults to 0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "parking_lot_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8219b3f-f9a2-425a-ab43-4a49325856d2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parking_lots",
+                    ":parking_lot_id",
+                    "parking_stalls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parking_lot_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parking_stalls\": [\n    {\n      \"id\": 1,\n      \"parking_lot_id\": 1,\n      \"stall_type\": \"Handicap\",\n      \"range\": \"0\",\n      \"stall_count\": 5,\n      \"range_prefix\": \"H\",\n      \"range_postfix\": \"\"\n    },\n    {\n      \"id\": 2,\n      \"parking_lot_id\": 1,\n      \"stall_type\": \"General\",\n      \"range\": \"5\",\n      \"stall_count\": 95,\n      \"range_prefix\": \"P\",\n      \"range_postfix\": \"\"\n    }\n  ],\n  \"pagination\": {\n    \"total_records\": 5,\n    \"current_offset\": 0,\n    \"next_offset\": null,\n    \"last_id\": null,\n    \"limit\": 20\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3a42747-4de6-4815-8446-2e843bd30617",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parking_lots",
+                    ":parking_lot_id",
+                    "parking_stalls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parking_lot_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11c83364-52f7-4aad-ae76-1172ffb7e8e0",
+          "name": "Get available stalls for stall type",
+          "request": {
+            "name": "Get available stalls for stall type",
+            "description": {
+              "content": "Gets a list of [ParkingLotAvailableStalls] entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parking_lots",
+                ":parking_lot_id",
+                "available_stalls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "stall_type",
+                  "value": "<string>",
+                  "description": "(Required) The type of stall to filter by. E.g., 'Compact', 'Standard', 'Electric', 'Handicapped'"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<dateTime>",
+                  "description": "(Required) The start date to filter by. E.g., '2024-06-13T15:30:00'"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<dateTime>",
+                  "description": "(Required) The end date to filter by. E.g., '2024-06-13T15:30:00'"
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "<string>",
+                  "description": "The IANA timezone to be used if not provided in both start_date and end_date. E.g., 'America/Vancouver'"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "parking_lot_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba8e1dd4-b67f-4c7b-9c0c-06a0b0424de0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parking_lots",
+                    ":parking_lot_id",
+                    "available_stalls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stall_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parking_lot_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"parking_stall_id\": 23,\n    \"range\": null,\n    \"stall_count\": 5,\n    \"open_stalls\": [\n      1,\n      2,\n      3,\n      4,\n      5\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07992768-c776-45b1-8787-b8dcd148028c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parking_lots",
+                    ":parking_lot_id",
+                    "available_stalls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stall_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parking_lot_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "https://us.tractionguest.com/api/v3",
+      "key": "domain"
+    },
+    {
+      "type": "string",
+      "value": "{{domain}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "294629ae-ecee-4047-85a9-543ce1396d8f",
+    "name": "Sign In Solutions VMS AuditLogs Parking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.\n\n# Getting Started\nIf you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).\n\nWe will also add you to our Slack channel where you can ask questions and get further help.\n\n# Terms and Conditions\nPlease visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)\n\n# Versioning\nThis API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.\n\n* The `Major` number increments when potentially incompatible changes are made.\n* The `Minor` number increments when backwards-compatible additions are made.\n* The `Patch` number increments when backwards-compatible bug-fixes are made.\n\n\nContact Support:\n Name: API Support\n Email: support@tractionguest.com",
+      "type": "text/plain"
+    }
+  }
+}

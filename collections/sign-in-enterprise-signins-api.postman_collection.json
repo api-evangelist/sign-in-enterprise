@@ -1,0 +1,1546 @@
+{
+  "item": [
+    {
+      "id": "58d448a6-f9a1-49f0-9162-a45aa93bb6c1",
+      "name": "Signins",
+      "description": {
+        "content": "All endpoints related to models that track signing in and out of a location. E.g., Signin, Signout, SigninAcknowledgment models",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "599f9c8d-8f12-4766-9613-65dfd444fc69",
+          "name": "Get a Signin",
+          "request": {
+            "name": "Get a Signin",
+            "description": {
+              "content": "Gets the details of a single instance of a `Signin`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signins",
+                ":signin_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "A list of comma-separated related models to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "signin_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24841842-c224-43d0-8165-2a40ca8ca5c3",
+              "name": "Successful response - returns a single `Signin`.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2,\n  \"company\": \"some text\",\n  \"email\": \"some text\",\n  \"first_name\": \"some text\",\n  \"is_accounted_for\": true,\n  \"is_acknowledged\": true,\n  \"last_name\": \"some text\",\n  \"location_name\": \"some text\",\n  \"mobile_number\": \"some text\",\n  \"signed_out_timestamp\": \"2018-02-10T09:30:00Z\",\n  \"signin_photo_url\": \"some text\",\n  \"signin_timestamp\": \"2018-02-10T09:30:00Z\",\n  \"is_signed_out\": true,\n  \"note\": \"some text\",\n  \"signin_acknowledgement\": {\n    \"code\": \"some text\",\n    \"acknowledged_at\": \"2018-02-10T09:30:00Z\",\n    \"id\": 99\n  },\n  \"signin_data\": [\n    {\n      \"name\": \"some text\",\n      \"custom_fields\": [\n        {\n          \"format\": \"string\",\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        },\n        {\n          \"format\": \"string\",\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        }\n      ]\n    },\n    {\n      \"name\": \"some text\",\n      \"custom_fields\": [\n        {\n          \"format\": \"string\",\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        },\n        {\n          \"format\": \"string\",\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        }\n      ]\n    }\n  ],\n  \"hosts\": [\n    {\n      \"id\": 71,\n      \"email\": \"some text\",\n      \"first_name\": \"some text\",\n      \"last_name\": \"some text\",\n      \"mobile_number\": \"some text\",\n      \"profile_pic_url\": \"some text\"\n    },\n    {\n      \"id\": 24,\n      \"email\": \"some text\",\n      \"first_name\": \"some text\",\n      \"last_name\": \"some text\",\n      \"mobile_number\": \"some text\",\n      \"profile_pic_url\": \"some text\"\n    }\n  ],\n  \"signin_watchlist\": {\n    \"id\": 47,\n    \"external\": [\n      {\n        \"search_terms\": {\n          \"name\": \"some text\",\n          \"company\": \"some text\",\n          \"city\": \"some text\",\n          \"country\": \"some text\",\n          \"state\": \"some text\"\n        },\n        \"integration\": \"some text\",\n        \"colour\": \"GREEN\",\n        \"matches\": [\n          {\n            \"id\": \"some text\",\n            \"alt_names\": [\n              \"some text\",\n              \"some text\"\n            ],\n            \"federal_register_notice\": \"some text\",\n            \"name\": \"some text\",\n            \"source_information_url\": \"some text\",\n            \"source_list_url\": \"some text\",\n            \"list\": \"some text\",\n            \"type\": \"some text\",\n            \"category\": \"some text\",\n            \"street1\": \"some text\",\n            \"street2\": \"some text\",\n            \"city\": \"some text\",\n            \"state\": \"some text\",\n            \"country\": \"some text\",\n            \"notes\": \"some text\",\n            \"frc\": \"some text\",\n            \"start\": \"2018-01-17\",\n            \"end\": \"2018-01-17\",\n            \"frserve\": \"some text\",\n            \"optional_ID\": \"some text\",\n            \"alert_type\": \"some text\"\n          },\n          {\n            \"id\": \"some text\",\n            \"alt_names\": [\n              \"some text\",\n              \"some text\"\n            ],\n            \"federal_register_notice\": \"some text\",\n            \"name\": \"some text\",\n            \"source_information_url\": \"some text\",\n            \"source_list_url\": \"some text\",\n            \"list\": \"some text\",\n            \"type\": \"some text\",\n            \"category\": \"some text\",\n            \"street1\": \"some text\",\n            \"street2\": \"some text\",\n            \"city\": \"some text\",\n            \"state\": \"some text\",\n            \"country\": \"some text\",\n            \"notes\": \"some text\",\n            \"frc\": \"some text\",\n            \"start\": \"2018-01-17\",\n            \"end\": \"2018-01-17\",\n            \"frserve\": \"some text\",\n            \"optional_ID\": \"some text\",\n            \"alert_type\": \"some text\"\n          }\n        ]\n      },\n      {\n        \"search_terms\": {\n          \"name\": \"some text\",\n          \"company\": \"some text\",\n          \"city\": \"some text\",\n          \"country\": \"some text\",\n          \"state\": \"some text\"\n        },\n        \"integration\": \"some text\",\n        \"colour\": \"YELLOW\",\n        \"matches\": [\n          {\n            \"id\": \"some text\",\n            \"alt_names\": [\n              \"some text\",\n              \"some text\"\n            ],\n            \"federal_register_notice\": \"some text\",\n            \"name\": \"some text\",\n            \"source_information_url\": \"some text\",\n            \"source_list_url\": \"some text\",\n            \"list\": \"some text\",\n            \"type\": \"some text\",\n            \"category\": \"some text\",\n            \"street1\": \"some text\",\n            \"street2\": \"some text\",\n            \"city\": \"some text\",\n            \"state\": \"some text\",\n            \"country\": \"some text\",\n            \"notes\": \"some text\",\n            \"frc\": \"some text\",\n            \"start\": \"2018-01-17\",\n            \"end\": \"2018-01-17\",\n            \"frserve\": \"some text\",\n            \"optional_ID\": \"some text\",\n            \"alert_type\": \"some text\"\n          },\n          {\n            \"id\": \"some text\",\n            \"alt_names\": [\n              \"some text\",\n              \"some text\"\n            ],\n            \"federal_register_notice\": \"some text\",\n            \"name\": \"some text\",\n            \"source_information_url\": \"some text\",\n            \"source_list_url\": \"some text\",\n            \"list\": \"some text\",\n            \"type\": \"some text\",\n            \"category\": \"some text\",\n            \"street1\": \"some text\",\n            \"street2\": \"some text\",\n            \"city\": \"some text\",\n            \"state\": \"some text\",\n            \"country\": \"some text\",\n            \"notes\": \"some text\",\n            \"frc\": \"some text\",\n            \"start\": \"2018-01-17\",\n            \"end\": \"2018-01-17\",\n            \"frserve\": \"some text\",\n            \"optional_ID\": \"some text\",\n            \"alert_type\": \"some text\"\n          }\n        ]\n      }\n    ],\n    \"internal\": [\n      {\n        \"id\": 13,\n        \"email\": \"some text\",\n        \"colour\": \"some text\",\n        \"last_name\": \"some text\",\n        \"first_name\": \"some text\"\n      },\n      {\n        \"id\": 71,\n        \"email\": \"some text\",\n        \"colour\": \"some text\",\n        \"last_name\": \"some text\",\n        \"first_name\": \"some text\"\n      }\n    ]\n  },\n  \"documents\": [\n    {\n      \"docusigns\": [\n        {\n          \"template_id\": \"some text\",\n          \"integration\": \"some text\",\n          \"nda_status\": \"some text\",\n          \"nda_signed_date\": \"2018-02-10T09:30:00Z\",\n          \"envelope_id\": \"some text\",\n          \"sequence\": \"54\",\n          \"docusign_id\": \"some text\",\n          \"docusign_name\": \"some text\",\n          \"title\": \"some text\"\n        },\n        {\n          \"template_id\": \"some text\",\n          \"integration\": \"some text\",\n          \"nda_status\": \"some text\",\n          \"nda_signed_date\": \"2018-02-10T09:30:00Z\",\n          \"envelope_id\": \"some text\",\n          \"sequence\": \"48\",\n          \"docusign_id\": \"some text\",\n          \"docusign_name\": \"some text\",\n          \"title\": \"some text\"\n        }\n      ],\n      \"simple_signatures\": [\n        {\n          \"status\": \"some text\",\n          \"template_name\": \"some text\",\n          \"id\": \"some text\",\n          \"title\": \"some text\"\n        },\n        {\n          \"status\": \"some text\",\n          \"template_name\": \"some text\",\n          \"id\": \"some text\",\n          \"title\": \"some text\"\n        }\n      ]\n    },\n    {\n      \"docusigns\": [\n        {\n          \"template_id\": \"some text\",\n          \"integration\": \"some text\",\n          \"nda_status\": \"some text\",\n          \"nda_signed_date\": \"2018-02-10T09:30:00Z\",\n          \"envelope_id\": \"some text\",\n          \"sequence\": \"28\",\n          \"docusign_id\": \"some text\",\n          \"docusign_name\": \"some text\",\n          \"title\": \"some text\"\n        },\n        {\n          \"template_id\": \"some text\",\n          \"integration\": \"some text\",\n          \"nda_status\": \"some text\",\n          \"nda_signed_date\": \"2018-02-10T09:30:00Z\",\n          \"envelope_id\": \"some text\",\n          \"sequence\": \"82\",\n          \"docusign_id\": \"some text\",\n          \"docusign_name\": \"some text\",\n          \"title\": \"some text\"\n        }\n      ],\n      \"simple_signatures\": [\n        {\n          \"status\": \"some text\",\n          \"template_name\": \"some text\",\n          \"id\": \"some text\",\n          \"title\": \"some text\"\n        },\n        {\n          \"status\": \"some text\",\n          \"template_name\": \"some text\",\n          \"id\": \"some text\",\n          \"title\": \"some text\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6aef1f6b-6e24-4389-8c3c-daa02a7b8148",
+              "name": "A generic error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    },\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe1840d6-02e2-4d32-a594-4553c30c7aa3",
+              "name": "You don't have permission to view this Signin",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eace21e5-57d3-4a2c-bb77-2c00e17ec4f3",
+              "name": "You do not have permission for this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c72a938f-599a-4c77-a692-2e495dba437f",
+              "name": "The Signin does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0114bb47-3aac-4b79-b5e5-251ca372d2df",
+          "name": "Update a Signin",
+          "request": {
+            "name": "Update a Signin",
+            "description": {
+              "content": "Update, acknowledge, or `Signout` a `Signin`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signins",
+                ":signin_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "signin_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a40f9055-625d-4f65-a774-9d28c36b8119",
+              "name": "The Signin has been acknowledged, or signed out.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_signed_out\": true,\n  \"is_acknowledged\": true,\n  \"is_accounted_for\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5,\n  \"company\": \"some text\",\n  \"email\": \"some text\",\n  \"first_name\": \"some text\",\n  \"is_accounted_for\": true,\n  \"is_acknowledged\": true,\n  \"last_name\": \"some text\",\n  \"location_name\": \"some text\",\n  \"mobile_number\": \"some text\",\n  \"signed_out_timestamp\": \"2018-02-10T09:30:00Z\",\n  \"signin_photo_url\": \"some text\",\n  \"signin_timestamp\": \"2018-02-10T09:30:00Z\",\n  \"is_signed_out\": true,\n  \"note\": \"some text\",\n  \"signin_acknowledgement\": {\n    \"code\": \"some text\",\n    \"acknowledged_at\": \"2018-02-10T09:30:00Z\",\n    \"id\": 9\n  },\n  \"signin_data\": [\n    {\n      \"name\": \"some text\",\n      \"custom_fields\": [\n        {\n          \"format\": \"string\",\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        },\n        {\n          \"format\": \"string\",\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        }\n      ]\n    },\n    {\n      \"name\": \"some text\",\n      \"custom_fields\": [\n        {\n          \"format\": \"string\",\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        },\n        {\n          \"format\": \"string\",\n          \"field_name\": \"some text\",\n          \"field_value\": \"some text\"\n        }\n      ]\n    }\n  ],\n  \"hosts\": [\n    {\n      \"id\": 72,\n      \"email\": \"some text\",\n      \"first_name\": \"some text\",\n      \"last_name\": \"some text\",\n      \"mobile_number\": \"some text\",\n      \"profile_pic_url\": \"some text\"\n    },\n    {\n      \"id\": 64,\n      \"email\": \"some text\",\n      \"first_name\": \"some text\",\n      \"last_name\": \"some text\",\n      \"mobile_number\": \"some text\",\n      \"profile_pic_url\": \"some text\"\n    }\n  ],\n  \"signin_watchlist\": {\n    \"id\": 90,\n    \"external\": [\n      {\n        \"search_terms\": {\n          \"name\": \"some text\",\n          \"company\": \"some text\",\n          \"city\": \"some text\",\n          \"country\": \"some text\",\n          \"state\": \"some text\"\n        },\n        \"integration\": \"some text\",\n        \"colour\": \"RED\",\n        \"matches\": [\n          {\n            \"id\": \"some text\",\n            \"alt_names\": [\n              \"some text\",\n              \"some text\"\n            ],\n            \"federal_register_notice\": \"some text\",\n            \"name\": \"some text\",\n            \"source_information_url\": \"some text\",\n            \"source_list_url\": \"some text\",\n            \"list\": \"some text\",\n            \"type\": \"some text\",\n            \"category\": \"some text\",\n            \"street1\": \"some text\",\n            \"street2\": \"some text\",\n            \"city\": \"some text\",\n            \"state\": \"some text\",\n            \"country\": \"some text\",\n            \"notes\": \"some text\",\n            \"frc\": \"some text\",\n            \"start\": \"2018-01-17\",\n            \"end\": \"2018-01-17\",\n            \"frserve\": \"some text\",\n            \"optional_ID\": \"some text\",\n            \"alert_type\": \"some text\"\n          },\n          {\n            \"id\": \"some text\",\n            \"alt_names\": [\n              \"some text\",\n              \"some text\"\n            ],\n            \"federal_register_notice\": \"some text\",\n            \"name\": \"some text\",\n            \"source_information_url\": \"some text\",\n            \"source_list_url\": \"some text\",\n            \"list\": \"some text\",\n            \"type\": \"some text\",\n            \"category\": \"some text\",\n            \"street1\": \"some text\",\n            \"street2\": \"some text\",\n            \"city\": \"some text\",\n            \"state\": \"some text\",\n            \"country\": \"some text\",\n            \"notes\": \"some text\",\n            \"frc\": \"some text\",\n            \"start\": \"2018-01-17\",\n            \"end\": \"2018-01-17\",\n            \"frserve\": \"some text\",\n            \"optional_ID\": \"some text\",\n            \"alert_type\": \"some text\"\n          }\n        ]\n      },\n      {\n        \"search_terms\": {\n          \"name\": \"some text\",\n          \"company\": \"some text\",\n          \"city\": \"some text\",\n          \"country\": \"some text\",\n          \"state\": \"some text\"\n        },\n        \"integration\": \"some text\",\n        \"colour\": \"ORANGE\",\n        \"matches\": [\n          {\n            \"id\": \"some text\",\n            \"alt_names\": [\n              \"some text\",\n              \"some text\"\n            ],\n            \"federal_register_notice\": \"some text\",\n            \"name\": \"some text\",\n            \"source_information_url\": \"some text\",\n            \"source_list_url\": \"some text\",\n            \"list\": \"some text\",\n            \"type\": \"some text\",\n            \"category\": \"some text\",\n            \"street1\": \"some text\",\n            \"street2\": \"some text\",\n            \"city\": \"some text\",\n            \"state\": \"some text\",\n            \"country\": \"some text\",\n            \"notes\": \"some text\",\n            \"frc\": \"some text\",\n            \"start\": \"2018-01-17\",\n            \"end\": \"2018-01-17\",\n            \"frserve\": \"some text\",\n            \"optional_ID\": \"some text\",\n            \"alert_type\": \"some text\"\n          },\n          {\n            \"id\": \"some text\",\n            \"alt_names\": [\n              \"some text\",\n              \"some text\"\n            ],\n            \"federal_register_notice\": \"some text\",\n            \"name\": \"some text\",\n            \"source_information_url\": \"some text\",\n            \"source_list_url\": \"some text\",\n            \"list\": \"some text\",\n            \"type\": \"some text\",\n            \"category\": \"some text\",\n            \"street1\": \"some text\",\n            \"street2\": \"some text\",\n            \"city\": \"some text\",\n            \"state\": \"some text\",\n            \"country\": \"some text\",\n            \"notes\": \"some text\",\n            \"frc\": \"some text\",\n            \"start\": \"2018-01-17\",\n            \"end\": \"2018-01-17\",\n            \"frserve\": \"some text\",\n            \"optional_ID\": \"some text\",\n            \"alert_type\": \"some text\"\n          }\n        ]\n      }\n    ],\n    \"internal\": [\n      {\n        \"id\": 32,\n        \"email\": \"some text\",\n        \"colour\": \"some text\",\n        \"last_name\": \"some text\",\n        \"first_name\": \"some text\"\n      },\n      {\n        \"id\": 98,\n        \"email\": \"some text\",\n        \"colour\": \"some text\",\n        \"last_name\": \"some text\",\n        \"first_name\": \"some text\"\n      }\n    ]\n  },\n  \"documents\": [\n    {\n      \"docusigns\": [\n        {\n          \"template_id\": \"some text\",\n          \"integration\": \"some text\",\n          \"nda_status\": \"some text\",\n          \"nda_signed_date\": \"2018-02-10T09:30:00Z\",\n          \"envelope_id\": \"some text\",\n          \"sequence\": \"38\",\n          \"docusign_id\": \"some text\",\n          \"docusign_name\": \"some text\",\n          \"title\": \"some text\"\n        },\n        {\n          \"template_id\": \"some text\",\n          \"integration\": \"some text\",\n          \"nda_status\": \"some text\",\n          \"nda_signed_date\": \"2018-02-10T09:30:00Z\",\n          \"envelope_id\": \"some text\",\n          \"sequence\": \"83\",\n          \"docusign_id\": \"some text\",\n          \"docusign_name\": \"some text\",\n          \"title\": \"some text\"\n        }\n      ],\n      \"simple_signatures\": [\n        {\n          \"status\": \"some text\",\n          \"template_name\": \"some text\",\n          \"id\": \"some text\",\n          \"title\": \"some text\"\n        },\n        {\n          \"status\": \"some text\",\n          \"template_name\": \"some text\",\n          \"id\": \"some text\",\n          \"title\": \"some text\"\n        }\n      ]\n    },\n    {\n      \"docusigns\": [\n        {\n          \"template_id\": \"some text\",\n          \"integration\": \"some text\",\n          \"nda_status\": \"some text\",\n          \"nda_signed_date\": \"2018-02-10T09:30:00Z\",\n          \"envelope_id\": \"some text\",\n          \"sequence\": \"49\",\n          \"docusign_id\": \"some text\",\n          \"docusign_name\": \"some text\",\n          \"title\": \"some text\"\n        },\n        {\n          \"template_id\": \"some text\",\n          \"integration\": \"some text\",\n          \"nda_status\": \"some text\",\n          \"nda_signed_date\": \"2018-02-10T09:30:00Z\",\n          \"envelope_id\": \"some text\",\n          \"sequence\": \"71\",\n          \"docusign_id\": \"some text\",\n          \"docusign_name\": \"some text\",\n          \"title\": \"some text\"\n        }\n      ],\n      \"simple_signatures\": [\n        {\n          \"status\": \"some text\",\n          \"template_name\": \"some text\",\n          \"id\": \"some text\",\n          \"title\": \"some text\"\n        },\n        {\n          \"status\": \"some text\",\n          \"template_name\": \"some text\",\n          \"id\": \"some text\",\n          \"title\": \"some text\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3939a9c-eeb4-4513-821f-a69990699bc0",
+              "name": "A generic error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_signed_out\": true,\n  \"is_acknowledged\": true,\n  \"is_accounted_for\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    },\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d72e72e5-11c7-4747-ab67-64a235694273",
+              "name": "You don't have permission to update this Signin",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_signed_out\": true,\n  \"is_acknowledged\": true,\n  \"is_accounted_for\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "65530773-b45a-4862-8bf9-48838c3befee",
+              "name": "You do not have permission for this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_signed_out\": true,\n  \"is_acknowledged\": true,\n  \"is_accounted_for\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c1ce6845-8a00-4a90-96d1-f8f56db27009",
+              "name": "The Signin does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_signed_out\": true,\n  \"is_acknowledged\": true,\n  \"is_accounted_for\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b9dfa5b-97ea-4f10-9692-ed7137e2e971",
+              "name": "Your request was not formatted correctly",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins",
+                    ":signin_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signin_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it's submitted. We store idempotency keys for only 24 hours. Any `Idempotency-Key` shorter than 10 characters will be ignored",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_signed_out\": true,\n  \"is_acknowledged\": true,\n  \"is_accounted_for\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "061fb96f-6ea5-4d35-903f-439a2c151ccd",
+          "name": "List all Signins",
+          "request": {
+            "name": "List all Signins",
+            "description": {
+              "content": "Gets a list of all `Signin` entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "location_ids",
+                  "value": "<string>",
+                  "description": "A comma separated list of Location IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "with_colours",
+                  "value": "<string>",
+                  "description": "A comma separated list of case-insensitive colour values.\ni.e., `red`, `green`, `yellow`, and `orange`"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Allows you to query by `company`, `email`, `first_name`, `last_name`, and `location_name`"
+                },
+                {
+                  "disabled": false,
+                  "key": "with_acknowledged",
+                  "value": "<boolean>",
+                  "description": "Filters to all those `Signin`s that have, or have not been acknowledged"
+                },
+                {
+                  "disabled": false,
+                  "key": "with_signed_in",
+                  "value": "<boolean>",
+                  "description": "Filters to all `Signin`s that are, or are not currently signed out."
+                },
+                {
+                  "disabled": false,
+                  "key": "signin_before",
+                  "value": "<date>",
+                  "description": "Filters results to all those *before* the provided datetime"
+                },
+                {
+                  "disabled": false,
+                  "key": "signin_after",
+                  "value": "<date>",
+                  "description": "Filters results to all those *after* the provided datetime"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limits the results to a specified number, defaults to 50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offsets the results to a specified number, defaults to 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "query_sort",
+                  "value": "<string>",
+                  "description": "Allows you to override ordering by most relevant results when querying"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "A list of comma-separated related models to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_anonymized",
+                  "value": "<boolean>",
+                  "description": "Set this flag to `true` to include anonymized signins in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e39793d-ade6-4edd-b8f4-70cbb2e06860",
+              "name": "Successful response - returns an array of `Signin` entities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "with_colours",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "with_acknowledged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "with_signed_in",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "signin_before",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "signin_after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query_sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_anonymized",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signins\": [\n    {\n      \"id\": 70,\n      \"company\": \"some text\",\n      \"email\": \"some text\",\n      \"first_name\": \"some text\",\n      \"is_accounted_for\": true,\n      \"is_acknowledged\": true,\n      \"last_name\": \"some text\",\n      \"location_name\": \"some text\",\n      \"signed_out_timestamp\": \"2018-02-10T09:30:00Z\",\n      \"signin_photo_url\": \"some text\",\n      \"signin_timestamp\": \"2018-02-10T09:30:00Z\",\n      \"hosts\": [\n        {\n          \"id\": 9,\n          \"email\": \"some text\",\n          \"first_name\": \"some text\",\n          \"last_name\": \"some text\",\n          \"mobile_number\": \"some text\",\n          \"profile_pic_url\": \"some text\"\n        },\n        {\n          \"id\": 95,\n          \"email\": \"some text\",\n          \"first_name\": \"some text\",\n          \"last_name\": \"some text\",\n          \"mobile_number\": \"some text\",\n          \"profile_pic_url\": \"some text\"\n        }\n      ],\n      \"signin_watchlist\": {\n        \"id\": 25,\n        \"external\": [\n          {\n            \"search_terms\": {\n              \"name\": \"some text\",\n              \"company\": \"some text\",\n              \"city\": \"some text\",\n              \"country\": \"some text\",\n              \"state\": \"some text\"\n            },\n            \"integration\": \"some text\",\n            \"colour\": \"ORANGE\",\n            \"matches\": [\n              {\n                \"id\": \"some text\",\n                \"alt_names\": [\n                  \"some text\",\n                  \"some text\"\n                ],\n                \"federal_register_notice\": \"some text\",\n                \"name\": \"some text\",\n                \"source_information_url\": \"some text\",\n                \"source_list_url\": \"some text\",\n                \"list\": \"some text\",\n                \"type\": \"some text\",\n                \"category\": \"some text\",\n                \"street1\": \"some text\",\n                \"street2\": \"some text\",\n                \"city\": \"some text\",\n                \"state\": \"some text\",\n                \"country\": \"some text\",\n                \"notes\": \"some text\",\n                \"frc\": \"some text\",\n                \"start\": \"2018-01-17\",\n                \"end\": \"2018-01-17\",\n                \"frserve\": \"some text\",\n                \"optional_ID\": \"some text\",\n                \"alert_type\": \"some text\"\n              },\n              {\n                \"id\": \"some text\",\n                \"alt_names\": [\n                  \"some text\",\n                  \"some text\"\n                ],\n                \"federal_register_notice\": \"some text\",\n                \"name\": \"some text\",\n                \"source_information_url\": \"some text\",\n                \"source_list_url\": \"some text\",\n                \"list\": \"some text\",\n                \"type\": \"some text\",\n                \"category\": \"some text\",\n                \"street1\": \"some text\",\n                \"street2\": \"some text\",\n                \"city\": \"some text\",\n                \"state\": \"some text\",\n                \"country\": \"some text\",\n                \"notes\": \"some text\",\n                \"frc\": \"some text\",\n                \"start\": \"2018-01-17\",\n                \"end\": \"2018-01-17\",\n                \"frserve\": \"some text\",\n                \"optional_ID\": \"some text\",\n                \"alert_type\": \"some text\"\n              }\n            ]\n          },\n          {\n            \"search_terms\": {\n              \"name\": \"some text\",\n              \"company\": \"some text\",\n              \"city\": \"some text\",\n              \"country\": \"some text\",\n              \"state\": \"some text\"\n            },\n            \"integration\": \"some text\",\n            \"colour\": \"ORANGE\",\n            \"matches\": [\n              {\n                \"id\": \"some text\",\n                \"alt_names\": [\n                  \"some text\",\n                  \"some text\"\n                ],\n                \"federal_register_notice\": \"some text\",\n                \"name\": \"some text\",\n                \"source_information_url\": \"some text\",\n                \"source_list_url\": \"some text\",\n                \"list\": \"some text\",\n                \"type\": \"some text\",\n                \"category\": \"some text\",\n                \"street1\": \"some text\",\n                \"street2\": \"some text\",\n                \"city\": \"some text\",\n                \"state\": \"some text\",\n                \"country\": \"some text\",\n                \"notes\": \"some text\",\n                \"frc\": \"some text\",\n                \"start\": \"2018-01-17\",\n                \"end\": \"2018-01-17\",\n                \"frserve\": \"some text\",\n                \"optional_ID\": \"some text\",\n                \"alert_type\": \"some text\"\n              },\n              {\n                \"id\": \"some text\",\n                \"alt_names\": [\n                  \"some text\",\n                  \"some text\"\n                ],\n                \"federal_register_notice\": \"some text\",\n                \"name\": \"some text\",\n                \"source_information_url\": \"some text\",\n                \"source_list_url\": \"some text\",\n                \"list\": \"some text\",\n                \"type\": \"some text\",\n                \"category\": \"some text\",\n                \"street1\": \"some text\",\n                \"street2\": \"some text\",\n                \"city\": \"some text\",\n                \"state\": \"some text\",\n                \"country\": \"some text\",\n                \"notes\": \"some text\",\n                \"frc\": \"some text\",\n                \"start\": \"2018-01-17\",\n                \"end\": \"2018-01-17\",\n                \"frserve\": \"some text\",\n                \"optional_ID\": \"some text\",\n                \"alert_type\": \"some text\"\n              }\n            ]\n          }\n        ],\n        \"internal\": [\n          {\n            \"id\": 10,\n            \"email\": \"some text\",\n            \"colour\": \"some text\",\n            \"last_name\": \"some text\",\n            \"first_name\": \"some text\"\n          },\n          {\n            \"id\": 25,\n            \"email\": \"some text\",\n            \"colour\": \"some text\",\n            \"last_name\": \"some text\",\n            \"first_name\": \"some text\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": 50,\n      \"company\": \"some text\",\n      \"email\": \"some text\",\n      \"first_name\": \"some text\",\n      \"is_accounted_for\": true,\n      \"is_acknowledged\": true,\n      \"last_name\": \"some text\",\n      \"location_name\": \"some text\",\n      \"signed_out_timestamp\": \"2018-02-10T09:30:00Z\",\n      \"signin_photo_url\": \"some text\",\n      \"signin_timestamp\": \"2018-02-10T09:30:00Z\",\n      \"hosts\": [\n        {\n          \"id\": 78,\n          \"email\": \"some text\",\n          \"first_name\": \"some text\",\n          \"last_name\": \"some text\",\n          \"mobile_number\": \"some text\",\n          \"profile_pic_url\": \"some text\"\n        },\n        {\n          \"id\": 45,\n          \"email\": \"some text\",\n          \"first_name\": \"some text\",\n          \"last_name\": \"some text\",\n          \"mobile_number\": \"some text\",\n          \"profile_pic_url\": \"some text\"\n        }\n      ],\n      \"signin_watchlist\": {\n        \"id\": 89,\n        \"external\": [\n          {\n            \"search_terms\": {\n              \"name\": \"some text\",\n              \"company\": \"some text\",\n              \"city\": \"some text\",\n              \"country\": \"some text\",\n              \"state\": \"some text\"\n            },\n            \"integration\": \"some text\",\n            \"colour\": \"GREEN\",\n            \"matches\": [\n              {\n                \"id\": \"some text\",\n                \"alt_names\": [\n                  \"some text\",\n                  \"some text\"\n                ],\n                \"federal_register_notice\": \"some text\",\n                \"name\": \"some text\",\n                \"source_information_url\": \"some text\",\n                \"source_list_url\": \"some text\",\n                \"list\": \"some text\",\n                \"type\": \"some text\",\n                \"category\": \"some text\",\n                \"street1\": \"some text\",\n                \"street2\": \"some text\",\n                \"city\": \"some text\",\n                \"state\": \"some text\",\n                \"country\": \"some text\",\n                \"notes\": \"some text\",\n                \"frc\": \"some text\",\n                \"start\": \"2018-01-17\",\n                \"end\": \"2018-01-17\",\n                \"frserve\": \"some text\",\n                \"optional_ID\": \"some text\",\n                \"alert_type\": \"some text\"\n              },\n              {\n                \"id\": \"some text\",\n                \"alt_names\": [\n                  \"some text\",\n                  \"some text\"\n                ],\n                \"federal_register_notice\": \"some text\",\n                \"name\": \"some text\",\n                \"source_information_url\": \"some text\",\n                \"source_list_url\": \"some text\",\n                \"list\": \"some text\",\n                \"type\": \"some text\",\n                \"category\": \"some text\",\n                \"street1\": \"some text\",\n                \"street2\": \"some text\",\n                \"city\": \"some text\",\n                \"state\": \"some text\",\n                \"country\": \"some text\",\n                \"notes\": \"some text\",\n                \"frc\": \"some text\",\n                \"start\": \"2018-01-17\",\n                \"end\": \"2018-01-17\",\n                \"frserve\": \"some text\",\n                \"optional_ID\": \"some text\",\n                \"alert_type\": \"some text\"\n              }\n            ]\n          },\n          {\n            \"search_terms\": {\n              \"name\": \"some text\",\n              \"company\": \"some text\",\n              \"city\": \"some text\",\n              \"country\": \"some text\",\n              \"state\": \"some text\"\n            },\n            \"integration\": \"some text\",\n            \"colour\": \"RED\",\n            \"matches\": [\n              {\n                \"id\": \"some text\",\n                \"alt_names\": [\n                  \"some text\",\n                  \"some text\"\n                ],\n                \"federal_register_notice\": \"some text\",\n                \"name\": \"some text\",\n                \"source_information_url\": \"some text\",\n                \"source_list_url\": \"some text\",\n                \"list\": \"some text\",\n                \"type\": \"some text\",\n                \"category\": \"some text\",\n                \"street1\": \"some text\",\n                \"street2\": \"some text\",\n                \"city\": \"some text\",\n                \"state\": \"some text\",\n                \"country\": \"some text\",\n                \"notes\": \"some text\",\n                \"frc\": \"some text\",\n                \"start\": \"2018-01-17\",\n                \"end\": \"2018-01-17\",\n                \"frserve\": \"some text\",\n                \"optional_ID\": \"some text\",\n                \"alert_type\": \"some text\"\n              },\n              {\n                \"id\": \"some text\",\n                \"alt_names\": [\n                  \"some text\",\n                  \"some text\"\n                ],\n                \"federal_register_notice\": \"some text\",\n                \"name\": \"some text\",\n                \"source_information_url\": \"some text\",\n                \"source_list_url\": \"some text\",\n                \"list\": \"some text\",\n                \"type\": \"some text\",\n                \"category\": \"some text\",\n                \"street1\": \"some text\",\n                \"street2\": \"some text\",\n                \"city\": \"some text\",\n                \"state\": \"some text\",\n                \"country\": \"some text\",\n                \"notes\": \"some text\",\n                \"frc\": \"some text\",\n                \"start\": \"2018-01-17\",\n                \"end\": \"2018-01-17\",\n                \"frserve\": \"some text\",\n                \"optional_ID\": \"some text\",\n                \"alert_type\": \"some text\"\n              }\n            ]\n          }\n        ],\n        \"internal\": [\n          {\n            \"id\": 94,\n            \"email\": \"some text\",\n            \"colour\": \"some text\",\n            \"last_name\": \"some text\",\n            \"first_name\": \"some text\"\n          },\n          {\n            \"id\": 79,\n            \"email\": \"some text\",\n            \"colour\": \"some text\",\n            \"last_name\": \"some text\",\n            \"first_name\": \"some text\"\n          }\n        ]\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_records\": 38,\n    \"current_offset\": 31,\n    \"next_offset\": 26\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45fdb193-ce01-443f-9663-e3e364d2ed77",
+              "name": "A generic error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "with_colours",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "with_acknowledged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "with_signed_in",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "signin_before",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "signin_after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query_sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_anonymized",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    },\n    {\n      \"domain\": \"some text\",\n      \"attribute\": \"some text\",\n      \"code\": \"some text\",\n      \"message\": \"some text\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5376143-268c-49c9-a7ea-9b5c536b0af0",
+              "name": "You don't have permission to view these Signins",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "with_colours",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "with_acknowledged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "with_signed_in",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "signin_before",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "signin_after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query_sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_anonymized",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a994f1e4-f994-49c1-a6aa-3f07e835b523",
+              "name": "You do not have permission for this action",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "with_colours",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "with_acknowledged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "with_signed_in",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "signin_before",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "signin_after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "query_sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_anonymized",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76d4f38d-0147-4228-9ac8-c814a738341f",
+          "name": "Create Signin",
+          "request": {
+            "name": "Create Signin",
+            "description": {
+              "content": "Creates a Signin",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57649212-2e23-47cf-9bac-0d0bce3ec580",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guest_email_template_id\": 47,\n  \"host_email_template_id\": 65,\n  \"host_ids\": [\n    77,\n    49\n  ],\n  \"location_id\": 79,\n  \"send_notifications\": true,\n  \"sms_message\": \"some text\",\n  \"first_name\": \"some text\",\n  \"last_name\": \"some text\",\n  \"company\": \"some text\",\n  \"email\": \"some text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "872eb051-2963-4fef-9009-1084a54cc561",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guest_email_template_id\": 47,\n  \"host_email_template_id\": 65,\n  \"host_ids\": [\n    77,\n    49\n  ],\n  \"location_id\": 79,\n  \"send_notifications\": true,\n  \"sms_message\": \"some text\",\n  \"first_name\": \"some text\",\n  \"last_name\": \"some text\",\n  \"company\": \"some text\",\n  \"email\": \"some text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae441bfc-9e12-4e66-84c9-c91c9c8b031d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guest_email_template_id\": 47,\n  \"host_email_template_id\": 65,\n  \"host_ids\": [\n    77,\n    49\n  ],\n  \"location_id\": 79,\n  \"send_notifications\": true,\n  \"sms_message\": \"some text\",\n  \"first_name\": \"some text\",\n  \"last_name\": \"some text\",\n  \"company\": \"some text\",\n  \"email\": \"some text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9800037d-452b-43c4-9f03-f458af2a57b6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guest_email_template_id\": 47,\n  \"host_email_template_id\": 65,\n  \"host_ids\": [\n    77,\n    49\n  ],\n  \"location_id\": 79,\n  \"send_notifications\": true,\n  \"sms_message\": \"some text\",\n  \"first_name\": \"some text\",\n  \"last_name\": \"some text\",\n  \"company\": \"some text\",\n  \"email\": \"some text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3d240b04-ca46-48bc-a501-e5fa5288df16",
+              "name": "Unprocessable Entity (WebDAV)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guest_email_template_id\": 47,\n  \"host_email_template_id\": 65,\n  \"host_ids\": [\n    77,\n    49\n  ],\n  \"location_id\": 79,\n  \"send_notifications\": true,\n  \"sms_message\": \"some text\",\n  \"first_name\": \"some text\",\n  \"last_name\": \"some text\",\n  \"company\": \"some text\",\n  \"email\": \"some text\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": " (This can only be one of https://us.tractionguest.com/api/v3,http://localhost:3000/api/v3)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "https://us.tractionguest.com/api/v3",
+      "key": "domain"
+    },
+    {
+      "type": "string",
+      "value": "{{domain}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "210bdb45-e57b-4d63-bcd1-51c65e9ce02d",
+    "name": "Sign In Solutions VMS AuditLogs Signins API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Traction Guest API is currently under limited release to select customers as we gather and iterate on feedback.\n\n# Getting Started\nIf you are interested in getting early access to the API, please send us an email to [support@tractionguest.com](mailto:support@tractionguest.com).\n\nWe will also add you to our Slack channel where you can ask questions and get further help.\n\n# Terms and Conditions\nPlease visit: [https://signinsolutions.com/compliance-hub](https://signinsolutions.com/compliance-hub)\n\n# Versioning\nThis API follows [semantic versioning](https://semver.org/), which follows the `Major`.`Minor`.`Patch` format.\n\n* The `Major` number increments when potentially incompatible changes are made.\n* The `Minor` number increments when backwards-compatible additions are made.\n* The `Patch` number increments when backwards-compatible bug-fixes are made.\n\n\nContact Support:\n Name: API Support\n Email: support@tractionguest.com",
+      "type": "text/plain"
+    }
+  }
+}

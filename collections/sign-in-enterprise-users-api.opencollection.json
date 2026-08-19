@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sign In Solutions VMS AuditLogs Users API",
+    "version": "0.21.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the current User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "A list of comma-separated related models to include"
+              }
+            ]
+          },
+          "docs": "Gets the details of a single instance of the current `User`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

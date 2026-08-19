@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sign In Solutions VMS AuditLogs Batches API",
+    "version": "0.21.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Batches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a BatchJob",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/batches/:batch_id",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a given `BatchJob` entity."
+        },
+        {
+          "info": {
+            "name": "Delete Multiple Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{domain}/invites/batch_delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Queues up a \"delete\" background task for one or more `Invite` entities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

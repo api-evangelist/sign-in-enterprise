@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sign In Solutions VMS AuditLogs Capacities API",
+    "version": "0.21.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Capacities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the capacity details for a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/locations/:location_id/capacity_forecasts",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "hours_to_forecast",
+                "value": "",
+                "type": "query",
+                "description": "The next N number of hours, the data needs to be calculated. Range from 1 to 24. If not set, it defaults to 8."
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "ISO8601 timestamp(includes the offset value) to use as the start point for the capacity estimate report. Defaults to the current local timestamp of the location if not provided. Eg: \"2020-07-16T17:05:08-07:00\""
+              }
+            ]
+          },
+          "docs": "Gets the details of the future capacity in a location."
+        },
+        {
+          "info": {
+            "name": "Get the current capacity details for a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/locations/:location_id/capacities",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details of current capacity in a location"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sign In Solutions VMS AuditLogs Parking API",
+    "version": "0.21.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Parking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get parking lots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/parking_lots",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the results to a specified number, defaults to 50"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offsets the results to a specified number, defaults to 0"
+              }
+            ]
+          },
+          "docs": "Gets a list of [ParkingLot] entities."
+        },
+        {
+          "info": {
+            "name": "Get stalls of parking lot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/parking_lots/:parking_lot_id/parking_stalls",
+            "params": [
+              {
+                "name": "parking_lot_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the results to a specified number, defaults to 50"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offsets the results to a specified number, defaults to 0"
+              }
+            ]
+          },
+          "docs": "Gets a list of [ParkingStall] entities."
+        },
+        {
+          "info": {
+            "name": "Get available stalls for stall type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{domain}/parking_lots/:parking_lot_id/available_stalls",
+            "params": [
+              {
+                "name": "parking_lot_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stall_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of stall to filter by. E.g., 'Compact', 'Standard', 'Electric', 'Handicapped'"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "The start date to filter by. E.g., '2024-06-13T15:30:00'"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "The end date to filter by. E.g., '2024-06-13T15:30:00'"
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "The IANA timezone to be used if not provided in both start_date and end_date. E.g., 'America/Vancouver'"
+              }
+            ]
+          },
+          "docs": "Gets a list of [ParkingLotAvailableStalls] entities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
