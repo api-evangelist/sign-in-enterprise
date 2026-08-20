@@ -48,6 +48,8 @@ apis:
   humanURL: https://developers.signinenterprise.com/
   baseURL: https://us.tractionguest.com/api/v3
   tags:
+  - Audit Logs
+  tags_raw:
   - AuditLogs
   properties:
   - type: OpenAPI
@@ -84,6 +86,8 @@ apis:
   humanURL: https://developers.signinenterprise.com/
   baseURL: https://us.tractionguest.com/api/v3
   tags:
+  - Email Templates
+  tags_raw:
   - EmailTemplates
   properties:
   - type: OpenAPI
@@ -183,6 +187,8 @@ apis:
   humanURL: https://developers.signinenterprise.com/
   baseURL: https://us.tractionguest.com/api/v3
   tags:
+  - Sign Ins
+  tags_raw:
   - Signins
   properties:
   - type: OpenAPI
@@ -195,6 +201,8 @@ apis:
   humanURL: https://developers.signinenterprise.com/
   baseURL: https://us.tractionguest.com/api/v3
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -207,6 +215,8 @@ apis:
   humanURL: https://developers.signinenterprise.com/
   baseURL: https://us.tractionguest.com/api/v3
   tags:
+  - Watchlist
+  tags_raw:
   - Watchlists
   properties:
   - type: OpenAPI
