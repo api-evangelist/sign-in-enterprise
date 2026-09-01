@@ -199,7 +199,7 @@ apis:
   humanURL: https://developers.signinenterprise.com/
   baseURL: https://us.tractionguest.com/api/v3
   tags:
-  - Signins
+  - Sign Ins
   tags_raw:
   - Signins
   properties:
