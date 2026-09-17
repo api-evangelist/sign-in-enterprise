@@ -54,20 +54,6 @@ tags:
 - Compliance
 - Access Control
 apis:
-- aid: sign-in-enterprise:sign-in-enterprise-auditlogs-api
-  name: Sign In Enterprise AuditLogs API
-  description: All endpoints related to the AuditLog model.
-  humanURL: https://developers.signinenterprise.com/
-  baseURL: https://us.tractionguest.com/api/v3
-  tags:
-  - Audit Logs
-  tags_raw:
-  - AuditLogs
-  properties:
-  - type: OpenAPI
-    url: openapi/sign-in-enterprise-auditlogs-api-openapi.yml
-  - type: APIReference
-    url: https://developers.signinenterprise.com/
 - aid: sign-in-enterprise:sign-in-enterprise-batches-api
   name: Sign In Enterprise Batches API
   description: All endpoints related to Batch-type actions.
@@ -90,20 +76,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sign-in-enterprise-capacities-api-openapi.yml
-  - type: APIReference
-    url: https://developers.signinenterprise.com/
-- aid: sign-in-enterprise:sign-in-enterprise-emailtemplates-api
-  name: Sign In Enterprise EmailTemplates API
-  description: All endpoints relating to operations for the EmailTemplate model
-  humanURL: https://developers.signinenterprise.com/
-  baseURL: https://us.tractionguest.com/api/v3
-  tags:
-  - Email Templates
-  tags_raw:
-  - EmailTemplates
-  properties:
-  - type: OpenAPI
-    url: openapi/sign-in-enterprise-emailtemplates-api-openapi.yml
   - type: APIReference
     url: https://developers.signinenterprise.com/
 - aid: sign-in-enterprise:sign-in-enterprise-groupvisits-api
@@ -191,22 +163,6 @@ apis:
     url: openapi/sign-in-enterprise-registrations-api-openapi.yml
   - type: APIReference
     url: https://developers.signinenterprise.com/
-- aid: sign-in-enterprise:sign-in-enterprise-signins-api
-  name: Sign In Enterprise Signins API
-  description: >-
-    All endpoints related to models that track signing in and out of a location. E.g., Signin, Signout,
-    SigninAcknowledgment models
-  humanURL: https://developers.signinenterprise.com/
-  baseURL: https://us.tractionguest.com/api/v3
-  tags:
-  - Sign Ins
-  tags_raw:
-  - Signins
-  properties:
-  - type: OpenAPI
-    url: openapi/sign-in-enterprise-signins-api-openapi.yml
-  - type: APIReference
-    url: https://developers.signinenterprise.com/
 - aid: sign-in-enterprise:sign-in-enterprise-users-api
   name: Sign In Enterprise Users API
   description: All endpoints related to the User model
@@ -233,6 +189,44 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sign-in-enterprise-watchlists-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-audit-logs-api
+  name: Sign In Enterprise Audit Logs API
+  description: All endpoints related to the AuditLog model.
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Audit Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-audit-logs-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-email-templates-api
+  name: Sign In Enterprise Email Templates API
+  description: All endpoints relating to operations for the EmailTemplate model
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Email Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-email-templates-api-openapi.yml
+  - type: APIReference
+    url: https://developers.signinenterprise.com/
+- aid: sign-in-enterprise:sign-in-enterprise-sign-ins-api
+  name: Sign In Enterprise Sign Ins API
+  description: >-
+    All endpoints related to models that track signing in and out of a location. E.g., Signin, Signout,
+    SigninAcknowledgment models
+  humanURL: https://developers.signinenterprise.com/
+  baseURL: https://us.tractionguest.com/api/v3
+  tags:
+  - Sign Ins
+  properties:
+  - type: OpenAPI
+    url: openapi/sign-in-enterprise-sign-ins-api-openapi.yml
   - type: APIReference
     url: https://developers.signinenterprise.com/
 maintainers:
