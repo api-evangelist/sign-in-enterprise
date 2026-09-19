@@ -120,6 +120,8 @@ apis:
   humanURL: https://developers.signinenterprise.com/
   baseURL: https://us.tractionguest.com/api/v3
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
