@@ -1,20 +1,7 @@
 {
   "provider": "sign-in-enterprise",
   "sources": [
-    "sign-in-enterprise-auditlogs-api-openapi.yml",
-    "sign-in-enterprise-batches-api-openapi.yml",
-    "sign-in-enterprise-capacities-api-openapi.yml",
-    "sign-in-enterprise-emailtemplates-api-openapi.yml",
-    "sign-in-enterprise-groupvisits-api-openapi.yml",
-    "sign-in-enterprise-hosts-api-openapi.yml",
-    "sign-in-enterprise-invites-api-openapi.yml",
-    "sign-in-enterprise-locations-api-openapi.yml",
-    "sign-in-enterprise-packages-api-openapi.yml",
-    "sign-in-enterprise-parking-api-openapi.yml",
-    "sign-in-enterprise-registrations-api-openapi.yml",
-    "sign-in-enterprise-signins-api-openapi.yml",
-    "sign-in-enterprise-users-api-openapi.yml",
-    "sign-in-enterprise-watchlists-api-openapi.yml"
+    "_original/sign-in-enterprise-guest-api-openapi-original.yml"
   ],
   "outputs": [
     "sign-in-enterprise-auditlogs-api-openapi.yml",
@@ -32,9 +19,31 @@
     "sign-in-enterprise-users-api-openapi.yml",
     "sign-in-enterprise-watchlists-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 3 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sign-in-enterprise-guest-api-openapi-original.yml: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "superseded outputs removed: sign-in-enterprise-audit-logs-api-openapi.yml, sign-in-enterprise-email-templates-api-openapi.yml, sign-in-enterprise-sign-ins-api-openapi.yml",
+    "apis.yml register: written (+3 apis, 14 total)"
+  ],
+  "skipped": [
+    "sign-in-enterprise-audit-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-batches-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-capacities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-email-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-groupvisits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-hosts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-invites-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-packages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-parking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-registrations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-sign-ins-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sign-in-enterprise-watchlists-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
