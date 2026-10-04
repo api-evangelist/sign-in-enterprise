@@ -237,6 +237,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/sign-in-enterprise-capability-edges.yml
+  name: Sign In Enterprise Business Capability Map
 - type: Overlay
   url: overlays/sign-in-enterprise-guest-api-overlay.yaml
 - type: TrustCenter
