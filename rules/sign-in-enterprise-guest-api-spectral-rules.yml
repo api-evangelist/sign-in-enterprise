@@ -1,0 +1,37 @@
+# harvested from https://github.com/tractionguest/guest-api/blob/e5aa94914e31c9386cf318f331a64bc50cbedbf7/.spectral.yml on 2026-10-09 — a Spectral ruleset published in the provider's own GitHub repository (tractionguest/guest-api); found by GitHub code search, fetched verbatim
+x-method: harvested
+x-stamped: 2026-10-09
+x-source-url: https://github.com/tractionguest/guest-api/blob/e5aa94914e31c9386cf318f331a64bc50cbedbf7/.spectral.yml
+extends: spectral:oas
+rules:
+  tag-description: error
+  enforce-snake-paths:
+    description: Paths should use snakecase
+    message: "The path '{{property}}' can't use camelCase or hyphens"
+    type: style
+    given: "$.paths[*]~"
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "[A-Z-]"
+  enforce-content-format:
+    description: Examples should be in application/json
+    message: "You can only use the application/json format"
+    type: style
+    given: "$..content.*~"
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "json$"
+  validate-operation-ids:
+    description: Ensures consistency of operationId values
+    message: "All operationIds should be in lowerCamelCase"
+    type: style
+    given: "$..operationId"
+    severity: error
+    then:
+      function: casing
+      functionOptions:
+        type: camel

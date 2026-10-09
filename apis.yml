@@ -305,6 +305,8 @@ common:
   url: llms/sign-in-enterprise-llms.txt
 - type: DomainSecurity
   url: security/sign-in-enterprise-domain-security.yml
+- type: SpectralRules
+  url: https://github.com/tractionguest/guest-api/blob/e5aa94914e31c9386cf318f331a64bc50cbedbf7/.spectral.yml
 x-enrichment:
   date: '2026-07-21'
   status: enriched
